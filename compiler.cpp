@@ -41,6 +41,8 @@ char ijkInstruction(uint32_t instruction){
   }
 }
 
+//rs, rt, rd --> u_int
+
 void Rinstructions(uint32_t instruction){
   int function = instruction&0x3F
   switch(function){
