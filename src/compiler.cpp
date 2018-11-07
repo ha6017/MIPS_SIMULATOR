@@ -1,12 +1,6 @@
 #include <cmath>
 
-using namespace std;
-
 #include "compiler.hpp"
-#include "R_Instruction.hpp"
-#include "I_Instruction.hpp"
-#include "J_Instruction.hpp"
-#include "memory.hpp"
 
 void compiler::RIJ_INSTRUCTION(){
   uint32_t index_PC=(PC-0x10000000)/4;
@@ -26,9 +20,13 @@ void compiler::RIJ_INSTRUCTION(){
   //cout<<"NEW value of PC intially ="<<*PC<<endl;
 }
 
-void compiler::run(){
-  while((PC != 0x0) || ((PC <= 0x11000000) && (PC >= 0x10000000))) // ADD no-op[ cases]
+void compiler::run(std::string binaryfile){
+  PC=0x10000000;
+  memory mem(binaryfile);
+
+  while((PC != 0x0) && ((PC <= 0x11000000) && (PC >= 0x10000000))) // ADD no-op[ cases]
   {
+    uint32_t currentInstruction = mem.
     RIJ_INSTRUCTION();
     // if PC has reached end of instruction memory or points to a null instruction
     //if()

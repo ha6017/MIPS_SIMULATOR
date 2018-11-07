@@ -1,7 +1,5 @@
 #include <cmath>
 
-using namespace std;
-
 #include "R_Instruction.hpp"
 
 R_Instruction::R_Instruction(){
