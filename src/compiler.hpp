@@ -11,8 +11,15 @@ class compiler{
     uint32_t PC;
 
   public:
+    compiler(std::string binaryfile);
     void RIJ_INSTRUCTION();
-    void run(std::string binaryfile);
+    void run();
+    memory mem;
+    register_map regs;
+    I_Instruction iInst;
+    R_Instruction rInst;
+    J_Instruction jInst;
+
 };
 
 #endif

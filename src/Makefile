@@ -18,6 +18,9 @@ compiler.o: compiler.hpp compiler.cpp
 memory.o: memory.hpp memory.cpp
 	g++ -c memory.cpp
 
+register_map.o: register_map.hpp register_map.cpp
+	g++ -c register_map.cpp
+
 run:
 	./bin/mips_simulator
 

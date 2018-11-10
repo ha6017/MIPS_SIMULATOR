@@ -1,10 +1,10 @@
 #include <cmath>
 
 #include "R_Instruction.hpp"
+#include "register_map.hpp"
 
-R_Instruction::R_Instruction(){
-  uint32_t indexPC=(PC-0x10000000)/4;
-  uint32_t instruction = ADDR_INSTR[indexPC];
+R_Instruction::R_Instruction(uint32_t instruction){
+
   uint32_t Fn_code = instruction&0x3F;
   uint32_t shamt = instruction&0x7C0;
   uint32_t rd= instruction&0xF800;
@@ -13,16 +13,17 @@ R_Instruction::R_Instruction(){
   rt=rt/pow(2,16);
   uint32_t rs= instruction&0x3E00000;
   rs=rs/pow(2,21);
+
 }
 
-void R_Instruction::runInstruction(){
+void R_Instruction::runInstruction(register_map &regs){
   switch(Fn_code){
     case 32:
       //ADD
       break;
     case 33:
       //ADDU
-      ADDU();
+      ADDU(register_map &regs);
       break;
     case 36:
       //AND
@@ -92,7 +93,7 @@ void R_Instruction::runInstruction(){
       break;
     case 8:
       //JR
-      JR();
+      JR(register_map &regs);
       break;
     case 16:
       //MFHI
@@ -184,12 +185,12 @@ void R_Instruction::runInstruction(){
   }
 }
 
-void R_Instruction::ADDU(){
-  REG_VECTOR[rd] = REG_VECTOR[rs] + REG_VECTOR[rt];
+void R_Instruction::ADDU(register_map &regs){
+  regs = REG_VECTOR[rs] + REG_VECTOR[rt];
   //cout<<"\nregister_vector[rd] = "<<register_vector[rd]<<endl;
 }
 
-void R_Instruction::JR(){
+void R_Instruction::JR(register_map &regs){
   PC = PC + 4;
   //RIJ_INSTRUCTION(PC, vect, register_vector);
   PC = REG_VECTOR[rs] - 4;
