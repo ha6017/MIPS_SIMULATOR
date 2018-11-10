@@ -2,7 +2,7 @@
 
 #include "compiler.hpp"
 
-void compiler::RIJ_INSTRUCTION(){
+/*void compiler::RIJ_INSTRUCTION(){
   uint32_t index_PC=(PC-0x10000000)/4;
   int compare = ADDR_INSTR[index_PC]&0xFC000000;
   //case compared to 000000 is true --> return R
@@ -18,7 +18,7 @@ void compiler::RIJ_INSTRUCTION(){
   }
   PC=PC+4;
   //cout<<"NEW value of PC intially ="<<*PC<<endl;
-}
+}*/
 
 compiler::compiler(std::string binaryfile){
   mem.setMemory(std::string binaryfile);
@@ -26,7 +26,6 @@ compiler::compiler(std::string binaryfile){
 }
 
 void compiler::run(){
-
 
   while((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000))) // ADD no-op[ cases]
   {

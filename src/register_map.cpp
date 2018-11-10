@@ -1,7 +1,7 @@
 #include "register_map.hpp"
 
 void register_map::write(int index, uint32_t data){
-  if((index != 0) && (index>0) && (index < 32)){
+  if((index != 0) && (index > 0) && (index < 32)){
     REG_VECTOR[index] = data;
   }else{
     //say not valid

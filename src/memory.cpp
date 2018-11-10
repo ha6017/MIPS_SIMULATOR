@@ -36,7 +36,7 @@ memory::memory(std::string name_bin){
   else std::cout << "Unable to open file";
 }
 
-uint32_t* memory::readInstructioninstructions(uint32_t PC){
+uint32_t* memory::readInstruction(uint32_t PC){
   uint32_t indexPC=(PC-0x10000000)/4;
   return &ADDR_INSTR[indexPC];
 }

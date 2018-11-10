@@ -12,7 +12,7 @@ class compiler{
 
   public:
     compiler(std::string binaryfile);
-    void RIJ_INSTRUCTION();
+    //void RIJ_INSTRUCTION();
     void run();
     memory mem;
     register_map regs;
