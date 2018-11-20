@@ -1,0 +1,8 @@
+#test_5
+#addi
+#0
+#Carla
+#no problem
+
+addi $2, $3, 0x0
+lr 0

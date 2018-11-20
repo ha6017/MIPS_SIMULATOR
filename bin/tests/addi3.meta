@@ -1,0 +1,9 @@
+#test_6
+#addi
+#0
+#Carla
+#overflow
+
+addi $3, $2, 0x00000001
+addi $2, $3, 0xFFFFFFFF
+lr 0
