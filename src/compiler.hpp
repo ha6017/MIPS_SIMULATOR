@@ -15,6 +15,7 @@ class compiler{
     uint8_t rd;
     uint8_t rt;
     uint8_t rs;
+    uint8_t opcode;
 
     int32_t op1s;
     int32_t op2s;
@@ -24,19 +25,15 @@ class compiler{
     int16_t immediate;
     int32_t signExtImmediate;
 
-    uint32_t instr_index;
-
+    int32_t instr_index;
 
   public:
     compiler(std::string binaryfile); //constructor
     void run();
     void loop_avoider ();
-
     void runRtype(uint32_t instruction);
-    void runJtype(uint32_t instruction);
     void runItype(uint32_t instruction);
-
-
+    void runJtype(uint32_t instruction);
 
     //R type instructions
     void ADD();
