@@ -40,9 +40,9 @@ for testFile in $files; do
     #simulator_run "$binFile";
 
     "$simPath" ""$binPath"/"$binFile""
+    output=$?
 
-    if [$? -eq $expectedOutput]
-    then
+    if [ $output -eq $expectedOutput ]; then
       success="Success";
     else
       success="Fail";

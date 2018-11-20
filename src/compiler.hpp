@@ -61,6 +61,37 @@ class compiler{
     void SUB();
     void SUBU();
     void XOR();
+
+    void J();
+    void JAL();
+
+    void ADDI();
+    void ADDIU();
+    void ANDI();
+    void BEQ();
+    void BLTZ();
+    void BLTZAL();
+    void BGEZ();
+    void BGEZAL();
+    void BGTZ();
+    void BLEZ();
+    void BNE();
+    void LB();
+    void LBU();
+    void LH();
+    void LHU();
+    void LUI();
+    void LW();
+    void LWL();
+    void LWR();
+    void ORI();
+    void SLTI();
+    void SLTIU();
+    void SB();
+    void SH();
+    void SW();
+    void XORI();
+
 };
 
 #endif
