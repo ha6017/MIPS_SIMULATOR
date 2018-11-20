@@ -3,15 +3,17 @@
 
 #include <cmath>
 
-class register_map{
+class register_map
+{
 private:
 
   int32_t REG_VECTOR[32];
 
 public:
-  void setRegisters();
+  register_map();
+  //void setRegisters();
 
-  uint32_t PC = 0;
+  uint32_t PC = 0x10000000;//can not start it from 0
   uint32_t hi = 0;
   uint32_t lo = 0;
 
@@ -19,3 +21,5 @@ public:
   uint32_t read(int index);
 
 };
+
+#endif

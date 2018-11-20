@@ -1,28 +1,61 @@
-#Makefile
+# Example usage:
+# If you have testbench/my_test.c, you can execute the following to create a MIPS binary
+# make testbench/my_test.mips.bin
 
-all: R_Instruction.o J_Instruction.o I_Instruction.o compiler.o memory.o
-	g++ R_Instruction.o J_Instruction.o I_Instruction.o compiler.o memory.o -o bin/mips_simulator
+# For simulator
+CC = g++
+CPPFLAGS = -W -Wall
 
-R_Instruction.o: R_Instruction.hpp R_Instruction.cpp
-	g++ -c R_Instruction.cpp
+# For MIPS binaries. Turn on all warnings, enable all optimisations and link everything statically
+MIPS_CC = mips-linux-gnu-gcc
+MIPS_OBJCOPY = mips-linux-gnu-objcopy
+MIPS_OBJDUMP = mips-linux-gnu-objdump
+MIPS_CPPFLAGS = -W -Wall -O3 -fno-builtin -march=mips1 -mfp32
+MIPS_LDFLAGS = -nostdlib -Wl,-melf32btsmip -march=mips1 -nostartfiles -mno-check-zero-division -Wl,--gpsize=0 -static -Wl,-Bstatic -Wl,--build-id=none
 
-J_Instruction.o: J_Instruction.hpp J_Instruction.cpp
-	g++ -c J_Instruction.cpp
+# Compile C file (.c) into MIPS object file (.o)
+%.mips.o: %.c
+	$(MIPS_CC) $(MIPS_CPPFLAGS) -c $< -o $@
 
-I_Instruction.o: I_Instruction.hpp I_Instruction.cpp
-	g++ -c I_Instruction.cpp
+# Assemble MIPS assembly file (.s) into MIPS object file (.o)
+%.mips.o: %.s
+	$(MIPS_CC) $(MIPS_CPPFLAGS) -c $< -o $@
 
-compiler.o: compiler.hpp compiler.cpp
-	g++ -c compiler.cpp
+# Link MIPS object file (.o), producing .elf, using memory locations specified in spec
+%.mips.elf: %.mips.o
+	$(MIPS_CC) $(MIPS_CPPFLAGS) $(MIPS_LDFLAGS) -T linker.ld $< -o $@
 
-memory.o: memory.hpp memory.cpp
-	g++ -c memory.cpp
+# Extract binary instructions only from linked object file (.elf)
+%.mips.bin: %.mips.elf
+	$(MIPS_OBJCOPY) -O binary --only-section=.text $< $@
 
-register_map.o: register_map.hpp register_map.cpp
-	g++ -c register_map.cpp
+# Disassemble linked object file (.elf), pulling out instructions as MIPS assembly file (.s)
+%.mips.s : %.mips.elf
+	$(MIPS_OBJDUMP) -j .text -D $< > $@
 
-run:
-	./bin/mips_simulator
+compiler.o: src/compiler.cpp src/compiler.hpp
+	$(CC) -std=c++11 -c src/compiler.cpp
 
-clean:
-	rm *.o bin/mips_simulator
+memory.o: src/memory.cpp src/memory.hpp
+	$(CC) -std=c++11 -c src/memory.cpp
+
+register_map.o: src/register_map.cpp src/register_map.hpp
+	$(CC) -std=c++11 -c src/register_map.cpp
+
+main.o: src/main.cpp
+	$(CC) -std=c++11 -c src/main.cpp
+
+# Build simulator
+bin/mips_simulator: compiler.o memory.o register_map.o main.o
+	mkdir -p bin
+	$(CC) $(CPPFLAGS) compiler.o memory.o register_map.o main.o -o bin/mips_simulator
+
+# Dummy for build simulator to conform to spec
+simulator: bin/mips_simulator
+
+# Dummy for build testbench to conform to spec. Could do nothing
+testbench:
+	echo "nothing"
+
+bin/mips_testbench:
+	./mips_testbench.sh

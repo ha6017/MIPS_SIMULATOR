@@ -1,197 +1,240 @@
 #include <cmath>
 
 #include "R_Instruction.hpp"
-#include "register_map.hpp"
+
 
 R_Instruction::R_Instruction(uint32_t instruction){
 
-  uint32_t Fn_code = instruction&0x3F;
-  uint32_t shamt = instruction&0x7C0;
-  uint32_t rd= instruction&0xF800;
-  rd=rd/pow(2,11);
-  uint32_t rt= instruction&0x1F0000;
-  rt=rt/pow(2,16);
-  uint32_t rs= instruction&0x3E00000;
-  rs=rs/pow(2,21);
+   Fn_code = instruction&0x3F;
+   shamt = ((instruction&0x7C0)>>6);
+   rd= ((instruction&0xF800)>>11);
+  //rd=rd/pow(2,11);
+   rt= ((instruction&0x1F0000)>>16);
+  //rt=rt/pow(2,16);
+   rs= ((instruction&0x3E00000)>>21);
+  //rs=rs/pow(2,21);
 
-}
+  op1s = regs.read(rs);
+  op2s = regs.read(rt);
+  op1 = regs.read(rs);
+  op2 = regs.read(rt);
 
-void R_Instruction::runInstruction(register_map &regs){
   switch(Fn_code){
     case 32:
-      //ADD
+      ADD(regs);
       break;
     case 33:
-      //ADDU
-      ADDU(register_map &regs);
+      ADDU(regs);
       break;
     case 36:
-      //AND
-      break;
-    case 13:
-      //BREAK
-      break;
-    case 44:
-      //DADD
-      break;
-    case 45:
-      //DADDU
-      break;
-    case 30:
-      //DDIV
-      break;
-    case 31:
-      //DDIVU
+      AND(regs);
       break;
     case 26:
-      //DIV
+      DIV(regs);
       break;
     case 27:
-      //DIVU
-      break;
-    case 28:
-      //DMULT
-      break;
-    case 29:
-      //DMULTU
-      break;
-    case 56:
-      //DSLL
-      break;
-    case 60:
-      //DSLL32
-      break;
-    case 20:
-      //DSLLV
-      break;
-    case 59:
-      //DSRA
-      break;
-    case 63:
-      //DSRA32
-      break;
-    case 23:
-      //DSRAV
-      break;
-    case 58:
-      //DSRL
-      break;
-    case 62:
-      //DSRL32
-      break;
-    case 22:
-      //DSRLV
-      break;
-    case 46:
-      //DSUB
-      break;
-    case 47:
-      //DSUBU
+      DIVU(regs);
       break;
     case 9:
-      //JALR
+      JALR(regs);
       break;
     case 8:
-      //JR
-      JR(register_map &regs);
+      JR(regs);
       break;
     case 16:
-      //MFHI
+      MFHI(regs);
       break;
     case 18:
-      //MFLO
-      break;
-    case 11:
-      //MOVN
-      break;
-    case 10:
-      //MOVZ
+      MFLO(regs);
       break;
     case 17:
-      //MTHI
+      MTHI(regs);
       break;
     case 19:
-      //MTLO
+      MTLO(regs);
       break;
     case 24:
-      //MULT
+      MULT(regs);
       break;
     case 25:
-      //MULTU
-      break;
-    case 39:
-      //NOR
+      MULTU(regs);
       break;
     case 37:
-      //OR
+      OR(regs);
       break;
     case 0:
-      //SLL
+      SLL(regs);
       break;
     case 4:
-      //SLLV
+      SLLV(regs);
       break;
     case 42:
-      //SLT
+      SLT(regs);
       break;
     case 43:
-      //SLTU
+      SLTU(regs);
       break;
     case 3:
-      //SRA
+      SRA(regs);
       break;
     case 7:
-      //SRAV
+      SRAV(regs);
       break;
     case 2:
-      //SRL
+      SRL(regs);
       break;
     case 6:
-      //SRLV
+      SRLV(regs);
       break;
     case 34:
-      //SUB
+      SUB(regs);
       break;
     case 35:
-      //SUBU
-      break;
-    case 15:
-      //SYNC
-      break;
-    case 12:
-      //SYSCALL
-      break;
-    case 52:
-      //TEQ
-      break;
-    case 48:
-      //TGE
-      break;
-    case 49:
-      //TGEU
-      break;
-    case 50:
-      //TLT
-      break;
-    case 51:
-      //TLTU
-      break;
-    case 54:
-      //TNE
+      SUBU(regs);
       break;
     case 38:
-      //XOR
+      XOR(regs);
       break;
   }
 }
 
-void R_Instruction::ADDU(register_map &regs){
-  regs = REG_VECTOR[rs] + REG_VECTOR[rt];
+void R_Instruction::ADD(register_map& regs){
+  if(((op1s > 0) && (op2s > 0) && (op1s + op2s <= 0)) || ((op1s < 0) && (op2s < 0) && (op1s + op2s >= 0))){
+    std::exit(-10);
+  }
+  regs.write(rd, op1s+op2s);
+}
+
+void R_Instruction::ADDU(register_map& regs){
+  regs.write(rd, op1 + op2);
   //cout<<"\nregister_vector[rd] = "<<register_vector[rd]<<endl;
 }
 
-void R_Instruction::JR(register_map &regs){
-  PC = PC + 4;
-  //RIJ_INSTRUCTION(PC, vect, register_vector);
-  PC = REG_VECTOR[rs] - 4;
+void R_Instruction::AND(register_map& regs){
+  regs.write(rd, op1 & op2);
+}
+
+void R_Instruction::DIV(register_map& regs){
+  if (op2 == 0){
+    // Operation is now undefined - don't modify hi and lo
+    std::exit(-10);
+  }
+  regs.lo = op1s / op2s;
+  regs.hi = op1s % op2s;
+}
+
+void R_Instruction::DIVU(register_map& regs){
+  if (op2 == 0){
+    // Operation is now undefined - don't modify hi and lo
+    std::exit(-10);
+  }
+  regs.lo = op1 / op2;
+  regs.hi = op1 % op2;
+}
+
+void R_Instruction::JALR(register_map& regs){
+  //save the PC and rs value before executing the branch delay
+  uint32_t copyPC = regs.PC;
+  uint32_t copyrs = regs.read(rs);
+  regs.PC = regs.PC + 4;
+  compiler::loop_avoider();
+  regs.write(rd, copyPC + 8);
+  regs.PC = regs.read(copyrs);
+}
+
+void R_Instruction::JR(register_map& regs){
+  regs.PC = regs.PC + 4;
+  compiler::loop_avoider();
+  regs.PC = regs.read(rs) - 4;
+
+}
+
+void R_Instruction::MFHI(register_map& regs){
+
+}
+
+void R_Instruction::MFLO(register_map& regs){
+
+}
+
+void R_Instruction::MTHI(register_map& regs){
+
+}
+
+void R_Instruction::MTLO(register_map& regs){
+
+}
+
+void R_Instruction::MULT(register_map& regs){
+  regs.hi = (((int64_t(op1) << 32) >> 32) * ((int64_t(op2) << 32) >> 32)) >> 32;
+
+  regs.lo = ((int64_t(op1) << 32) >> 32) * ((int64_t(op2) << 32) >> 32);
+}
+
+void R_Instruction::MULTU(register_map& regs){
+  regs.hi = (uint64_t(op1) * uint64_t(op2)) >> 32;
+
+  regs.lo = uint64_t(op1) * uint64_t(op2);
+
+}
+
+void R_Instruction::OR(register_map& regs){
+  regs.write(rd, (op1|op2));
+}
+
+void R_Instruction::SLL(register_map& regs){
+  regs.write(rd, (op2<<shamt));
+}
+
+void R_Instruction::SLLV(register_map& regs){
+  regs.write(rd, (op2<<op1));
+}
+
+void R_Instruction::SLT(register_map& regs){
+  if (op1s < op2s){
+    regs.write(rd, 1);
+  } else {
+    regs.write(rd, 0);
+  }
+}
+
+void R_Instruction::SLTU(register_map& regs){
+  if (op1 < op2){
+    regs.write(rd, 1);
+  } else {
+    regs.write(rd, 0);
+  }
+}
+
+void R_Instruction::SRA(register_map& regs){
+  regs.write(rd, (op2s>>shamt));
+}
+
+void R_Instruction::SRAV(register_map& regs){
+  regs.write(rd, (op2s >> op1));
+}
+
+void R_Instruction::SRL(register_map& regs){
+  regs.write(rd, (op2>>shamt));
+}
+
+void R_Instruction::SRLV(register_map& regs){
+  regs.write(rd, op2>>op1);
+}
+
+void R_Instruction::SUB(register_map& regs){
+  if(((op1s < 0) && (op2s > 0) && (op1s - op2s >= 0)) || ((op1s > 0) && (op2s < 0) && (op1s - op2s <= 0))){
+    // If op1 -ve, op2 +ve, result +ve
+    // OR If op1 +ve, op2 -ve, result -ve
+    std::exit(-10);
+  }
+  regs.write(rd, (op1s - op2s));
+}
+
+void R_Instruction::SUBU(register_map& regs){
+  regs.write(rd, op1 - op2);
+}
+
+void R_Instruction::XOR(register_map& regs){
+  regs.write(rd, op1^op2);
 }
