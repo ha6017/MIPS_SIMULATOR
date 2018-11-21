@@ -10,7 +10,7 @@ class compiler{
     memory mem; //defined an object of class memory
     register_map regs;
 
-    uint8_t Fn_code;
+    int16_t Fn_code;
     uint8_t shamt;
     uint8_t rd;
     uint8_t rt;

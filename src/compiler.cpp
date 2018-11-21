@@ -16,9 +16,13 @@ void compiler::loop_avoider(){
   {
     //std::cout<<"INSIDE LOOP AVOIDER\n";
     uint32_t* currentInstruction = mem.readInstruction(regs.PC);
+    std::cout<<std::hex<<"value of regs.PC in loop avoider = "<<regs.PC<<std::endl;
+    std::cout<<std::hex<<"curret innstruction = "<<currentInstruction<<std::endl;
     opcode = ((*currentInstruction&0xFC000000)>>26);
+    std::cout<<std::hex<<"INSTRUCTION OPCODE is: "<<opcode<<std::endl;
     //case compared to 000000 is true --> return R
     if(opcode == 0x0){
+      std::cout<<"R Type is detected\n";
       runRtype(*currentInstruction);
     //  R_Instruction rInst(currentInstruction, regs);
     //  rInst.runInstruction(regs);
@@ -33,7 +37,7 @@ void compiler::loop_avoider(){
       runItype(*currentInstruction);
     }
     regs.PC=regs.PC+4;
-    //std::cout<<"OUTSIDE LOOP AVOIDER\n";
+    std::cout<<"OUTSIDE LOOP AVOIDER\n";
     // if PC has reached end of instruction memory or points to a null instruction
     //if()
   }
@@ -47,6 +51,7 @@ void compiler::run(){
   //int count=0;
   while((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000))) // ADD no-op[ cases]
   {
+      std::cout<<"should come here\n";
       compiler::loop_avoider();
       //std::cout<<"an instruction has been sent to loop\n";
       //count++;
@@ -55,11 +60,15 @@ void compiler::run(){
         std::cout<<"an instruction has been sent to loop\n";
       }*/
   }
+  uint8_t exitcode = (regs.read(2)&0x000000FF);
+  std::exit(exitcode);
   //regs.printRegisters();
 }
 
 void compiler::runRtype(uint32_t instruction){
+  std::cout<<"inside R type\n";
   Fn_code = instruction&0x3F;
+  std::cout<<std::hex<<"Fn_code = "<<Fn_code<<std::endl;
   shamt = ((instruction&0x7C0)>>6);
   rd= ((instruction&0xF800)>>11);
   //rd=rd/pow(2,11);
@@ -71,6 +80,8 @@ void compiler::runRtype(uint32_t instruction){
   op2s = regs.read(rt);
   op1 = regs.read(rs);
   op2 = regs.read(rt);
+
+  std::cout<<"Reached switch for r type\n";
 
   switch(Fn_code){
     case 32: ADD(); break;
@@ -134,6 +145,7 @@ void compiler::JAL(){
 
 void compiler::runItype(uint32_t instruction){
   immediate = instruction&0xFFFF;
+  std::cout<<std::hex<<"Immediate value ="<<immediate<<std::endl;
   rt= ((instruction&0x1F0000)>>16);
   rs= ((instruction&0x3E00000)>>21);
   signExtImmediate = int32_t(immediate);
@@ -188,7 +200,8 @@ void compiler::ADDI()
     std::exit(-10);
   }
   regs.write(rt, op1s+signExtImmediate);
-  //std::cout<<"regs.read("<< rt <<")="<<regs.read(rt)<<std::endl;
+  std::cout<<std::hex<<"regs.read("<< rt <<")="<<regs.read(rt)<<std::endl;
+  std::cout<<std::hex<<"PC at addi= "<<regs.PC<<std::endl;
 }
 
 void compiler::ADDIU()
@@ -218,24 +231,24 @@ void compiler::ADDU()
 
 void compiler::BEQ()
 {
-  //std::cout<<"BEQ has been called\n";
+  std::cout<<"BEQ has been called\n";
   uint32_t copyPC = regs.PC;
-  //std::cout<<"copypc="<<copyPC<<std::endl;
+  std::cout<<std::hex<<"copypc="<<copyPC<<std::endl;
   int32_t signExtImmediate2 = signExtImmediate;
-  //std::cout<<"signExtImmediate="<<signExtImmediate<<std::endl;
+  std::cout<<std::hex<<"signExtImmediate="<<signExtImmediate<<std::endl;
   if (op1 == op2)
   {
     regs.PC=regs.PC+4;
-    //std::cout<<"op1 = op2 and doing the delayed branch\n";
-    //std::cout<<"regs.pc="<<regs.PC<<std::endl;
+    std::cout<<"op1 = op2 and doing the delayed branch\n";
+    std::cout<<std::hex<<"regs.pc="<<regs.PC<<std::endl;
     compiler::loop_avoider();
-    //std::cout<<"came back from delayed branch\n";
-    //std::cout<<"regs.pc="<<regs.PC<<std::endl;
-    //std::cout<<"copypc="<<copyPC<<std::endl;
-    //std::cout<<"signExtImmediate2="<<signExtImmediate2<<std::endl;
-    //std::cout<<"signExtImmediate2 shifted by 2="<<(signExtImmediate2<<2)<<std::endl;
+    std::cout<<"came back from delayed branch\n";
+    std::cout<<std::hex<<"regs.pc="<<regs.PC<<std::endl;
+    std::cout<<std::hex<<"copypc="<<copyPC<<std::endl;
+    std::cout<<std::hex<<"signExtImmediate2="<<signExtImmediate2<<std::endl;
+    std::cout<<std::hex<<"signExtImmediate2 shifted by 2="<<(signExtImmediate2<<2)<<std::endl;
     regs.PC = copyPC + (signExtImmediate2 << 2) - 4;
-    //std::cout<<"regs.pc="<<regs.PC<<std::endl;
+    std::cout<<std::hex<<"regs.pc="<<regs.PC<<std::endl;
   }
 }
 
@@ -445,23 +458,23 @@ void compiler::AND()
 
 void compiler::DIV()
 {
-  if (op2 == 0){
+  if (op2 != 0){
      // Operation is now undefined - don't modify hi and lo
-     std::exit(-10);
+     regs.lo = op1s / op2s;
+     regs.hi = op1s % op2s;
   }
-  regs.lo = op1s / op2s;
-  regs.hi = op1s % op2s;
+
 }
 
 void compiler::DIVU()
 {
-  if (op2 == 0)
+  if (op2 != 0)
   {
      // Operation is now undefined - don't modify hi and lo
-     std::exit(-10);
+     regs.lo = op1 / op2;
+     regs.hi = op1 % op2;
   }
-  regs.lo = op1 / op2;
-  regs.hi = op1 % op2;
+
 }
 
 void compiler::JALR()
@@ -479,8 +492,10 @@ void compiler::JR()
 {
   regs.PC = regs.PC + 4;
   int32_t copyrs = regs.read(rs);
+  std::cout<<"JR has been called\n";
   compiler::loop_avoider();
   regs.PC = copyrs - 4;
+  std::cout<<"regs.PC="<<regs.PC<<std::endl;
 }
 
 void compiler::MFHI()
