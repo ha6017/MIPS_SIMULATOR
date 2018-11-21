@@ -149,6 +149,10 @@ int32_t memory::load_word_right_from_memory(int index)
       return (int32_t(((ADDR_DATA[Index_actual+1]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual+2]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual+3]&0x000000FF))&0x00FFFFFF);
     }
   }
+  else
+  {
+    std::exit(-11);
+  }
 }
 
 int32_t memory::load_word_left_from_memory(int index)
@@ -173,6 +177,10 @@ int32_t memory::load_word_left_from_memory(int index)
     {
       return (int32_t(((ADDR_DATA[Index_actual]<<24)&0xFF000000)|((ADDR_DATA[Index_actual+1]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual+2]<<8)&0x0000FF00))&0xFFFFFF00);
     }
+  }
+  else
+  {
+    std::exit(-11);
   }
 }
 
