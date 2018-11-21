@@ -1,16 +1,19 @@
-#include <cmath>
-#include <string>
-
 #include "compiler.hpp"
+#include <string>
+#include<cmath>
+#include<stdlib.h>
+#include<iostream>
 
 //the constructor of class compiler initialises the object mem of class memory
 // which is defined as a private date member. This calls the constructor of class memory and initialises the memory.
-compiler::compiler(std::string binaryfile) : mem(binaryfile), regs(){
+compiler::compiler(std::string binaryfile) : mem(binaryfile), regs()
+{
   //regs.setRegisters();
 }
 
 void compiler::loop_avoider(){
-  if((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000))){
+  if((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000)))
+  {
     uint32_t* currentInstruction = mem.readInstruction(regs.PC);
     opcode = ((*currentInstruction&0xFC000000)>>26);
     //case compared to 000000 is true --> return R
@@ -38,7 +41,7 @@ void compiler::run(){
   while((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000))) // ADD no-op[ cases]
   {
       compiler::loop_avoider();
-
+      std::cout<<"an instruction has been sent to loop\n";
   }
 }
 
@@ -71,7 +74,7 @@ void compiler::runRtype(uint32_t instruction){
     case 24: MULT();break;
     case 25:MULTU();break;
     case 37: OR();  break;
-    case 0: SLL();  break;
+    case 0: SLL();  break; //no-op
     case 4: SLLV(); break;
     case 42: SLT(); break;
     case 43: SLTU();break;
@@ -128,17 +131,19 @@ void compiler::runItype(uint32_t instruction){
       if(((op1s > 0) && (signExtImmediate > 0) && (op1s + signExtImmediate <= 0)) || ((op1s < 0) && (signExtImmediate < 0) && (op1s + signExtImmediate >= 0))){
         // If both operands are +ve and result is -ve
         // OR If both operands are -ve and result is +ve
-        exit(-10);
+        std::exit(-10);
       }
-      regs.write(rd, op1s+signExtImmediate);
+      std::cout<<"regs.rs ="<<op1s<<std::endl;
+      regs.write(rt, op1s+signExtImmediate);
+      std::cout<<"regs.rs1 ="<<op1s<<std::endl;
       break;
     case 9:
       //ADDIU
-      regs.write(rd, op1s+signExtImmediate);
+      regs.write(rt, op1s+signExtImmediate);
       break;
     case 12:// CHECK for 0 extend
       //ANDI
-      regs.write(rd, op1&(uint32_t(immediate)&0xFFFF));
+      regs.write(rt, op1&(uint32_t(immediate)&0xFFFF));
       break;
     case 4:
       //BEQ
@@ -234,13 +239,62 @@ void compiler::runItype(uint32_t instruction){
         break;
       case 35:
         //LW
+        std::cout<<"load word called\n";
         regs.write(rt, mem.load_from_memory(regs.read(rs)+signExtImmediate));
+        std::cout<<"load word returned\n";
         break;
       case 34:
         //LWL
+        int32_t lwl_word = mem.load_word_left_from_memory(regs.read(rs)+signExtImmediate);
+         if((regs.read(rs)+signExtImmediate)%4==0)
+         {
+           regs.write(rt,lwl_word);
+         }
+         else if((regs.read(rs)+signExtImmediate)%4==1)
+         {
+           regs.write(rt, (regs.read(rt)&0x000000FF)|lwl_word);
+         }
+         else if((regs.read(rs)+signExtImmediate)%4==2)
+         {
+           regs.write(rt, (regs.read(rt)&0x0000FFFF)|lwl_word);
+         }
+         else if((regs.read(rs)+signExtImmediate)%4==3)
+         {
+           regs.write(rt, (regs.read(rt)&0x00FFFFFF)|lwl_word);
+         }
         break;
       case 38:
         //LWR
+        /*int index = regs.read(rs)+signExtImmediate;
+        bool found = false;
+        int weighting[4] = [0xFF000000, 0x00FF0000, 0x0000FF00, 0x000000FF];
+        for(int i = 0; i < 4: i++){
+          if((found == true) || ((index + i)%4 == 0)){
+            found = true;
+            regs.write(rt, (mem.load_byte_from_memory(index + i)) & weighting[i]);
+          }
+
+        int x= (regs.read(rs)+signExtImmediate)%4;*/
+
+        int32_t lwr_word = mem.load_word_right_from_memory(regs.read(rs)+signExtImmediate);
+         if((regs.read(rs)+signExtImmediate)%4==0)
+         {
+           regs.write(rt,lwr_word);
+         }
+         else if((regs.read(rs)+signExtImmediate)%4==1)
+         {
+           regs.write(rt, (regs.read(rt)&0xFFFFFF00)|lwr_word);
+         }
+         else if((regs.read(rs)+signExtImmediate)%4==2)
+         {
+           regs.write(rt, (regs.read(rt)&0xFFFF0000)|lwr_word);
+         }
+         else if((regs.read(rs)+signExtImmediate)%4==3)
+         {
+           regs.write(rt, (regs.read(rt)&0xFF000000)|lwr_word);
+         }
+
+
         break;
       case 13:
         //ORI
@@ -294,7 +348,7 @@ void compiler::ADD()
   if(((op1s > 0) && (op2s > 0) && (op1s + op2s <= 0)) || ((op1s < 0) && (op2s < 0) && (op1s + op2s >= 0)))
   {
 
-     std::exit(-10);
+     exit(-10);
 
   }
 
@@ -328,7 +382,7 @@ if (op2 == 0){
 
    // Operation is now undefined - don't modify hi and lo
 
-   std::exit(-10);
+   exit(-10);
 
 }
 
@@ -346,7 +400,7 @@ if (op2 == 0){
 
    // Operation is now undefined - don't modify hi and lo
 
-   std::exit(-10);
+   exit(-10);
 
 }
 
@@ -381,7 +435,7 @@ regs.PC = regs.read(copyrs);
 
 void compiler::JR()
 {
-
+std::cout<<"instruction has reached JR\n";
 regs.PC = regs.PC + 4;
 int32_t copyrs = regs.read(rs);
 
@@ -389,15 +443,14 @@ compiler::loop_avoider();
 
 regs.PC = copyrs - 4;
 
-
-
 }
 
 
 
-void compiler::MFHI(){
+void compiler::MFHI()
+{
 
-
+regs.write(rd,regs.hi);
 
 }
 
@@ -405,7 +458,7 @@ void compiler::MFHI(){
 
 void compiler::MFLO(){
 
-
+regs.write(rd,regs.lo);
 
 }
 
@@ -413,7 +466,7 @@ void compiler::MFLO(){
 
 void compiler::MTHI(){
 
-
+regs.hi = regs.read(rs);
 
 }
 
@@ -421,7 +474,7 @@ void compiler::MTHI(){
 
 void compiler::MTLO(){
 
-
+regs.lo = regs.read(rs);
 
 }
 
@@ -550,7 +603,7 @@ if(((op1s < 0) && (op2s > 0) && (op1s - op2s >= 0)) || ((op1s > 0) && (op2s < 0)
 
    // OR If op1 +ve, op2 -ve, result -ve
 
-   std::exit(-10);
+   exit(-10);
 
 }
 

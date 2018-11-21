@@ -7,8 +7,10 @@
 
 class memory{
 private:
-  uint32_t ADDR_INSTR[0x1000000];
-  uint8_t ADDR_DATA[0x4000000];
+  //uint32_t ADDR_INSTR[0x1000000];
+  //uint8_t ADDR_DATA[0x4000000];
+  std::vector<uint32_t> ADDR_INSTR;
+  std::vector<uint8_t> ADDR_DATA;
 
 public:
   memory(std::string binaryfile);
@@ -20,6 +22,9 @@ public:
   uint32_t load_unsigned_byte_from_memory(int index);
   int32_t load_half_word_from_memory(int index);
   uint32_t load_unsigned_half_word_from_memory(int index);
+  int32_t load_word_right_from_memory(int index);
+  int32_t load_word_left_from_memory(int index);
+
 
   void store_to_memory(int index, uint32_t value);
   void store_byte_to_memory(int index, int8_t value);
