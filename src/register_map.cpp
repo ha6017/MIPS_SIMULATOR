@@ -29,7 +29,7 @@ void register_map::write(int index, uint32_t data){
 
 uint32_t register_map::read(int index)
 {
-  if((index > 0) && (index < 32))
+  if((index >= 0) && (index < 32))
   {
     return REG_VECTOR[index];
   }

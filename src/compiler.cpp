@@ -1,7 +1,5 @@
 #include "compiler.hpp"
-#include <string>
 #include<cmath>
-#include<stdlib.h>
 #include<iostream>
 
 //the constructor of class compiler initialises the object mem of class memory
@@ -15,22 +13,22 @@ void compiler::loop_avoider(){
   if((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000)))
   {
     //std::cout<<"INSIDE LOOP AVOIDER\n";
-    uint32_t* currentInstruction = mem.readInstruction(regs.PC);
-    opcode = ((*currentInstruction&0xFC000000)>>26);
+    uint32_t currentInstruction = mem.readInstruction(regs.PC);
+    opcode = ((currentInstruction&0xFC000000)>>26);
     //case compared to 000000 is true --> return R
     if(opcode == 0x0){
-      runRtype(*currentInstruction);
+      runRtype(currentInstruction);
     //  R_Instruction rInst(currentInstruction, regs);
     //  rInst.runInstruction(regs);
     }//case compared to 0001 is true --> return J
     else if(opcode == 0x1){
       //J_Instruction();
-      runJtype(*currentInstruction);
+      runJtype(currentInstruction);
     }//else --> return I
     else{
       //I_Instruction iInst(currentInstruction);
       //iInst.run_I_Instruction(regs);
-      runItype(*currentInstruction);
+      runItype(currentInstruction);
     }
     regs.PC=regs.PC+4;
     //std::cout<<"OUTSIDE LOOP AVOIDER\n";
@@ -47,7 +45,7 @@ void compiler::run(){
   //int count=0;
   while((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000))) // ADD no-op[ cases]
   {
-      compiler::loop_avoider();
+    compiler::loop_avoider();
       //std::cout<<"an instruction has been sent to loop\n";
       //count++;
       /*if(count<10)
@@ -55,24 +53,27 @@ void compiler::run(){
         std::cout<<"an instruction has been sent to loop\n";
       }*/
   }
+  uint8_t exitCode = (regs.read(2)&0x000000FF);
+  std::exit(exitCode);
   //regs.printRegisters();
 }
 
 void compiler::runRtype(uint32_t instruction){
+
   Fn_code = instruction&0x3F;
   shamt = ((instruction&0x7C0)>>6);
-  rd= ((instruction&0xF800)>>11);
+  rd = ((instruction&0xF800)>>11);
   //rd=rd/pow(2,11);
-  rt= ((instruction&0x1F0000)>>16);
+  rt = ((instruction&0x1F0000)>>16);
   //rt=rt/pow(2,16);
-  rs= ((instruction&0x3E00000)>>21);
+  rs = ((instruction&0x3E00000)>>21);
   //rs=rs/pow(2,21);
   op1s = regs.read(rs);
   op2s = regs.read(rt);
   op1 = regs.read(rs);
   op2 = regs.read(rt);
 
-  switch(Fn_code){
+  switch(instruction&0x3F){
     case 32: ADD(); break;
     case 33: ADDU();break;
     case 36: AND(); break;
@@ -87,7 +88,9 @@ void compiler::runRtype(uint32_t instruction){
     case 24: MULT();break;
     case 25:MULTU();break;
     case 37: OR();  break;
-    case 0: SLL();  break; //no-op
+    case 0:
+      SLL();
+      break; //no-op
     case 4: SLLV(); break;
     case 42: SLT(); break;
     case 43: SLTU();break;

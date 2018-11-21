@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <stdint.h>
+#include <string>
+
 
 
 class memory{
@@ -15,7 +17,7 @@ private:
 public:
   memory(std::string binaryfile);
   //void setMemory(std::string name_bin);
-  uint32_t* readInstruction(uint32_t PC);
+  uint32_t readInstruction(uint32_t PC);
 
   uint32_t load_from_memory(int index);
   int32_t load_byte_from_memory(int index);
