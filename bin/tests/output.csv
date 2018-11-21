@@ -1,9 +1,2 @@
 Test ID, Instruction name, Expected Output, Author, Additional Information
-addi1, addi, Fail, Carla, no problem
-addi2, addi, Fail, Carla, wrong result
-addi3, addi, Fail, Carla, overflow
-sw1, sw, Fail, Carla, testing no exception
-sw2, sw, Fail, Carla, out of range
-sw3 copy, sw, Fail, Carla, not naturally aligned
-sw3, sw, Fail, Carla, not naturally aligned
-sw4, sw, Fail, Carla, offset ls 2 bits not 0
+olly, olly, Fail, Carla, testing no exception

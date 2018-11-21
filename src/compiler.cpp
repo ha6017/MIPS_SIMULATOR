@@ -1,7 +1,5 @@
 #include "compiler.hpp"
-#include <string>
 #include<cmath>
-#include<stdlib.h>
 #include<iostream>
 
 //the constructor of class compiler initialises the object mem of class memory
@@ -15,6 +13,7 @@ void compiler::loop_avoider(){
   if((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000)))
   {
     //std::cout<<"INSIDE LOOP AVOIDER\n";
+<<<<<<< HEAD
     uint32_t* currentInstruction = mem.readInstruction(regs.PC);
     std::cout<<std::hex<<"value of regs.PC in loop avoider = "<<regs.PC<<std::endl;
     std::cout<<std::hex<<"curret innstruction = "<<currentInstruction<<std::endl;
@@ -24,17 +23,24 @@ void compiler::loop_avoider(){
     if(opcode == 0x0){
       std::cout<<"R Type is detected\n";
       runRtype(*currentInstruction);
+=======
+    uint32_t currentInstruction = mem.readInstruction(regs.PC);
+    opcode = ((currentInstruction&0xFC000000)>>26);
+    //case compared to 000000 is true --> return R
+    if(opcode == 0x0){
+      runRtype(currentInstruction);
+>>>>>>> 8831f7b4396c2b0d4b6abbf7908164ebfdb63ac0
     //  R_Instruction rInst(currentInstruction, regs);
     //  rInst.runInstruction(regs);
     }//case compared to 0001 is true --> return J
     else if(opcode == 0x1){
       //J_Instruction();
-      runJtype(*currentInstruction);
+      runJtype(currentInstruction);
     }//else --> return I
     else{
       //I_Instruction iInst(currentInstruction);
       //iInst.run_I_Instruction(regs);
-      runItype(*currentInstruction);
+      runItype(currentInstruction);
     }
     regs.PC=regs.PC+4;
     std::cout<<"OUTSIDE LOOP AVOIDER\n";
@@ -51,8 +57,12 @@ void compiler::run(){
   //int count=0;
   while((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000))) // ADD no-op[ cases]
   {
+<<<<<<< HEAD
       std::cout<<"should come here\n";
       compiler::loop_avoider();
+=======
+    compiler::loop_avoider();
+>>>>>>> 8831f7b4396c2b0d4b6abbf7908164ebfdb63ac0
       //std::cout<<"an instruction has been sent to loop\n";
       //count++;
       /*if(count<10)
@@ -60,30 +70,43 @@ void compiler::run(){
         std::cout<<"an instruction has been sent to loop\n";
       }*/
   }
+<<<<<<< HEAD
   uint8_t exitcode = (regs.read(2)&0x000000FF);
   std::exit(exitcode);
+=======
+  uint8_t exitCode = (regs.read(2)&0x000000FF);
+  std::exit(exitCode);
+>>>>>>> 8831f7b4396c2b0d4b6abbf7908164ebfdb63ac0
   //regs.printRegisters();
 }
 
 void compiler::runRtype(uint32_t instruction){
+<<<<<<< HEAD
   std::cout<<"inside R type\n";
+=======
+
+>>>>>>> 8831f7b4396c2b0d4b6abbf7908164ebfdb63ac0
   Fn_code = instruction&0x3F;
   std::cout<<std::hex<<"Fn_code = "<<Fn_code<<std::endl;
   shamt = ((instruction&0x7C0)>>6);
-  rd= ((instruction&0xF800)>>11);
+  rd = ((instruction&0xF800)>>11);
   //rd=rd/pow(2,11);
-  rt= ((instruction&0x1F0000)>>16);
+  rt = ((instruction&0x1F0000)>>16);
   //rt=rt/pow(2,16);
-  rs= ((instruction&0x3E00000)>>21);
+  rs = ((instruction&0x3E00000)>>21);
   //rs=rs/pow(2,21);
   op1s = regs.read(rs);
   op2s = regs.read(rt);
   op1 = regs.read(rs);
   op2 = regs.read(rt);
 
+<<<<<<< HEAD
   std::cout<<"Reached switch for r type\n";
 
   switch(Fn_code){
+=======
+  switch(instruction&0x3F){
+>>>>>>> 8831f7b4396c2b0d4b6abbf7908164ebfdb63ac0
     case 32: ADD(); break;
     case 33: ADDU();break;
     case 36: AND(); break;
@@ -98,7 +121,9 @@ void compiler::runRtype(uint32_t instruction){
     case 24: MULT();break;
     case 25:MULTU();break;
     case 37: OR();  break;
-    case 0: SLL();  break; //no-op
+    case 0:
+      SLL();
+      break; //no-op
     case 4: SLLV(); break;
     case 42: SLT(); break;
     case 43: SLTU();break;

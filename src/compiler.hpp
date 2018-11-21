@@ -3,6 +3,8 @@
 
 #include "memory.hpp"
 #include "register_map.hpp"
+#include <stdlib.h>
+#include <string>
 
 class compiler{
   private:
@@ -10,12 +12,21 @@ class compiler{
     memory mem; //defined an object of class memory
     register_map regs;
 
+<<<<<<< HEAD
     int16_t Fn_code;
     uint8_t shamt;
     uint8_t rd;
     uint8_t rt;
     uint8_t rs;
     uint8_t opcode;
+=======
+    uint16_t Fn_code;
+    uint16_t shamt;
+    uint16_t rd;
+    uint16_t rt;
+    uint16_t rs;
+    uint16_t opcode;
+>>>>>>> 8831f7b4396c2b0d4b6abbf7908164ebfdb63ac0
 
     int32_t op1s;
     int32_t op2s;
