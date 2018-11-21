@@ -1,15 +1,8 @@
 #include "compiler.hpp"
-<<<<<<< HEAD
 #include <string>
 #include<cmath>
 #include<stdlib.h>
 #include<iostream>
-=======
-
-#include <cmath>
-#include <string>
-#include <stdlib.h>
->>>>>>> 024051614cbb6eda6bf0f79b3c1d5a4f642060aa
 
 //the constructor of class compiler initialises the object mem of class memory
 // which is defined as a private date member. This calls the constructor of class memory and initialises the memory.
@@ -21,6 +14,7 @@ compiler::compiler(std::string binaryfile) : mem(binaryfile), regs()
 void compiler::loop_avoider(){
   if((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000)))
   {
+    //std::cout<<"INSIDE LOOP AVOIDER\n";
     uint32_t* currentInstruction = mem.readInstruction(regs.PC);
     opcode = ((*currentInstruction&0xFC000000)>>26);
     //case compared to 000000 is true --> return R
@@ -39,17 +33,29 @@ void compiler::loop_avoider(){
       runItype(*currentInstruction);
     }
     regs.PC=regs.PC+4;
+    //std::cout<<"OUTSIDE LOOP AVOIDER\n";
     // if PC has reached end of instruction memory or points to a null instruction
     //if()
+  }
+  else
+  {
+    std::exit(-11);
   }
 }
 
 void compiler::run(){
+  //int count=0;
   while((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000))) // ADD no-op[ cases]
   {
       compiler::loop_avoider();
-      std::cout<<"an instruction has been sent to loop\n";
+      //std::cout<<"an instruction has been sent to loop\n";
+      //count++;
+      /*if(count<10)
+      {
+        std::cout<<"an instruction has been sent to loop\n";
+      }*/
   }
+  //regs.printRegisters();
 }
 
 void compiler::runRtype(uint32_t instruction){
@@ -112,9 +118,9 @@ void compiler::J(){
   //adds onto this the instruction index left shifted by 2
   uint32_t copyPC = ((regs.PC)&0xF0000000) + (instr_index<<2);
   //runs next instruction
-  loop_avoider();
+  compiler::loop_avoider();
   //PC = new value calculated before
-  regs.PC = copyPC;
+  regs.PC = copyPC-4;
 }
 
 void compiler::JAL(){
@@ -122,15 +128,15 @@ void compiler::JAL(){
   regs.write(31, regs.PC + 8);
   //same as J instruction from here --
   uint32_t copyPC = ((regs.PC)&0xF0000000) + (instr_index<<2);
-  loop_avoider();
-  regs.PC = copyPC;
+  compiler::loop_avoider();
+  regs.PC = copyPC-4;
 }
 
 void compiler::runItype(uint32_t instruction){
   immediate = instruction&0xFFFF;
   rt= ((instruction&0x1F0000)>>16);
   rs= ((instruction&0x3E00000)>>21);
-  signExtImmediate = int32_t(immediate << 16) >> 16;
+  signExtImmediate = int32_t(immediate);
   //instr =instruction;
   op1s = regs.read(rs);
   op2s = regs.read(rt);
@@ -141,223 +147,6 @@ void compiler::runItype(uint32_t instruction){
   int16_t val16;
   int8_t val;
 
-<<<<<<< HEAD
-  switch(opcode){
-    case 8:
-      //ADDI
-      if(((op1s > 0) && (signExtImmediate > 0) && (op1s + signExtImmediate <= 0)) || ((op1s < 0) && (signExtImmediate < 0) && (op1s + signExtImmediate >= 0))){
-        // If both operands are +ve and result is -ve
-        // OR If both operands are -ve and result is +ve
-        std::exit(-10);
-      }
-      std::cout<<"regs.rs ="<<op1s<<std::endl;
-      regs.write(rt, op1s+signExtImmediate);
-      std::cout<<"regs.rs1 ="<<op1s<<std::endl;
-      break;
-    case 9:
-      //ADDIU
-      regs.write(rt, op1s+signExtImmediate);
-      break;
-    case 12:// CHECK for 0 extend
-      //ANDI
-      regs.write(rt, op1&(uint32_t(immediate)&0xFFFF));
-      break;
-    case 4:
-      //BEQ
-      copy_pc = regs.PC;
-      if (op1 == op2)
-      {
-        regs.PC=regs.PC+4;
-        compiler::loop_avoider();
-        regs.PC = copy_pc + (signExtImmediate << 2);
-      }
-      break;
-    case 1:
-      copy_pc = regs.PC;
-      if ((rt == 0)&&(op1s < 0)) //bltz
-      {
-          regs.PC=regs.PC+4;
-          compiler::loop_avoider();
-          regs.PC = copy_pc + 4 + (signExtImmediate << 2);
-
-      }
-      else if((rt==16) && (op1s < 0)) //bltzal
-      {
-          regs.PC=regs.PC+4;
-          compiler::loop_avoider();
-          regs.PC = copy_pc + 4 + (signExtImmediate << 2);
-          regs.write(31,(copy_pc+8));
-
-      }
-      else if ((rt == 1) && (op1s >= 0)) //bgez
-      {
-          regs.PC=regs.PC+4;
-          compiler::loop_avoider();
-          regs.PC = copy_pc + 4 + (signExtImmediate << 2);
-
-      }
-      else if((rt==17) && (op1s >= 0)) //bgezal
-      {
-          regs.PC=regs.PC+4;
-          compiler::loop_avoider();
-          regs.PC = copy_pc + 4 + (signExtImmediate << 2);
-          regs.write(31,(copy_pc+8));
-      }
-        break;
-      case 7:
-        //BGTZ
-        copy_pc = regs.PC;
-        if ((op1s > 0) && (rt==0))
-        {
-          regs.PC=regs.PC+4;
-          compiler::loop_avoider();
-          regs.PC = copy_pc + 4 + (signExtImmediate << 2);
-        }
-        break;
-      case 6:
-        //BLEZ
-        copy_pc = regs.PC;
-        if((op1s<=0) && (rt==0))
-        {
-          regs.PC=regs.PC+4;
-          compiler::loop_avoider();
-          regs.PC = copy_pc + 4 + (signExtImmediate << 2);
-        }
-        break;
-      case 5:
-        //BNE
-        copy_pc = regs.PC;
-        if (op1 != op2)
-        {
-          regs.PC=regs.PC+4;
-          compiler::loop_avoider();
-          regs.PC = copy_pc + 4 + (signExtImmediate << 2);
-        }
-        break;
-      case 32:
-        //LB
-        regs.write(rt, mem.load_byte_from_memory(regs.read(rs)+signExtImmediate));
-        break;
-      case 36:
-        //LBU
-        regs.write(rt, mem.load_unsigned_byte_from_memory(regs.read(rs)+signExtImmediate));
-        break;
-      case 33:
-        //LH
-        regs.write(rt, mem.load_half_word_from_memory(regs.read(rs)+signExtImmediate));
-        break;
-      case 37:
-        //LHU
-        regs.write(rt, mem.load_unsigned_half_word_from_memory(regs.read(rs)+signExtImmediate));
-        break;
-      case 15:
-        //LUI
-        regs.write(rt,((uint32_t(immediate)<<16)&0xFFFF0000));
-        break;
-      case 35:
-        //LW
-        std::cout<<"load word called\n";
-        regs.write(rt, mem.load_from_memory(regs.read(rs)+signExtImmediate));
-        std::cout<<"load word returned\n";
-        break;
-      case 34:
-        //LWL
-        int32_t lwl_word = mem.load_word_left_from_memory(regs.read(rs)+signExtImmediate);
-         if((regs.read(rs)+signExtImmediate)%4==0)
-         {
-           regs.write(rt,lwl_word);
-         }
-         else if((regs.read(rs)+signExtImmediate)%4==1)
-         {
-           regs.write(rt, (regs.read(rt)&0x000000FF)|lwl_word);
-         }
-         else if((regs.read(rs)+signExtImmediate)%4==2)
-         {
-           regs.write(rt, (regs.read(rt)&0x0000FFFF)|lwl_word);
-         }
-         else if((regs.read(rs)+signExtImmediate)%4==3)
-         {
-           regs.write(rt, (regs.read(rt)&0x00FFFFFF)|lwl_word);
-         }
-        break;
-      case 38:
-        //LWR
-        /*int index = regs.read(rs)+signExtImmediate;
-        bool found = false;
-        int weighting[4] = [0xFF000000, 0x00FF0000, 0x0000FF00, 0x000000FF];
-        for(int i = 0; i < 4: i++){
-          if((found == true) || ((index + i)%4 == 0)){
-            found = true;
-            regs.write(rt, (mem.load_byte_from_memory(index + i)) & weighting[i]);
-          }
-
-        int x= (regs.read(rs)+signExtImmediate)%4;*/
-
-        int32_t lwr_word = mem.load_word_right_from_memory(regs.read(rs)+signExtImmediate);
-         if((regs.read(rs)+signExtImmediate)%4==0)
-         {
-           regs.write(rt,lwr_word);
-         }
-         else if((regs.read(rs)+signExtImmediate)%4==1)
-         {
-           regs.write(rt, (regs.read(rt)&0xFFFFFF00)|lwr_word);
-         }
-         else if((regs.read(rs)+signExtImmediate)%4==2)
-         {
-           regs.write(rt, (regs.read(rt)&0xFFFF0000)|lwr_word);
-         }
-         else if((regs.read(rs)+signExtImmediate)%4==3)
-         {
-           regs.write(rt, (regs.read(rt)&0xFF000000)|lwr_word);
-         }
-
-
-        break;
-      case 13:
-        //ORI
-        regs.write(rt,(op1|(int32_t(immediate)&0xFFFF)));
-        break;
-      case 10:
-        //SLTI
-        if (op1s < signExtImmediate)
-        {
-          regs.write(rt,1);
-        }
-        else
-        {
-          regs.write(rt,0);
-        }
-        break;
-      case 11:
-        //SLTIU
-        if (op1 < uint32_t(signExtImmediate))
-        {
-          regs.write(rt,1);
-        }
-        else
-        {
-          regs.write(rt,0);
-        }
-        break;
-      case 40:
-        //SB
-        val = regs.read(rt)&0xFF;
-        mem.store_byte_to_memory((regs.read(rs)+signExtImmediate),val);
-        break;
-      case 41:
-        //SH
-        val16 = regs.read(rt)&0xFFFF;
-        mem.store_halfword_to_memory((regs.read(rs)+signExtImmediate), val16);
-        break;
-      case 43:
-        //SW
-        mem.store_to_memory((regs.read(rs)+signExtImmediate),regs.read(rt));
-        break;
-      case 14:
-        //XORI
-        regs.write(rt,(op1^(int32_t(immediate)&0xFFFF)));
-        break;
-=======
   switch(opcode)
   {
     case 8: ADDI(); break;
@@ -388,7 +177,6 @@ void compiler::runItype(uint32_t instruction){
     case 41: SH(); break;
     case 43: SW(); break;
     case 14: XORI(); break;
->>>>>>> 024051614cbb6eda6bf0f79b3c1d5a4f642060aa
     }
 }
 
@@ -400,6 +188,7 @@ void compiler::ADDI()
     std::exit(-10);
   }
   regs.write(rt, op1s+signExtImmediate);
+  //std::cout<<"regs.read("<< rt <<")="<<regs.read(rt)<<std::endl;
 }
 
 void compiler::ADDIU()
@@ -416,13 +205,7 @@ void compiler::ADD()
 {
   if(((op1s > 0) && (op2s > 0) && (op1s + op2s <= 0)) || ((op1s < 0) && (op2s < 0) && (op1s + op2s >= 0)))
   {
-<<<<<<< HEAD
-
-     exit(-10);
-
-=======
      std::exit(-10);
->>>>>>> 024051614cbb6eda6bf0f79b3c1d5a4f642060aa
   }
   regs.write(rt, op1s+op2s);
 }
@@ -435,36 +218,34 @@ void compiler::ADDU()
 
 void compiler::BEQ()
 {
+  //std::cout<<"BEQ has been called\n";
   uint32_t copyPC = regs.PC;
+  //std::cout<<"copypc="<<copyPC<<std::endl;
   int32_t signExtImmediate2 = signExtImmediate;
+  //std::cout<<"signExtImmediate="<<signExtImmediate<<std::endl;
   if (op1 == op2)
   {
     regs.PC=regs.PC+4;
+    //std::cout<<"op1 = op2 and doing the delayed branch\n";
+    //std::cout<<"regs.pc="<<regs.PC<<std::endl;
     compiler::loop_avoider();
-    regs.PC = copyPC + (signExtImmediate2 << 2);
+    //std::cout<<"came back from delayed branch\n";
+    //std::cout<<"regs.pc="<<regs.PC<<std::endl;
+    //std::cout<<"copypc="<<copyPC<<std::endl;
+    //std::cout<<"signExtImmediate2="<<signExtImmediate2<<std::endl;
+    //std::cout<<"signExtImmediate2 shifted by 2="<<(signExtImmediate2<<2)<<std::endl;
+    regs.PC = copyPC + (signExtImmediate2 << 2) - 4;
+    //std::cout<<"regs.pc="<<regs.PC<<std::endl;
   }
 }
 
-<<<<<<< HEAD
-
-
-void compiler::DIV(){
-
-if (op2 == 0){
-
-   // Operation is now undefined - don't modify hi and lo
-
-   exit(-10);
-
-=======
 void compiler::BLTZ()
 {
   uint32_t copyPC = regs.PC;
   int32_t signExtImmediate2 = signExtImmediate;
   regs.PC=regs.PC+4;
   compiler::loop_avoider();
-  regs.PC = copyPC + 4 + (signExtImmediate2 << 2);
->>>>>>> 024051614cbb6eda6bf0f79b3c1d5a4f642060aa
+  regs.PC = copyPC + (signExtImmediate2 << 2);
 }
 
 void compiler::BLTZAL()
@@ -473,30 +254,17 @@ void compiler::BLTZAL()
   int32_t signExtImmediate2 = signExtImmediate;
   regs.PC=regs.PC+4;
   compiler::loop_avoider();
-  regs.PC = copyPC + 4 + (signExtImmediate2 << 2);
+  regs.PC = copyPC + (signExtImmediate2 << 2);
   regs.write(31,(copyPC+8));
 }
 
-<<<<<<< HEAD
-
-
-void compiler::DIVU(){
-
-if (op2 == 0){
-
-   // Operation is now undefined - don't modify hi and lo
-
-   exit(-10);
-
-=======
 void compiler::BGEZ()
 {
   uint32_t copyPC = regs.PC;
   int32_t signExtImmediate2 = signExtImmediate;
   regs.PC=regs.PC+4;
   compiler::loop_avoider();
-  regs.PC = copyPC + 4 + (signExtImmediate2 << 2);
->>>>>>> 024051614cbb6eda6bf0f79b3c1d5a4f642060aa
+  regs.PC = copyPC + (signExtImmediate2 << 2);
 }
 
 void compiler::BGEZAL()
@@ -505,7 +273,7 @@ void compiler::BGEZAL()
   int32_t signExtImmediate2 = signExtImmediate;
   regs.PC=regs.PC+4;
   compiler::loop_avoider();
-  regs.PC = copyPC + 4 + (signExtImmediate2 << 2);
+  regs.PC = copyPC + (signExtImmediate2 << 2);
   regs.write(31,(copyPC+8));
 }
 
@@ -517,62 +285,19 @@ void compiler::BGTZ()
   {
     regs.PC=regs.PC+4;
     compiler::loop_avoider();
-    regs.PC = copyPC + 4 + (signExtImmediate2 << 2);
+    regs.PC = copyPC + (signExtImmediate2 << 2);
   }
 }
 
 void compiler::BLEZ()
 {
-<<<<<<< HEAD
-std::cout<<"instruction has reached JR\n";
-regs.PC = regs.PC + 4;
-int32_t copyrs = regs.read(rs);
-
-compiler::loop_avoider();
-
-regs.PC = copyrs - 4;
-
-}
-
-
-
-void compiler::MFHI()
-{
-
-regs.write(rd,regs.hi);
-
-}
-
-
-
-void compiler::MFLO(){
-
-regs.write(rd,regs.lo);
-
-}
-
-
-
-void compiler::MTHI(){
-
-regs.hi = regs.read(rs);
-
-}
-
-
-
-void compiler::MTLO(){
-
-regs.lo = regs.read(rs);
-
-=======
   uint32_t copyPC = regs.PC;
   int32_t signExtImmediate2 = signExtImmediate;
   if((op1s<=0) && (rt==0))
   {
     regs.PC=regs.PC+4;
     compiler::loop_avoider();
-    regs.PC = copyPC + 4 + (signExtImmediate2 << 2);
+    regs.PC = copyPC + (signExtImmediate2 << 2);
   }
 }
 
@@ -584,7 +309,7 @@ void compiler::BNE()
   {
     regs.PC=regs.PC+4;
     compiler::loop_avoider();
-    regs.PC = copyPC + 4 + (signExtImmediate2 << 2);
+    regs.PC = copyPC + (signExtImmediate2 << 2);
   }
 }
 
@@ -601,7 +326,6 @@ void compiler::LBU()
 void compiler::LH()
 {
   regs.write(rt, mem.load_half_word_from_memory(regs.read(rs)+signExtImmediate));
->>>>>>> 024051614cbb6eda6bf0f79b3c1d5a4f642060aa
 }
 
 void compiler::LHU()
@@ -621,10 +345,45 @@ void compiler::LW()
 
 void compiler::LWL()
 {
+  int32_t lwl_word = mem.load_word_left_from_memory(regs.read(rs)+signExtImmediate);
+  if((regs.read(rs)+signExtImmediate)%4==0)
+  {
+    regs.write(rt,lwl_word);
+  }
+  else if((regs.read(rs)+signExtImmediate)%4==1)
+  {
+     regs.write(rt, (regs.read(rt)&0x000000FF)|lwl_word);
+  }
+  else if((regs.read(rs)+signExtImmediate)%4==2)
+  {
+     regs.write(rt, (regs.read(rt)&0x0000FFFF)|lwl_word);
+  }
+  else if((regs.read(rs)+signExtImmediate)%4==3)
+  {
+    regs.write(rt, (regs.read(rt)&0x00FFFFFF)|lwl_word);
+  }
+
 }
 
 void compiler::LWR()
 {
+  int32_t lwr_word = mem.load_word_right_from_memory(regs.read(rs)+signExtImmediate);
+  if((regs.read(rs)+signExtImmediate)%4==0)
+  {
+      regs.write(rt,lwr_word);
+  }
+  else if((regs.read(rs)+signExtImmediate)%4==1)
+  {
+      regs.write(rt, (regs.read(rt)&0xFFFFFF00)|lwr_word);
+  }
+  else if((regs.read(rs)+signExtImmediate)%4==2)
+  {
+      regs.write(rt, (regs.read(rt)&0xFFFF0000)|lwr_word);
+  }
+  else if((regs.read(rs)+signExtImmediate)%4==3)
+  {
+      regs.write(rt, (regs.read(rt)&0xFF000000)|lwr_word);
+  }
 
 }
 
@@ -713,7 +472,7 @@ void compiler::JALR()
   regs.PC = regs.PC + 4;
   compiler::loop_avoider();
   regs.write(rd, copyPC + 8);
-  regs.PC = regs.read(copyrs);
+  regs.PC = regs.read(copyrs)-4;
 }
 
 void compiler::JR()
@@ -726,30 +485,29 @@ void compiler::JR()
 
 void compiler::MFHI()
 {
+  regs.write(rd,regs.hi);
 }
 
 void compiler::MFLO()
 {
-
+  regs.write(rd,regs.lo);
 }
 
 void compiler::MTHI()
 {
+  regs.hi = regs.read(rs);
 }
 
 void compiler::MTLO()
 {
+  regs.lo = regs.read(rs);
 }
 
-<<<<<<< HEAD
-   exit(-10);
-=======
 void compiler::MULT()
 {
   regs.hi = (((int64_t(op1) << 32) >> 32) * ((int64_t(op2) << 32) >> 32)) >> 32;
   regs.lo = ((int64_t(op1) << 32) >> 32) * ((int64_t(op2) << 32) >> 32);
 }
->>>>>>> 024051614cbb6eda6bf0f79b3c1d5a4f642060aa
 
 void compiler::MULTU()
 {

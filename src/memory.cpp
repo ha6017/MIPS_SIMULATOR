@@ -4,21 +4,21 @@
 
 memory::memory(std::string name_bin)
 {
-  std::cout<< "Initialising memory\n";
-  std::cout<< "Initialising data\n";
+  //std::cout<< "Initialising memory\n";
+  //std::cout<< "Initialising data\n";
 
   ADDR_DATA.resize(0x4000000);
-  std::cout<< "Initialising insts\n";
+  //std::cout<< "Initialising insts\n";
 
   ADDR_INSTR.resize(0x1000000);
 
   std::fill(ADDR_DATA.begin(), ADDR_DATA.end() , 0);
-  std::cout<< "data zeroed\n";
+  //std::cout<< "data zeroed\n";
   std::fill(ADDR_INSTR.begin(), ADDR_INSTR.end() , 0);
-  std::cout<< "Insts zeroed\n";
+  //std::cout<< "Insts zeroed\n";
 
   std::ifstream file_name(name_bin.c_str(), std::ifstream::binary);
-  std::cout<<"file is loaded\n";
+  //std::cout<<"file is loaded\n";
 
   if(!file_name.is_open())
   {
@@ -26,15 +26,15 @@ memory::memory(std::string name_bin)
     std::exit(-21);
   }
 
-  std::cout<<"file is open\n";
+  //std::cout<<"file is open\n";
   file_name.seekg(0, std::ios::end);
   int size = file_name.tellg(); //tells the size of file
   char bin_array [size];
   file_name.seekg(0, std::ios::beg); //put the cursor back to 0
   file_name.read (bin_array, size); //read the file
-  std::cout<<"file is stored in array\n";
-  std::cout<< sizeof(bin_array) << std::endl;
-  std::cout << "the entire file content is in memory\n";
+  //std::cout<<"file is stored in array\n";
+  //std::cout<< sizeof(bin_array) << std::endl;
+  //std::cout << "the entire file content is in memory\n";
   file_name.close();
   int num_instructions = sizeof(bin_array)/4;
   for(int i = 0; i < size; i++){
@@ -45,7 +45,7 @@ memory::memory(std::string name_bin)
   {
     ar_i=i*4;
     ADDR_INSTR[i] = ((bin_array[ar_i]<<24)&0xFF000000)|((bin_array[ar_i+1]<<16)&0x00FF0000)|((bin_array[ar_i+2]<<8)&0x0000FF00)|((bin_array[ar_i+3])&0x000000FF);
-    std::cout << std::hex<< ADDR_INSTR[i] << std::endl;
+    //std::cout << std::hex<< ADDR_INSTR[i] << std::endl;
   }
 
   /*for(int i = 0; i < ADDR_INSTR.size(); i ++)
@@ -149,6 +149,10 @@ int32_t memory::load_word_right_from_memory(int index)
       return (int32_t(((ADDR_DATA[Index_actual+1]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual+2]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual+3]&0x000000FF))&0x00FFFFFF);
     }
   }
+  else
+  {
+    std::exit(-11);
+  }
 }
 
 int32_t memory::load_word_left_from_memory(int index)
@@ -173,6 +177,10 @@ int32_t memory::load_word_left_from_memory(int index)
     {
       return (int32_t(((ADDR_DATA[Index_actual]<<24)&0xFF000000)|((ADDR_DATA[Index_actual+1]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual+2]<<8)&0x0000FF00))&0xFFFFFF00);
     }
+  }
+  else
+  {
+    std::exit(-11);
   }
 }
 
