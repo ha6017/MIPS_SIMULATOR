@@ -17,6 +17,7 @@ public:
 
   void write(int index, uint32_t data);
   uint32_t read(int index);
+  //void printRegisters();
 
 };
 

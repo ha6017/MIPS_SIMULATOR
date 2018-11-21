@@ -5,9 +5,9 @@ register_map::register_map()
 {
   for (int i=0;i<32;i++){
     REG_VECTOR[i]=0;
-    std::cout<<"reg_vect["<<i<<"]="<<REG_VECTOR[i]<<std::endl;
+    //std::cout<<"reg_vect["<<i<<"]="<<REG_VECTOR[i]<<std::endl;
   }
-  std::cout<<"the reg vect loaded with 0\n";
+  //std::cout<<"the reg vect loaded with 0\n";
 }
 
 void register_map::write(int index, uint32_t data){
@@ -27,6 +27,20 @@ void register_map::write(int index, uint32_t data){
   memset(REG_VECTOR, 0, 32);
 }*/
 
-uint32_t register_map::read(int index){
-  return REG_VECTOR[index];
+uint32_t register_map::read(int index)
+{
+  if((index > 0) && (index < 32))
+  {
+    return REG_VECTOR[index];
+  }
+  else
+  {
+    std::exit(-11);
+  }
+
 }
+/*void register_map::printRegisters(){
+  for (int i=0;i<32;i++){
+    std::cout<<"reg_vect["<<i<<"]="<<REG_VECTOR[i]<<std::endl;
+  }*/
+//}
