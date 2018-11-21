@@ -55,7 +55,3 @@ simulator: bin/mips_simulator
 
 # Dummy for build testbench to conform to spec. Could do nothing
 testbench:
-	echo "nothing"
-
-bin/mips_testbench:
-	./mips_testbench.sh
