@@ -12,21 +12,12 @@ class compiler{
     memory mem; //defined an object of class memory
     register_map regs;
 
-<<<<<<< HEAD
-    int16_t Fn_code;
-    uint8_t shamt;
-    uint8_t rd;
-    uint8_t rt;
-    uint8_t rs;
-    uint8_t opcode;
-=======
     uint16_t Fn_code;
     uint16_t shamt;
     uint16_t rd;
     uint16_t rt;
     uint16_t rs;
     uint16_t opcode;
->>>>>>> 8831f7b4396c2b0d4b6abbf7908164ebfdb63ac0
 
     int32_t op1s;
     int32_t op2s;
@@ -44,7 +35,7 @@ class compiler{
     void loop_avoider ();
     void runRtype(uint32_t instruction);
     void runItype(uint32_t instruction);
-    void runJtype(uint32_t instruction);
+    //void runJtype(uint32_t instruction);
 
     //R type instructions
     void ADD();
@@ -73,17 +64,18 @@ class compiler{
     void SUBU();
     void XOR();
 
-    void J();
-    void JAL();
+    void J(uint32_t instruction);
+    void JAL(uint32_t instruction);
 
     void ADDI();
     void ADDIU();
     void ANDI();
     void BEQ();
-    void BLTZ();
-    void BLTZAL();
-    void BGEZ();
-    void BGEZAL();
+    void BRANCHES();
+    //void BLTZ();
+    //void BLTZAL();
+    //void BGEZ();
+    //void BGEZAL();
     void BGTZ();
     void BLEZ();
     void BNE();

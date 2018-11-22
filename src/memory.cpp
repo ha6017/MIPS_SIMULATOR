@@ -22,7 +22,7 @@ memory::memory(std::string name_bin)
 
   if(!file_name.is_open())
   {
-    std::cout<<"file can't be open\n";
+    //std::cout<<"file can't be open\n";
     std::exit(-21);
   }
 
@@ -45,7 +45,7 @@ memory::memory(std::string name_bin)
   {
     ar_i=i*4;
     ADDR_INSTR[i] = ((bin_array[ar_i]<<24)&0xFF000000)|((bin_array[ar_i+1]<<16)&0x00FF0000)|((bin_array[ar_i+2]<<8)&0x0000FF00)|((bin_array[ar_i+3])&0x000000FF);
-    std::cout << std::hex<< ADDR_INSTR[i] << std::endl;
+    //std::cout << std::hex<< ADDR_INSTR[i] << std::endl;
   }
 
   /*for(int i = 0; i < ADDR_INSTR.size(); i ++)
@@ -58,12 +58,12 @@ memory::memory(std::string name_bin)
 
 }
 
-uint32_t memory::load_from_memory(int index)
+int32_t memory::load_from_memory(int index)
 {
   if((index%4 == 0) && (index>=0x20000000) && (index<0x24000000) )//this is only loading word so should only call from the start
   {
     uint32_t Index_actual = (index-0x20000000);
-    return (((ADDR_DATA[Index_actual]<<24)&0xFF000000)|((ADDR_DATA[Index_actual+1]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual+2]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual+3]&0x000000FF));
+    return (((int32_t(ADDR_DATA[Index_actual]<<24))&0xFF000000)|((int32_t(ADDR_DATA[Index_actual+1]<<16))&0x00FF0000)|((int32_t(ADDR_DATA[Index_actual+2])<<8)&0x0000FF00)|(int32_t(ADDR_DATA[Index_actual+3])&0x000000FF));
   }
   else
   {
@@ -76,8 +76,8 @@ int32_t memory::load_byte_from_memory(int index)
   if((index>=0x20000000) && (index<0x24000000))
   {
     uint32_t Index_actual = (index-0x20000000);
-    int32_t Sign_ext_byte = ADDR_DATA[Index_actual];
-    return Sign_ext_byte;
+    //int32_t Sign_ext_byte = ADDR_DATA[Index_actual];
+    return int32_t(ADDR_DATA[Index_actual]);
   }
   else
   {
@@ -90,8 +90,8 @@ uint32_t memory::load_unsigned_byte_from_memory(int index)
   if((index>=0x20000000) && (index<0x24000000))
   {
     uint32_t Index_actual = (index-0x20000000);
-    uint32_t zero_ext_byte = int32_t(ADDR_DATA[Index_actual])&0x000000FF;
-    return zero_ext_byte;
+    //uint32_t zero_ext_byte = int32_t(ADDR_DATA[Index_actual])&0x000000FF;
+    return uint32_t(int32_t(ADDR_DATA[Index_actual])&0x000000FF);
   }
   else
   {
@@ -104,8 +104,8 @@ int32_t memory::load_half_word_from_memory(int index)
   if((index>=0x20000000) && (index<0x24000000) && (index%2==0))
   {
     uint32_t Index_actual = (index-0x20000000);
-    int32_t sign_ext_halfword = (ADDR_DATA[Index_actual]<<8)|(ADDR_DATA[Index_actual+1]);
-    return sign_ext_halfword;
+    //int32_t sign_ext_halfword = (ADDR_DATA[Index_actual]<<8)|(ADDR_DATA[Index_actual+1]);
+    return int32_t((int16_t(ADDR_DATA[Index_actual]<<8)&0xFF00)|(int16_t(ADDR_DATA[Index_actual+1])&0xFF));
   }
   else
   {
@@ -118,7 +118,7 @@ uint32_t memory::load_unsigned_half_word_from_memory(int index)
   if((index>=0x20000000) && (index<0x24000000) && (index%2==0))
   {
     uint32_t Index_actual = (index-0x20000000);
-    return (uint32_t((ADDR_DATA[Index_actual]<<8)|(ADDR_DATA[Index_actual+1]))&0xFFFF);//CHECK*************************
+    return (int32_t((int16_t(ADDR_DATA[Index_actual]<<8)&0xFF00)|(int16_t(ADDR_DATA[Index_actual+1])&0xFF))&0xFFFF);//CHECK*************************
   }
   else
   {
@@ -184,15 +184,15 @@ int32_t memory::load_word_left_from_memory(int index)
   }
 }
 
-void memory::store_to_memory(int index, uint32_t value)
+void memory::store_to_memory(int index, int32_t value)
 {
   if ((index%4 == 0) && (index>=0x20000000) && (index<0x24000000))
   {
     uint32_t Index_actual = (index-0x20000000);
-    ADDR_DATA[Index_actual] = (value&0xFF000000)<<24;
-    ADDR_DATA[Index_actual+1] = (value&0xFF0000)<<16;
-    ADDR_DATA[Index_actual+2] = (value&0xFF00)<<8;
-    ADDR_DATA[Index_actual+3] = value&0xFF;
+    ADDR_DATA[Index_actual] = int8_t((value&0xFF000000)>>24);
+    ADDR_DATA[Index_actual+1] = int8_t((value&0xFF0000)>>16);
+    ADDR_DATA[Index_actual+2] = int8_t((value&0xFF00)>>8);
+    ADDR_DATA[Index_actual+3] = int8_t(value&0xFF);
   }
   else
   {
@@ -202,10 +202,10 @@ void memory::store_to_memory(int index, uint32_t value)
 
 void memory::store_byte_to_memory(int index, int8_t value)
 {
-  if ((index>=0x20000000) && (index<0x24000000))
+  if ((index>=0x20000000) && (index<0x24000000) && (index%4==0))
   {
     uint32_t Index_actual = (index-0x20000000);
-    ADDR_DATA[Index_actual] = value;
+    ADDR_DATA[Index_actual] = int8_t(value);
   }
   else
   {
