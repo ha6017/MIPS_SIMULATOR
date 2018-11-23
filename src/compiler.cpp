@@ -222,6 +222,7 @@ void compiler::ANDI()
 
 void compiler::ADD()
 {
+
   if(((op1s > 0) && (op2s > 0) && (op1s + op2s <= 0)) || ((op1s < 0) && (op2s < 0) && (op1s + op2s >= 0)))
   {
      std::exit(-10);
@@ -638,12 +639,16 @@ void compiler::SRLV()
 
 void compiler::SUB()
 {
-  if(((op1s < 0) && (op2s > 0) && (op1s - op2s >= 0)) || ((op1s > 0) && (op2s < 0) && (op1s - op2s <= 0)) || (op1s==0)&&(op2s=0x80000000))
+  if(((op1s <= 0) && (op2s > 0) && (op1s - op2s >= 0)) || ((op1s >= 0) && (op2s < 0) && (op1s - op2s <= 0)) )
   {
     // If op1 -ve, op2 +ve, result +ve
     // OR If op1 +ve, op2 -ve, result -ve
     // OR corner case
     std::exit(-10);
+  }
+  if((op1s==0)&&(op2s=0x80000000))
+  {
+    //std::exit(-10);
   }
   regs.write(rd, (op1s - op2s));
 }

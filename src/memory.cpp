@@ -65,7 +65,7 @@ int32_t memory::load_from_memory(int index)
   {
     if(index==0x30000000)
     {
-      char data_in = std::getchar();
+      int data_in = std::getchar();
       if(std::cin.eof())
       {
         return 0xFFFFFFFF;
@@ -74,18 +74,14 @@ int32_t memory::load_from_memory(int index)
       {
         std::exit(-21);
       }
-      return (c&0x000000FF);//how to return char from the function
+      return (data_in);//how to return char from the function
     }
     else
     {
       std::exit(-11);
     }
   }
-  //CHECKING FOR PUTCHAR
-  if((index>=0x30000004)&&(index<0x30000007))
-  {
 
-  }
   //RUNNNING THE NORMAL INSTRUCTION
   if((index%4 == 0) && (index>=0x20000000) && (index<0x24000000) )//this is only loading word so should only call from the start
   {
@@ -100,6 +96,26 @@ int32_t memory::load_from_memory(int index)
 
 int32_t memory::load_byte_from_memory(int index)
 {
+  //CHECKING FOR GETCHAR
+  if((index>=0x30000000)&&(index<0x30000004))//getc
+  {
+    char data_in = std::getchar();
+    if(std::cin.eof())
+    {
+      return 0xFF;
+    }
+    if(!std::cin.good())
+    {
+      std::exit(-21);
+    }
+    if(index==0x30000003)
+    {
+      return int32_t(data_in);//how to return char from the function
+    }
+    return 0x00000000;
+  }
+
+  //RUNNINNG NORMAL INSTRUCTIONN
   if((index>=0x20000000) && (index<0x24000000))//check if we are only getting the least significant byte
   {
     uint32_t Index_actual = (index-0x20000000);
@@ -114,6 +130,26 @@ int32_t memory::load_byte_from_memory(int index)
 
 uint32_t memory::load_unsigned_byte_from_memory(int index)
 {
+  //CHECKING FOR GETCHAR
+  if((index>=0x30000000)&&(index<0x30000004))//getc
+  {
+    char data_in = std::getchar();
+    if(std::cin.eof())
+    {
+      return 0xFF;
+    }
+    if(!std::cin.good())
+    {
+      std::exit(-21);
+    }
+    if(index==0x30000003)
+    {
+      return (int32_t(data_in)&0x000000FF);//how to return char from the function
+    }
+    return 0x00000000;
+  }
+
+  //RUNNING NORMAL INSTRUCTION
   if((index>=0x20000000) && (index<0x24000000))
   {
     uint32_t Index_actual = (index-0x20000000);
@@ -128,6 +164,33 @@ uint32_t memory::load_unsigned_byte_from_memory(int index)
 
 int32_t memory::load_half_word_from_memory(int index)
 {
+  //CHECKING FOR GETCHAR
+  if((index>=0x30000000)&&(index<0x30000004))//getc
+  {
+    if((index==0x30000000) && (index==0x30000002))
+    {
+      char data_in = std::getchar();
+      if(std::cin.eof())
+      {
+        return 0xFFFF;
+      }
+      if(!std::cin.good())
+      {
+        std::exit(-21);
+      }
+      if(index==0x30000002)
+      {
+        return (int32_t(data_in));//how to return char from the function
+      }
+      return 0x00000000;
+    }
+    else
+    {
+      std::exit(-11);
+    }
+  }
+
+  //RUNNING NORMAL INNSTRUCTION
   if((index>=0x20000000) && (index<0x24000000) && (index%2==0))
   {
     uint32_t Index_actual = (index-0x20000000);
@@ -142,6 +205,33 @@ int32_t memory::load_half_word_from_memory(int index)
 
 uint32_t memory::load_unsigned_half_word_from_memory(int index)
 {
+  //CHECKING FOR GETCHAR
+  if((index>=0x30000000)&&(index<0x30000004))//getc
+  {
+    if((index==0x30000000) && (index==0x30000002))
+    {
+      char data_in = std::getchar();
+      if(std::cin.eof())
+      {
+        return 0xFFFF;
+      }
+      if(!std::cin.good())
+      {
+        std::exit(-21);
+      }
+      if(index==0x30000002)
+      {
+        return (int32_t(data_in)&0x000000FF);//how to return char from the function
+      }
+      return 0x00000000;
+    }
+    else
+    {
+      std::exit(-11);
+    }
+  }
+
+  //RUNNING NORMAL INNSTRUCTION
   if((index>=0x20000000) && (index<0x24000000) && (index%2==0))
   {
     uint32_t Index_actual = (index-0x20000000);
@@ -184,6 +274,7 @@ int32_t memory::load_word_right_from_memory(int index)
 
 int32_t memory::load_word_left_from_memory(int index)
 {
+
   if((index>=0x20000000) && (index<0x24000000))
   {
     uint32_t Index_actual = (index-0x20000000);
@@ -213,6 +304,25 @@ int32_t memory::load_word_left_from_memory(int index)
 
 void memory::store_to_memory(int index, int32_t value)
 {
+  //CHECKING FOR PUTCHAR
+  if((index>=0x30000004)&&(index<0x30000008))//putc
+  {
+    if(index==0x30000004)
+    {
+      char data_out= int8_t(value&0xFF);
+      if(!std::cout.good())
+      {
+        std::exit(-21);
+      }
+      std::putchar(data_out);//how to return char from the function
+    }
+    else
+    {
+      std::exit(-11);
+    }
+  }
+
+  //RUNNINNG NORMAL INSTRUCTION
   if ((index%4 == 0) && (index>=0x20000000) && (index<0x24000000))
   {
     uint32_t Index_actual = (index-0x20000000);
@@ -229,6 +339,26 @@ void memory::store_to_memory(int index, int32_t value)
 
 void memory::store_byte_to_memory(int index, int8_t value)
 {
+  //CHECKING FOR PUTCHAR
+  if((index>=0x30000004)&&(index<0x30000008))//putc
+  {
+      char data_out= int8_t(value&0xFF);
+      if(!std::cout.good())
+      {
+        std::exit(-21);
+      }
+      if(index==0x3000007)
+      {
+        std::putchar(data_out);//how to return char from the function
+      }
+      else
+      {
+        std::putchar(0);
+      }
+    }
+  }
+
+  //RUNNNING NORMAL INSTRUCTION
   if ((index>=0x20000000) && (index<0x24000000))
   {
     uint32_t Index_actual = (index-0x20000000);
@@ -242,6 +372,33 @@ void memory::store_byte_to_memory(int index, int8_t value)
 
 void memory::store_halfword_to_memory(int index, int16_t value)
 {
+  //CHECKING FOR PUTCHAR
+  if((index>=0x30000004)&&(index<0x30000008))//putc
+  {
+      if((index==0x30000004) || (index==0x30000006))
+      {
+        char data_out= int8_t(value&0xFFFF);
+        if(!std::cout.good())
+        {
+          std::exit(-21);
+        }
+        if(index==0x3000006)
+        {
+          std::putchar(data_out);//how to return char from the function
+        }
+        else
+        {
+            std::putchar(0);
+        }
+      }
+      else
+      {
+        std::exit(-11);
+      }
+    }
+  }
+
+  //RUNNNING NORMAL INSTRUCTION
   if ((index>=0x20000000) && (index<0x24000000) && (index%2==0))
   {
     uint32_t Index_actual = (index-0x20000000);
