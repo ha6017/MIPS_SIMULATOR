@@ -9,8 +9,9 @@ compiler::compiler(std::string binaryfile) : mem(binaryfile), regs()
   //regs.setRegisters();
 }
 
-void compiler::loop_avoider(){
-  if((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000)))
+void compiler::loop_avoider()
+{
+  if((regs.PC < 0x11000000) && (regs.PC >= 0x10000000))
   {
     //std::cout<<"INSIDE LOOP AVOIDER\n";
     uint32_t currentInstruction = mem.readInstruction(regs.PC);
@@ -47,19 +48,29 @@ void compiler::loop_avoider(){
 }
 
 void compiler::run(){
-  //int count=0;
-  while((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000))) // ADD no-op[ cases]
+
+  while((regs.PC < 0x11000000) && (regs.PC >= 0x10000000)) // ADD no-op[ cases]
   {
+    //std::cout<<"an instruction has been sent to loop\n";
     compiler::loop_avoider();
-      //std::cout<<"an instruction has been sent to loop\n";
-      //count++;
-      /*if(count<10)
-      {
-        std::cout<<"an instruction has been sent to loop\n";
-      }*/
+    //std::cout<<"came back from loop avoider\n";
+    //std::cout<<std::hex<<"PC value ="<<regs.PC<<std::endl;
   }
-  uint8_t exitCode = (regs.read(2)&0x000000FF);
-  std::exit(exitCode);
+  //std::cout<<"exited the while loop\n";
+  /*if((regs.PC!=0) && ((regs.PC>0x11000000)||(regs.PC<0x10000000)))
+  {
+    std::exit(-11);
+  }*/
+  if(regs.PC==0)
+  {
+    uint8_t exitCode = (regs.read(2)&0x000000FF);
+    std::exit(exitCode);
+  }
+  else
+  {
+    std::exit(-11);
+  }
+
   //regs.printRegisters();
 }
 
@@ -109,17 +120,6 @@ void compiler::runRtype(uint32_t instruction){
   }
 }
 
-/*void compiler::runJtype(uint32_t instruction){
-  instr_index = instruction&0x03FFFFFF;
-  if(opcode == 2)
-  {
-    J();
-  }
-  else
-  {
-    JAL();
-  }
-}*/
 
 void compiler::J(uint32_t instruction) //changed
 {
@@ -137,35 +137,17 @@ void compiler::J(uint32_t instruction) //changed
 void compiler::JAL(uint32_t instruction) //changed wrong
 {
   instr_index = instruction&0x03FFFFFF;
-  uint32_t copyPC2 = regs.PC;
+  //writes link into register 31
+  regs.write(31, regs.PC + 8);
   //new PC (PC +4) takes 4 msb
   regs.PC=regs.PC+4;
   //same as J instruction from here --
   uint32_t copyPC = (((regs.PC)&0xF0000000) | (instr_index<<2));
   compiler::loop_avoider();
-  //writes link into register 31
-  regs.write(31, copyPC2 + 8);
+
   regs.PC = copyPC-4;
 }
 
-/*void compiler::J(){
-  //new PC (PC +4) takes 4 msb
-  //adds onto this the instruction index left shifted by 2
-  uint32_t copyPC = ((regs.PC)&0xF0000000) + (instr_index<<2);
-  //runs next instruction
-  compiler::loop_avoider();
-  //PC = new value calculated before
-  regs.PC = copyPC-4;
-}
-
-void compiler::JAL(){
-  //writes link into register 31
-  regs.write(31, regs.PC + 8);
-  //same as J instruction from here --
-  uint32_t copyPC = ((regs.PC)&0xF0000000) + (instr_index<<2);
-  compiler::loop_avoider();
-  regs.PC = copyPC-4;
-}*/
 
 void compiler::runItype(uint32_t instruction){
   immediate = instruction&0xFFFF;
@@ -271,7 +253,7 @@ void compiler::BEQ()
     //std::cout<<std::hex<<"copypc="<<copyPC<<std::endl;
     //std::cout<<std::hex<<"signExtImmediate2="<<signExtImmediate2<<std::endl;
     //std::cout<<std::hex<<"signExtImmediate2 shifted by 2="<<(signExtImmediate2<<2)<<std::endl;
-    regs.PC = copyPC + (signExtImmediate2 << 2) - 4;
+    regs.PC = copyPC + (signExtImmediate2 << 2);
     //std::cout<<std::hex<<"regs.pc="<<regs.PC<<std::endl;
   }
 }
@@ -288,10 +270,10 @@ void compiler::BRANCHES()
   }
   else if((rt==16) && (op1s < 0)) //BLTZAL()
   {
+    regs.write(31,(copyPC+8));
     regs.PC=regs.PC+4;
     compiler::loop_avoider();
     regs.PC = copyPC + (signExtImmediate2 << 2);
-    regs.write(31,(copyPC+8));
   }
   else if ((rt == 1)&&(op1s >= 0)) //BGEZ
   {
@@ -301,10 +283,10 @@ void compiler::BRANCHES()
   }
   else if((rt==17) && (op1s >= 0)) //BGEZAL
   {
+    regs.write(31,(copyPC+8));
     regs.PC=regs.PC+4;
     compiler::loop_avoider();
     regs.PC = copyPC + (signExtImmediate2 << 2);
-    regs.write(31,(copyPC+8));
   }
 }
 
@@ -539,12 +521,12 @@ void compiler::DIVU()
 void compiler::JALR()
 {
   //save the PC and rs value before executing the branch delay
-  uint32_t copyPC = regs.PC;
+  //uint32_t copyPC = regs.PC;
   int32_t copyrs = regs.read(rs);
+  regs.write(rd, (regs.PC + 8));
   regs.PC = regs.PC + 4;
   compiler::loop_avoider();
-  regs.write(rd, (copyPC + 8));
-  regs.PC = regs.read(copyrs)-4;
+  regs.PC = copyrs-4;
 }
 
 void compiler::JR()
@@ -651,14 +633,16 @@ void compiler::SRL()
 
 void compiler::SRLV()
 {
-  regs.write(rd, (op2/std::pow(2,op1)));
+  regs.write(rd, (op2/std::pow(2,(op1&0x1F))));
 }
 
 void compiler::SUB()
 {
-  if(((op1s < 0) && (op2s > 0) && (op1s - op2s >= 0)) || ((op1s > 0) && (op2s < 0) && (op1s - op2s <= 0))){
+  if(((op1s < 0) && (op2s > 0) && (op1s - op2s >= 0)) || ((op1s > 0) && (op2s < 0) && (op1s - op2s <= 0)) || (op1s==0)&&(op2s=0x80000000))
+  {
     // If op1 -ve, op2 +ve, result +ve
     // OR If op1 +ve, op2 -ve, result -ve
+    // OR corner case
     std::exit(-10);
   }
   regs.write(rd, (op1s - op2s));
