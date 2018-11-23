@@ -650,12 +650,8 @@ void compiler::SRLV()
 
 void compiler::SUB()
 {
-<<<<<<< HEAD
   if(((op1s <= 0) && (op2s > 0) && (op1s - op2s >= 0)) || ((op1s >= 0) && (op2s < 0) && (op1s - op2s <= 0)) )
   {
-=======
-  if(((op1s <= 0) && (op2s > 0) && ((op1s - op2s) >= 0)) || ((op1s >= 0) && (op2s < 0) && ((op1s - op2s) <= 0))){
->>>>>>> 1481c9c15bac1350fcb05dbe3aabea84ff39ef55
     // If op1 -ve, op2 +ve, result +ve
     // OR If op1 +ve, op2 -ve, result -ve
     // OR corner case
