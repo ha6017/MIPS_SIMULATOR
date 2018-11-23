@@ -60,6 +60,33 @@ memory::memory(std::string name_bin)
 
 int32_t memory::load_from_memory(int index)
 {
+  //CHECKING FOR GETCHAR
+  if((index>=0x30000000)&&(index<0x30000004))//getc
+  {
+    if(index==0x30000000)
+    {
+      char data_in = std::getchar();
+      if(std::cin.eof())
+      {
+        return 0xFFFFFFFF;
+      }
+      if(!std::cin.good())
+      {
+        std::exit(-21);
+      }
+      return (c&0x000000FF);//how to return char from the function
+    }
+    else
+    {
+      std::exit(-11);
+    }
+  }
+  //CHECKING FOR PUTCHAR
+  if((index>=0x30000004)&&(index<0x30000007))
+  {
+
+  }
+  //RUNNNING THE NORMAL INSTRUCTION
   if((index%4 == 0) && (index>=0x20000000) && (index<0x24000000) )//this is only loading word so should only call from the start
   {
     uint32_t Index_actual = (index-0x20000000);
@@ -73,7 +100,7 @@ int32_t memory::load_from_memory(int index)
 
 int32_t memory::load_byte_from_memory(int index)
 {
-  if((index>=0x20000000) && (index<0x24000000))
+  if((index>=0x20000000) && (index<0x24000000))//check if we are only getting the least significant byte
   {
     uint32_t Index_actual = (index-0x20000000);
     //int32_t Sign_ext_byte = ADDR_DATA[Index_actual];
@@ -202,10 +229,10 @@ void memory::store_to_memory(int index, int32_t value)
 
 void memory::store_byte_to_memory(int index, int8_t value)
 {
-  if ((index>=0x20000000) && (index<0x24000000) && (index%4==0))
+  if ((index>=0x20000000) && (index<0x24000000))
   {
     uint32_t Index_actual = (index-0x20000000);
-    ADDR_DATA[Index_actual] = int8_t(value);
+    ADDR_DATA[Index_actual] = value;
   }
   else
   {
@@ -229,7 +256,7 @@ void memory::store_halfword_to_memory(int index, int16_t value)
 
 uint32_t memory::readInstruction(uint32_t PC)
 {
-  if((PC != 0x0) && ((PC <= 0x11000000) && (PC >= 0x10000000)))
+  if((PC != 0x0) && ((PC < 0x11000000) && (PC >= 0x10000000)))
   {
     uint32_t indexPC=(PC-0x10000000)/4;
     return ADDR_INSTR[indexPC];
