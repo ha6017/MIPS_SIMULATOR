@@ -1,2 +1,37 @@
 Test ID, Instruction name, Expected Output, Author, Additional Information
-olly, olly, Fail, Carla, testing no exception
+add1, add, Success, Carla, no problem +ve
+add2, add, Success, Carla, no problem -ve
+addu, addu, Success, Carla, no problem
+beq1, beq, Success, Carla, should branch rt = rs
+beq2, beq, Success, Carla, should not branch rt != rs
+beq3, beq, Success, Carla, should branch rt = rs (negative)
+beq4, beq, Success, Carla, out of range PC
+beq5, beq, Success, Carla, correct negative branch PC
+beq6, beq, Success, Carla, don’t branch second
+bgez1, bgez, Success, Carla, should branch positive rt
+bgez2, bgez, Success, Carla, shouldn’t branch negative rt
+bgez3, bgez, Success, Carla, should branch rt zero
+bgez4, bgez, Success, Carla, out of range PC
+bgez5, bgez, Success, Carla, out of range PC
+bgez6, bgez, Success, Carla, correct negative offset
+bgezal1, bgezal, Success, Carla, should branch positive rt
+bgezal2, bgezal, Success, Carla, shouldn’t branch negative rt
+bgezal3, bgezal, Success, Carla, should branch rt zero
+bgezal4, bgezal, Success, Carla, out of range PC
+bgezal5, bgezal, Success, Carla, take both branches +ve and -ve
+bgezal6, bgezal, Success, Carla, don’t take second branch
+bgezal7, bgezal, Success, Carla, linker
+bltz1, bltz, Success, Carla, should branch negative rt
+bltz2, bltz, Success, Carla, shouldn’t branch positive rt
+bltz3, bltz, Success, Carla, should not branch rt zero
+bltz4, bltz, Success, Carla, out of range PC
+bltz5, bltz, Success, Carla, take both branches
+bltz6, bltz, Success, Carla, don’t take second branch
+bltzal, bltzal, Fail, Carla, should branch rt negative
+bltzal1, bltzal, Success, Carla, should branch -ve rt
+bltzal2, bltzal, Success, Carla, shouldn’t branch +ve rt
+bltzal3, bltzal, Success, Carla, should not branch rt zero
+bltzal4, bltzal, Success, Carla, out of range PC
+bltzal5, bltzal, Success, Carla, take both branches +ve and -ve
+bltzal6, bltzal, Success, Carla, don’t take second branch
+bltzal7, bltzal, Success, Carla, linker

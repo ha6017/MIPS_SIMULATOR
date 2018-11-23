@@ -1,0 +1,14 @@
+#bgezal7
+#bgezal
+#36
+#Carla
+#linker
+
+addi $1, $0, 1
+bgezal $1, 4
+addi $31, $0, 4
+addi $3, $31, 0
+bgezal $3, 4
+addi $31, $0, 2
+add $2, $31, $3
+jr $0

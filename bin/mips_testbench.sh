@@ -13,11 +13,8 @@ text="Test ID, Instruction name, Expected Output, Author, Additional Information
 echo "$text" >> "$outputFile";
 
 for testFile in ${files}; do
-  echo "$testFile"
-
   testName=$(basename "$testFile");
   testName="${testName%%.*}";
-  echo "$testName"
   metadata=()
   #for each line, extract the important information
   while read -r line || [[ -n "$line" ]];
@@ -37,19 +34,18 @@ for testFile in ${files}; do
   notes="${metadata[4]}";
 
   binFile="${testName}.bin";
-  echo "$binFile"
 
   #simulator_run "$binFile";
-  echo "${simPath} ${binPath}/$binFile"
   ${simPath} ${binPath}/$binFile
   output=$?
-  echo "$output"
 
   if [ $output -eq $expectedOutput ]; then
     success="Success";
   else
     success="Fail";
+    echo "$output"
   fi
+
   text=""$instID", "$instruction", "$success", "$author", "$notes"";
   echo "$text" >> "$outputFile";
   echo "$text"

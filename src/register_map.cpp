@@ -42,5 +42,5 @@ uint32_t register_map::read(int index)
 /*void register_map::printRegisters(){
   for (int i=0;i<32;i++){
     std::cout<<"reg_vect["<<i<<"]="<<REG_VECTOR[i]<<std::endl;
-  }*/
-//}
+  }
+}*/

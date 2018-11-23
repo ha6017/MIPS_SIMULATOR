@@ -48,8 +48,8 @@ void compiler::loop_avoider()
 }
 
 void compiler::run(){
-
-  while((regs.PC < 0x11000000) && (regs.PC >= 0x10000000)) // ADD no-op[ cases]
+  //int count=0;
+  while((regs.PC != 0) && ((regs.PC >= 0x10000000) && (regs.PC <= 0x11000000))) // ADD no-op[ cases]
   {
     //std::cout<<"an instruction has been sent to loop\n";
     compiler::loop_avoider();
@@ -165,6 +165,7 @@ void compiler::runItype(uint32_t instruction){
   int16_t val16;
   int8_t val;
 
+
   switch(opcode)
   {
     case 8: ADDI(); break;
@@ -273,6 +274,7 @@ void compiler::BRANCHES()
   {
     regs.write(31,(copyPC+8));
     regs.PC=regs.PC+4;
+    regs.write(31,(copyPC+8));
     compiler::loop_avoider();
     regs.PC = copyPC + (signExtImmediate2 << 2);
   }
@@ -286,6 +288,7 @@ void compiler::BRANCHES()
   {
     regs.write(31,(copyPC+8));
     regs.PC=regs.PC+4;
+    regs.write(31,(copyPC+8));
     compiler::loop_avoider();
     regs.PC = copyPC + (signExtImmediate2 << 2);
   }
@@ -534,6 +537,7 @@ void compiler::JR()
 {
   regs.PC = regs.PC + 4;
   int32_t copyrs = regs.read(rs);
+
   //std::cout<<"JR has been called\n";
   compiler::loop_avoider();
   regs.PC = copyrs - 4;
@@ -564,9 +568,12 @@ void compiler::MULT()
 {
   //regs.hi = (((int64_t(op1) << 32) >> 32) * ((int64_t(op2) << 32) >> 32)) >> 32;
   //regs.lo = ((int64_t(op1) << 32) >> 32) * ((int64_t(op2) << 32) >> 32);
+  int64_t op1s_64 = op1s;
+  int64_t op2s_64 = op2s;
+  int64_t product = op1s_64*op2s_64;
 
-  regs.hi = (int64_t(op1s*op2s)>>32);
-  regs.lo = int64_t(op1s*op2s);
+  regs.hi = (product >> 32) & 0XFFFFFFFF ;
+  regs.lo = product & 0xFFFFFFFF;
 }
 
 void compiler::MULTU()
@@ -574,8 +581,12 @@ void compiler::MULTU()
   //regs.hi = (uint64_t(op1) * uint64_t(op2)) >> 32;
   //regs.lo = uint64_t(op1) * uint64_t(op2);
 
-  regs.hi = (uint64_t(op1*op2)>>32);
-  regs.lo = (uint64_t(op1*op2));
+  uint64_t op1_64 = op1;
+  uint64_t op2_64 = op2;
+  uint64_t product = op1_64*op2_64;
+
+  regs.hi = (product >> 32) & 0XFFFFFFFF ;
+  regs.lo = product & 0xFFFFFFFF;
 }
 
 void compiler::OR()
@@ -639,8 +650,12 @@ void compiler::SRLV()
 
 void compiler::SUB()
 {
+<<<<<<< HEAD
   if(((op1s <= 0) && (op2s > 0) && (op1s - op2s >= 0)) || ((op1s >= 0) && (op2s < 0) && (op1s - op2s <= 0)) )
   {
+=======
+  if(((op1s <= 0) && (op2s > 0) && ((op1s - op2s) >= 0)) || ((op1s >= 0) && (op2s < 0) && ((op1s - op2s) <= 0))){
+>>>>>>> 1481c9c15bac1350fcb05dbe3aabea84ff39ef55
     // If op1 -ve, op2 +ve, result +ve
     // OR If op1 +ve, op2 -ve, result -ve
     // OR corner case
