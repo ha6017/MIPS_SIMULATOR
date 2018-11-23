@@ -48,7 +48,7 @@ void compiler::loop_avoider(){
 
 void compiler::run(){
   //int count=0;
-  while((regs.PC != 0x0) && ((regs.PC <= 0x11000000) && (regs.PC >= 0x10000000))) // ADD no-op[ cases]
+  while((regs.PC != 0) && ((regs.PC >= 0x10000000) && (regs.PC <= 0x11000000))) // ADD no-op[ cases]
   {
     compiler::loop_avoider();
       //std::cout<<"an instruction has been sent to loop\n";
@@ -57,7 +57,11 @@ void compiler::run(){
       {
         std::cout<<"an instruction has been sent to loop\n";
       }*/
+      if(((regs.PC < 0x10000000) || (regs.PC > 0x11000000)) && (regs.PC != 0)){
+        std::exit(-11);
+      }
   }
+
   uint8_t exitCode = (regs.read(2)&0x000000FF);
   std::exit(exitCode);
   //regs.printRegisters();
@@ -183,6 +187,7 @@ void compiler::runItype(uint32_t instruction){
   int16_t val16;
   int8_t val;
 
+
   switch(opcode)
   {
     case 8: ADDI(); break;
@@ -271,7 +276,7 @@ void compiler::BEQ()
     //std::cout<<std::hex<<"copypc="<<copyPC<<std::endl;
     //std::cout<<std::hex<<"signExtImmediate2="<<signExtImmediate2<<std::endl;
     //std::cout<<std::hex<<"signExtImmediate2 shifted by 2="<<(signExtImmediate2<<2)<<std::endl;
-    regs.PC = copyPC + (signExtImmediate2 << 2) - 4;
+    regs.PC = copyPC + (signExtImmediate2 << 2);
     //std::cout<<std::hex<<"regs.pc="<<regs.PC<<std::endl;
   }
 }
@@ -289,9 +294,9 @@ void compiler::BRANCHES()
   else if((rt==16) && (op1s < 0)) //BLTZAL()
   {
     regs.PC=regs.PC+4;
+    regs.write(31,(copyPC+8));
     compiler::loop_avoider();
     regs.PC = copyPC + (signExtImmediate2 << 2);
-    regs.write(31,(copyPC+8));
   }
   else if ((rt == 1)&&(op1s >= 0)) //BGEZ
   {
@@ -302,9 +307,9 @@ void compiler::BRANCHES()
   else if((rt==17) && (op1s >= 0)) //BGEZAL
   {
     regs.PC=regs.PC+4;
+    regs.write(31,(copyPC+8));
     compiler::loop_avoider();
     regs.PC = copyPC + (signExtImmediate2 << 2);
-    regs.write(31,(copyPC+8));
   }
 }
 
@@ -551,6 +556,7 @@ void compiler::JR()
 {
   regs.PC = regs.PC + 4;
   int32_t copyrs = regs.read(rs);
+
   //std::cout<<"JR has been called\n";
   compiler::loop_avoider();
   regs.PC = copyrs - 4;
@@ -656,7 +662,7 @@ void compiler::SRLV()
 
 void compiler::SUB()
 {
-  if(((op1s < 0) && (op2s > 0) && (op1s - op2s >= 0)) || ((op1s > 0) && (op2s < 0) && (op1s - op2s <= 0))){
+  if(((op1s < 0) && (op2s > 0) && ((op1s - op2s) >= 0)) || ((op1s > 0) && (op2s < 0) && ((op1s - op2s) <= 0))){
     // If op1 -ve, op2 +ve, result +ve
     // OR If op1 +ve, op2 -ve, result -ve
     std::exit(-10);

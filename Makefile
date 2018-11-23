@@ -30,6 +30,7 @@ bin/mips_simulator: compiler.o memory.o register_map.o main.o
 simulator: bin/mips_simulator
 
 clean:
-	rm *.o bin/mips_simulator -f 
+	rm *.o bin/mips_simulator -f
 # Dummy for build testbench to conform to spec. Could do nothing
 testbench:
+	bin/mips_parser.sh

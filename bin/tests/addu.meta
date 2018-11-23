@@ -1,0 +1,10 @@
+#addu1
+#addu
+#5
+#Carla
+#no problem
+
+addiu $1, $2, 3
+addiu $3, $2, 2
+addu $2, $1, $3
+jr $0
