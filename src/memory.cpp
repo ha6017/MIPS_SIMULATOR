@@ -356,7 +356,6 @@ void memory::store_byte_to_memory(int index, int8_t value)
         std::putchar(0);
       }
     }
-  }
 
   //RUNNNING NORMAL INSTRUCTION
   if ((index>=0x20000000) && (index<0x24000000))
@@ -395,8 +394,8 @@ void memory::store_halfword_to_memory(int index, int16_t value)
       {
         std::exit(-11);
       }
-    }
   }
+
 
   //RUNNNING NORMAL INSTRUCTION
   if ((index>=0x20000000) && (index<0x24000000) && (index%2==0))

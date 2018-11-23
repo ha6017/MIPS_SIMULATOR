@@ -270,13 +270,14 @@ void compiler::BRANCHES()
     compiler::loop_avoider();
     regs.PC = copyPC + (signExtImmediate2 << 2);
   }
-  else if((rt==16) && (op1s < 0)) //BLTZAL()
-  {
+  else if((rt==16)){ //BLTZAL()
     regs.write(31,(copyPC+8));
-    regs.PC=regs.PC+4;
-    regs.write(31,(copyPC+8));
-    compiler::loop_avoider();
-    regs.PC = copyPC + (signExtImmediate2 << 2);
+    if(op1s < 0)
+    {
+      regs.PC=regs.PC+4;
+      compiler::loop_avoider();
+      regs.PC = copyPC + (signExtImmediate2 << 2);
+    }
   }
   else if ((rt == 1)&&(op1s >= 0)) //BGEZ
   {
@@ -284,13 +285,14 @@ void compiler::BRANCHES()
     compiler::loop_avoider();
     regs.PC = copyPC + (signExtImmediate2 << 2);
   }
-  else if((rt==17) && (op1s >= 0)) //BGEZAL
-  {
+  else if((rt==17)){ //BGEZAL
     regs.write(31,(copyPC+8));
-    regs.PC=regs.PC+4;
-    regs.write(31,(copyPC+8));
-    compiler::loop_avoider();
-    regs.PC = copyPC + (signExtImmediate2 << 2);
+    if(op1s >= 0)
+    {
+      regs.PC=regs.PC+4;
+      compiler::loop_avoider();
+      regs.PC = copyPC + (signExtImmediate2 << 2);
+    }
   }
 }
 
