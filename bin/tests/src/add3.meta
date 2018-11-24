@@ -1,0 +1,10 @@
+#add3
+#add
+#254
+#Carla
+#most +ve -2
+
+addi $1, $0, 0x7FFFFFFF
+addi $3, $0, 0x7FFFFFFF
+add $2, $1, $3
+jr $0
