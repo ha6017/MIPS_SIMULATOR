@@ -1,14 +1,16 @@
 #!/bin/bash
 
 rootDirectory="$(dirname "$(readlink -n "$0")")";
-binPath="bin/tests";
+testPath="bin/tests";
+srcPath="bin/tests/src";
+binPath="bin/tests/bin";
 simPath=$1
-cd "$binPath"
+cd "$testPath"
 rm output.csv
 $cat > output.csv
 cd ../..
-files="./$binPath/*.meta"
-outputFile="./$binPath/output.csv"
+files="./$srcPath/*.meta"
+outputFile="./$testPath/output.csv"
 text="Test ID, Instruction name, Expected Output, Author, Additional Information"
 echo "$text" >> "$outputFile";
 

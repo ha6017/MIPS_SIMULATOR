@@ -1,14 +1,19 @@
 #!/bin/bash
 
-cd bin/tests
+cd bin/tests/bin
 rm *.bin
-cd ../..
+cd ../../..
 
-FILES="bin/tests/*.meta"
+cd bin/mips-parser/bin
+make parser
+cd ../../..
+
+FILES="bin/tests/src/*.meta"
+
 
 for F in $FILES; do
   echo $F
-  "bin/mips-parser-master/bin/parser" $F "bin/tests/#"
+  "bin/mips-parser/bin/parser" $F "bin/tests/bin/#"
 done
 
 echo -e "Finished.\n"

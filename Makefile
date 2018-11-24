@@ -33,4 +33,5 @@ clean:
 	rm *.o bin/mips_simulator -f
 # Dummy for build testbench to conform to spec. Could do nothing
 testbench:
+
 	bin/mips_parser.sh
