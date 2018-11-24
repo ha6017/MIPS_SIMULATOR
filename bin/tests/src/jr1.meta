@@ -2,10 +2,10 @@
 #jr
 #28
 #Carla
-#link
+#correct PC
 
 addi $1, $0, 16
-bltzal $1, 4
+bgezal $1, 4
 nop
 add $3, $31, $1
 jr $3
