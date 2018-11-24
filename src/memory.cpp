@@ -343,8 +343,12 @@ void memory::store_byte_to_memory(int index, int8_t value)
       {
         std::putchar(0);
       }
+<<<<<<< HEAD
       return;
   }
+=======
+    }
+>>>>>>> 1de5266c809bb06ce44f0ed3509b8d7d897061d8
 
   //RUNNNING NORMAL INSTRUCTION
   if ((index>=0x20000000) && (index<0x24000000))
@@ -385,6 +389,7 @@ void memory::store_halfword_to_memory(int index, int16_t value)
         std::exit(-11);
       }
   }
+
 
   //RUNNNING NORMAL INSTRUCTION
   if ((index>=0x20000000) && (index<0x24000000) && (index%2==0))

@@ -6,8 +6,9 @@ cd ../..
 
 FILES="bin/tests/*.meta"
 
-for F in ${FILES}; do
-  bin/mips-parser-master/bin/parser $F "bin/tests/#"
+for F in $FILES; do
+  echo $F
+  "bin/mips-parser-master/bin/parser" $F "bin/tests/#"
 done
 
 echo -e "Finished.\n"
