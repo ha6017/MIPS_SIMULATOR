@@ -52,9 +52,16 @@ bne3, bne, Success, Carla, should branch rt != rs (negative)
 bne4, bne, Success, Carla, out of range PC
 bne5, bne, Success, Carla, correct negative branch PC
 bne6, bne, Success, Carla, don’t branch second
+j1, j, Success, Carla, Jump back and forth saving link
+j2, j, Success, Carla, Jump to unalligned memory
+j3, j, Success, Carla, Illegal jump to out of bounds memory
+jal1, jal, Success, Carla, Jump back and forth saving link
+jal2, jal, Success, Carla, Jump from saved link
+jal3, jal, Success, Carla, Illegal jump to unalligned memory
 jalr1, jalr, Success, Carla, Jump and save link
 jalr2, jalr, Success, Carla, Jump from saved link
 jalr3, jalr, Success, Carla, Illegal jump to unalligned memory
+jalr4, jalr, Success, Carla, Different format of JALR with rd specified
 jr1, jr, Success, Carla, correct PC
 jr2, jr, Success, Carla, out of range
-jr3, jr, Success, Carla, out of range
+jr3, jr, Success, Carla, unalligned memory
