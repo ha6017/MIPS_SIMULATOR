@@ -1,11 +1,11 @@
-#jr1
+#jr2
 #jr
-#28
+#245
 #Carla
-#link
+#out of range
 
-addi $1, $0, 16
-bltzal $1, 4
+addi $1, $0, -16
+bgezal $1, 4
 nop
 add $3, $31, $1
 jr $3

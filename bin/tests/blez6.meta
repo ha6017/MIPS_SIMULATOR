@@ -1,15 +1,15 @@
-#bgez6
-#bgez
-#2
+#blez6
+#blez
+#254
 #Carla
 #correct negative offset
 
 addi $1, $2, 0
-addi $3, $2, 1 
-bgez $1, 12
+addi $3, $2, -1 
+blez $1, 12
 nop
 add $2, $3, $3
 jr $0
 nop
-bgez $3, -16
+blez $3, -16
 nop

@@ -1,14 +1,16 @@
 #bgezal7
 #bgezal
-#36
+#37
 #Carla
 #linker
 
 addi $1, $0, 1
 bgezal $1, 4
-addi $31, $0, 4
+nop
 addi $3, $31, 0
-bgezal $3, 4
-addi $31, $0, 2
-add $2, $31, $3
+addi $5, $0, -3
+bgezal $5, 4
+nop
+add $2, $3, $31
+add $2, $5, $2
 jr $0

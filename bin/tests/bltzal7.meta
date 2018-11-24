@@ -1,14 +1,17 @@
 #bltzal7
 #bltzal
-#36
+#44
 #Carla
 #linker
 
 addi $1, $0, -1
-bltzal $1, 4
+bltzal $1, 8
+nop
 addi $31, $0, 4
 addi $3, $31, 0
-bltzal $1, 4
-addi $31, $0, 2
-add $2, $31, $3
+addi $4, $0, 1
+bltzal $4, 4
+nop
+addi $2, $31, 0
+add $2, $2, $3
 jr $0
