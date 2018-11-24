@@ -338,7 +338,10 @@ void compiler::LB()
   }
   else
   {
+    //std::cout<<std::hex<<"address from which word is loaded = "<<(regs.read(rs)+signExtImmediate)<<std::endl;
     regs.write(rt, mem.load_byte_from_memory(check_address));
+    //std::cout<<std::hex<<"byte loaded is = "<<regs.read(rt)<<std::endl;
+    //std::cout<<std::hex<<"address at which word is stored = "<<(regs.read(rs)+signExtImmediate)<<std::endl;
   }
 }
 
@@ -421,9 +424,9 @@ void compiler::LWL()
     int32_t instr_word = mem.readInstruction(check_address);
     switch (check_address%4) {
       case 0: regs.write(rt,instr_word);
-      case 1: regs.write(rt, (regs.read(rt)&0x000000FF)|instr_word);
-      case 2: regs.write(rt, (regs.read(rt)&0x0000FFFF)|instr_word);
-      case 3: regs.write(rt, (regs.read(rt)&0x00FFFFFF)|instr_word);
+      case 1: regs.write(rt, (regs.read(rt)&0x000000FF)|(instr_word&0xFFFFFF00));
+      case 2: regs.write(rt, (regs.read(rt)&0x0000FFFF)|(instr_word&0xFFFF0000));
+      case 3: regs.write(rt, (regs.read(rt)&0x00FFFFFF)|(instr_word&0xFF000000));
     }
   }
   else
@@ -468,9 +471,9 @@ void compiler::LWR()
     int32_t instr_word = mem.readInstruction(check_address);
     switch (check_address%4) {
       case 3: regs.write(rt,instr_word);
-      case 0: regs.write(rt, (regs.read(rt)&0xFFFFFF00)|instr_word);
-      case 1: regs.write(rt, (regs.read(rt)&0xFFFF0000)|instr_word);
-      case 2: regs.write(rt, (regs.read(rt)&0xFF000000)|instr_word);
+      case 0: regs.write(rt, (regs.read(rt)&0xFFFFFF00)|(instr_word&0x000000FF));
+      case 1: regs.write(rt, (regs.read(rt)&0xFFFF0000)|(instr_word&0x0000FFFF));
+      case 2: regs.write(rt, (regs.read(rt)&0xFF000000)|(instr_word&0x00FFFFFF));
     }
   }
   else
@@ -550,7 +553,10 @@ void compiler::SH()
 
 void compiler::SW()
 {
+  //std::cout<<"reached store word\n";
   mem.store_to_memory((regs.read(rs)+signExtImmediate),regs.read(rt));
+  //std::cout<<std::hex<<"word stored is = "<<op2s<<std::endl;
+  //std::cout<<std::hex<<"address at which word is stored = "<<(regs.read(rs)+signExtImmediate)<<std::endl;
 }
 
 void compiler::XORI()

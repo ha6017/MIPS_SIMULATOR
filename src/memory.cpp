@@ -98,7 +98,19 @@ int32_t memory::load_byte_from_memory(int index)
   {
     uint32_t Index_actual = (index-0x20000000);
     //int32_t Sign_ext_byte = ADDR_DATA[Index_actual];
-    return (int32_t)ADDR_DATA[Index_actual];
+    //std::cout<<std::hex<<"ADDR_DATA["<<Index_actual<<"]="<<ADDR_DATA[Index_actual]<<std::endl;
+    //int32_t check = int32_t(ADDR_DATA[Index_actual]);
+    //std::cout<<std::hex<<check<<std::endl;
+
+    int value = (0x000000FF & ADDR_DATA[Index_actual]);
+    int  mask = 0x00000080;
+    if(mask & ADDR_DATA[Index_actual])
+    {
+      value += 0xFFFFFF00;
+    }
+    //std::cout<<std::hex<<value<<std::endl;
+
+    return value;
   }
   else
   {
@@ -148,6 +160,7 @@ int32_t memory::load_half_word_from_memory(int index)
   {
     uint32_t Index_actual = (index-0x20000000);
     int16_t sign_ext_halfword = (((ADDR_DATA[Index_actual]<<8)&0xFF00)|(ADDR_DATA[Index_actual+1]&0xFF));
+    //std::cout<<std::hex<<"load halfword from mem ="<<(int32_t)sign_ext_halfword<<std::endl;
     return (int32_t)sign_ext_halfword;
   }
   else
@@ -179,6 +192,15 @@ uint32_t memory::load_unsigned_half_word_from_memory(int index)
 
 int32_t memory::load_word_right_from_memory(int index)
 {
+  //CHECKING FOR GETCHAR
+  if(index==0x30000003)
+  {
+    int data_in = std::getchar();
+    if(std::cin.eof()) return 0xFFFFFFFF;
+    if(!std::cin.good()) std::exit(-21);
+    return (data_in);//how to return char from the function
+  }
+
   if((index>=0x20000000) && (index<0x24000000))
   {
     uint32_t Index_actual = (index-0x20000000);
@@ -282,9 +304,13 @@ void memory::store_to_memory(int index, int32_t value)
   {
     uint32_t Index_actual = (index-0x20000000);
     ADDR_DATA[Index_actual] = int8_t((value&0xFF000000)>>24);
+    //std::cout<<"ADDR_DATA["<<Index_actual<<"]="<< static_cast<int16_t>(ADDR_DATA[Index_actual]) <<std::endl;
     ADDR_DATA[Index_actual+1] = int8_t((value&0xFF0000)>>16);
+    //std::cout<<"ADDR_DATA["<<Index_actual+1<<"]="<<ADDR_DATA[Index_actual+1]<<std::endl;
     ADDR_DATA[Index_actual+2] = int8_t((value&0xFF00)>>8);
+    //std::cout<<"ADDR_DATA["<<Index_actual+2<<"]="<< static_cast<int16_t>(ADDR_DATA[Index_actual+2]) <<std::endl;
     ADDR_DATA[Index_actual+3] = int8_t(value&0xFF);
+    //std::cout<<"ADDR_DATA["<<Index_actual+3<<"]="<< static_cast<int16_t>(ADDR_DATA[Index_actual+3]) <<std::endl;
   }
   else  std::exit(-11); // memory exception
 }
