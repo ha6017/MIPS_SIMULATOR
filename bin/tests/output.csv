@@ -65,3 +65,4 @@ jalr4, jalr, Success, Carla, Different format of JALR with rd specified
 jr1, jr, Success, Carla, correct PC
 jr2, jr, Success, Carla, out of range
 jr3, jr, Success, Carla, unalligned memory
+sb1, sb, Fail, Carla, LSB 0 no problems
