@@ -45,7 +45,7 @@ memory::memory(std::string name_bin)
   {
     ar_i=i*4;
     ADDR_INSTR[i] = ((bin_array[ar_i]<<24)&0xFF000000)|((bin_array[ar_i+1]<<16)&0x00FF0000)|((bin_array[ar_i+2]<<8)&0x0000FF00)|((bin_array[ar_i+3])&0x000000FF);
-    //std::cout << std::hex<< ADDR_INSTR[i] << std::endl;
+    std::cout << std::hex<< ADDR_INSTR[i] << std::endl;
   }
 
   /*for(int i = 0; i < ADDR_INSTR.size(); i ++)
@@ -120,7 +120,7 @@ int32_t memory::load_byte_from_memory(int index)
   {
     uint32_t Index_actual = (index-0x20000000);
     //int32_t Sign_ext_byte = ADDR_DATA[Index_actual];
-    return int32_t(ADDR_DATA[Index_actual]);
+    return (int32_t)ADDR_DATA[Index_actual];
   }
   else
   {
@@ -180,7 +180,7 @@ int32_t memory::load_half_word_from_memory(int index)
       }
       if(index==0x30000002)
       {
-        return (int32_t(data_in));//how to return char from the function
+        return (int32_t)data_in;//how to return char from the function
       }
       return 0x00000000;
     }
@@ -194,8 +194,8 @@ int32_t memory::load_half_word_from_memory(int index)
   if((index>=0x20000000) && (index<0x24000000) && (index%2==0))
   {
     uint32_t Index_actual = (index-0x20000000);
-    //int32_t sign_ext_halfword = (ADDR_DATA[Index_actual]<<8)|(ADDR_DATA[Index_actual+1]);
-    return int32_t((int16_t(ADDR_DATA[Index_actual]<<8)&0xFF00)|(int16_t(ADDR_DATA[Index_actual+1])&0xFF));
+    int16_t sign_ext_halfword = (((ADDR_DATA[Index_actual]<<8)&0xFF00)|(ADDR_DATA[Index_actual+1]&0xFF));
+    return (int32_t)sign_ext_halfword;
   }
   else
   {
@@ -305,21 +305,12 @@ int32_t memory::load_word_left_from_memory(int index)
 void memory::store_to_memory(int index, int32_t value)
 {
   //CHECKING FOR PUTCHAR
-  if((index>=0x30000004)&&(index<0x30000008))//putc
-  {
-    if(index==0x30000004)
-    {
-      char data_out= int8_t(value&0xFF);
-      if(!std::cout.good())
-      {
-        std::exit(-21);
-      }
-      std::putchar(data_out);//how to return char from the function
-    }
-    else
-    {
-      std::exit(-11);
-    }
+  if(index==0x30000004){
+    char data_out= int8_t(value&0xFF);
+    if(!std::cout.good())
+      std::exit(-21);
+    std::putchar(data_out);//how to return char from the function
+    return;
   }
 
   //RUNNINNG NORMAL INSTRUCTION
@@ -331,10 +322,7 @@ void memory::store_to_memory(int index, int32_t value)
     ADDR_DATA[Index_actual+2] = int8_t((value&0xFF00)>>8);
     ADDR_DATA[Index_actual+3] = int8_t(value&0xFF);
   }
-  else
-  {
-    std::exit(-11); // memory exception
-  }
+  else  std::exit(-11); // memory exception
 }
 
 void memory::store_byte_to_memory(int index, int8_t value)
@@ -342,12 +330,12 @@ void memory::store_byte_to_memory(int index, int8_t value)
   //CHECKING FOR PUTCHAR
   if((index>=0x30000004)&&(index<0x30000008))//putc
   {
-      char data_out= int8_t(value&0xFF);
+      char data_out= value&0xFF;
       if(!std::cout.good())
       {
         std::exit(-21);
       }
-      if(index==0x3000007)
+      if(index==0x30000007)
       {
         std::putchar(data_out);//how to return char from the function
       }
@@ -355,7 +343,7 @@ void memory::store_byte_to_memory(int index, int8_t value)
       {
         std::putchar(0);
       }
-    }
+      return;
   }
 
   //RUNNNING NORMAL INSTRUCTION
@@ -390,12 +378,12 @@ void memory::store_halfword_to_memory(int index, int16_t value)
         {
             std::putchar(0);
         }
+        return;
       }
       else
       {
         std::exit(-11);
       }
-    }
   }
 
   //RUNNNING NORMAL INSTRUCTION

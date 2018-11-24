@@ -207,7 +207,7 @@ void compiler::ADDI()
     std::exit(-10);
   }
   regs.write(rt, op1s+signExtImmediate);
-  //std::cout<<std::hex<<"regs.read("<< rt <<")="<<regs.read(rt)<<std::endl;
+  std::cout<<std::hex<<"regs.read("<< rt <<")="<<regs.read(rt)<<std::endl;
   //std::cout<<std::hex<<"PC at addi= "<<regs.PC<<std::endl;
 }
 
@@ -373,32 +373,85 @@ void compiler::BNE()
 
 void compiler::LB()
 {
-  regs.write(rt, mem.load_byte_from_memory(regs.read(rs)+signExtImmediate));
+  uint32_t check_address = (regs.read(rs)+signExtImmediate);
+  //std::cout<<std::hex<<"address ="<<(regs.read(rs)+signExtImmediate)<<std::endl;
+  if((check_address < 0x11000000) && (check_address >= 0x10000000))
+  {
+    regs.write(rt, mem.readInstruction(check_address));
+  }
+  else
+  {
+    regs.write(rt, mem.load_byte_from_memory(check_address));
+  }
 }
 
 void compiler::LBU()
 {
-  regs.write(rt, mem.load_unsigned_byte_from_memory(regs.read(rs)+signExtImmediate));
+
+  uint32_t check_address = (regs.read(rs)+signExtImmediate);
+  //std::cout<<std::hex<<"address ="<<(regs.read(rs)+signExtImmediate)<<std::endl;
+  if((check_address < 0x11000000) && (check_address >= 0x10000000))
+  {
+    regs.write(rt,mem.readInstruction(check_address));
+  }
+  else
+  {
+    regs.write(rt, mem.load_unsigned_byte_from_memory(check_address));
+  }
+  //regs.write(rt, mem.load_unsigned_byte_from_memory(regs.read(rs)+signExtImmediate));
 }
 
 void compiler::LH()
 {
-  regs.write(rt, mem.load_half_word_from_memory(regs.read(rs)+signExtImmediate));
+  //regs.write(rt, mem.load_half_word_from_memory(regs.read(rs)+signExtImmediate));
+
+  uint32_t check_address = (regs.read(rs)+signExtImmediate);
+  //std::cout<<std::hex<<"address ="<<(regs.read(rs)+signExtImmediate)<<std::endl;
+  if((check_address < 0x11000000) && (check_address >= 0x10000000))
+  {
+    regs.write(rt, mem.readInstruction(check_address));
+  }
+  else
+  {
+    regs.write(rt, mem.load_half_word_from_memory(check_address));
+  }
 }
 
 void compiler::LHU()
 {
-  regs.write(rt, mem.load_unsigned_half_word_from_memory(regs.read(rs)+signExtImmediate));
+  //regs.write(rt, mem.load_unsigned_half_word_from_memory(regs.read(rs)+signExtImmediate));
+  uint32_t check_address = (regs.read(rs)+signExtImmediate);
+  //std::cout<<std::hex<<"address ="<<(regs.read(rs)+signExtImmediate)<<std::endl;
+  if((check_address < 0x11000000) && (check_address >= 0x10000000))
+  {
+    regs.write(rt, mem.readInstruction(check_address));
+  }
+  else
+  {
+    regs.write(rt, mem.load_unsigned_half_word_from_memory(check_address));
+  }
 }
 
 void compiler::LUI()
 {
   regs.write(rt,((uint32_t(immediate)<<16)&0xFFFF0000));
+  std::cout<<std::hex<<"regs.read(rt) = "<<regs.read(rt)<<std::endl;
 }
 
 void compiler::LW()
 {
-  regs.write(rt, mem.load_from_memory(regs.read(rs)+signExtImmediate));
+  //regs.write(rt, mem.load_from_memory(regs.read(rs)+signExtImmediate));
+
+  uint32_t check_address = (regs.read(rs)+signExtImmediate);
+  //std::cout<<std::hex<<"address ="<<(regs.read(rs)+signExtImmediate)<<std::endl;
+  if((check_address < 0x11000000) && (check_address >= 0x10000000))
+  {
+    regs.write(rt, mem.readInstruction(check_address));
+  }
+  else
+  {
+    regs.write(rt, mem.load_from_memory(check_address));
+  }
 }
 
 void compiler::LWL()
@@ -656,10 +709,6 @@ void compiler::SUB()
     // OR If op1 +ve, op2 -ve, result -ve
     // OR corner case
     std::exit(-10);
-  }
-  if((op1s==0)&&(op2s=0x80000000))
-  {
-    //std::exit(-10);
   }
   regs.write(rd, (op1s - op2s));
 }
