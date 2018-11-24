@@ -45,7 +45,7 @@ memory::memory(std::string name_bin)
   {
     ar_i=i*4;
     ADDR_INSTR[i] = ((bin_array[ar_i]<<24)&0xFF000000)|((bin_array[ar_i+1]<<16)&0x00FF0000)|((bin_array[ar_i+2]<<8)&0x0000FF00)|((bin_array[ar_i+3])&0x000000FF);
-    std::cout << std::hex<< ADDR_INSTR[i] << std::endl;
+    //std::cout << std::hex<< ADDR_INSTR[i] << std::endl;
   }
 
   /*for(int i = 0; i < ADDR_INSTR.size(); i ++)
@@ -61,25 +61,12 @@ memory::memory(std::string name_bin)
 int32_t memory::load_from_memory(int index)
 {
   //CHECKING FOR GETCHAR
-  if((index>=0x30000000)&&(index<0x30000004))//getc
+  if(index==0x30000000)
   {
-    if(index==0x30000000)
-    {
-      int data_in = std::getchar();
-      if(std::cin.eof())
-      {
-        return 0xFFFFFFFF;
-      }
-      if(!std::cin.good())
-      {
-        std::exit(-21);
-      }
-      return (data_in);//how to return char from the function
-    }
-    else
-    {
-      std::exit(-11);
-    }
+    int data_in = std::getchar();
+    if(std::cin.eof()) return 0xFFFFFFFF;
+    if(!std::cin.good()) std::exit(-21);
+    return (data_in);//how to return char from the function
   }
 
   //RUNNNING THE NORMAL INSTRUCTION
@@ -100,18 +87,9 @@ int32_t memory::load_byte_from_memory(int index)
   if((index>=0x30000000)&&(index<0x30000004))//getc
   {
     char data_in = std::getchar();
-    if(std::cin.eof())
-    {
-      return 0xFF;
-    }
-    if(!std::cin.good())
-    {
-      std::exit(-21);
-    }
-    if(index==0x30000003)
-    {
-      return int32_t(data_in);//how to return char from the function
-    }
+    if(std::cin.eof()) return 0xFF;
+    if(!std::cin.good()) std::exit(-21);
+    if(index==0x30000003) return int32_t(data_in);
     return 0x00000000;
   }
 
@@ -134,19 +112,10 @@ uint32_t memory::load_unsigned_byte_from_memory(int index)
   if((index>=0x30000000)&&(index<0x30000004))//getc
   {
     char data_in = std::getchar();
-    if(std::cin.eof())
-    {
-      return 0xFF;
-    }
-    if(!std::cin.good())
-    {
-      std::exit(-21);
-    }
-    if(index==0x30000003)
-    {
-      return (int32_t(data_in)&0x000000FF);//how to return char from the function
-    }
-    return 0x00000000;
+    if(std::cin.eof()) return 0xFF;
+    if(!std::cin.good()) std::exit(-21);
+    if(index==0x30000003) return (int32_t(data_in)&0x000000FF);
+    return 0;
   }
 
   //RUNNING NORMAL INSTRUCTION
@@ -165,29 +134,13 @@ uint32_t memory::load_unsigned_byte_from_memory(int index)
 int32_t memory::load_half_word_from_memory(int index)
 {
   //CHECKING FOR GETCHAR
-  if((index>=0x30000000)&&(index<0x30000004))//getc
+  if((index==0x30000000) || (index==0x30000002))
   {
-    if((index==0x30000000) && (index==0x30000002))
-    {
-      char data_in = std::getchar();
-      if(std::cin.eof())
-      {
-        return 0xFFFF;
-      }
-      if(!std::cin.good())
-      {
-        std::exit(-21);
-      }
-      if(index==0x30000002)
-      {
-        return (int32_t)data_in;//how to return char from the function
-      }
-      return 0x00000000;
-    }
-    else
-    {
-      std::exit(-11);
-    }
+    char data_in = std::getchar();
+    if(std::cin.eof())   return 0xFFFF;
+    if(!std::cin.good()) std::exit(-21);
+    if(index==0x30000002) return (int32_t)data_in;
+    return 0;
   }
 
   //RUNNING NORMAL INNSTRUCTION
@@ -206,29 +159,13 @@ int32_t memory::load_half_word_from_memory(int index)
 uint32_t memory::load_unsigned_half_word_from_memory(int index)
 {
   //CHECKING FOR GETCHAR
-  if((index>=0x30000000)&&(index<0x30000004))//getc
+  if((index==0x30000000) || (index==0x30000002))
   {
-    if((index==0x30000000) && (index==0x30000002))
-    {
-      char data_in = std::getchar();
-      if(std::cin.eof())
-      {
-        return 0xFFFF;
-      }
-      if(!std::cin.good())
-      {
-        std::exit(-21);
-      }
-      if(index==0x30000002)
-      {
-        return (int32_t(data_in)&0x000000FF);//how to return char from the function
-      }
-      return 0x00000000;
-    }
-    else
-    {
-      std::exit(-11);
-    }
+    char data_in = std::getchar();
+    if(std::cin.eof()) return 0xFFFF;
+    if(!std::cin.good()) std::exit(-21);
+    if(index==0x30000002) return (int32_t(data_in)&0x000000FF);
+    return 0;
   }
 
   //RUNNING NORMAL INNSTRUCTION
@@ -237,15 +174,24 @@ uint32_t memory::load_unsigned_half_word_from_memory(int index)
     uint32_t Index_actual = (index-0x20000000);
     return (int32_t((int16_t(ADDR_DATA[Index_actual]<<8)&0xFF00)|(int16_t(ADDR_DATA[Index_actual+1])&0xFF))&0xFFFF);//CHECK*************************
   }
-  else
-  {
-    std::exit(-11);
-  }
+  else std::exit(-11);
 }
 
 int32_t memory::load_word_right_from_memory(int index)
 {
   if((index>=0x20000000) && (index<0x24000000))
+  {
+    uint32_t Index_actual = (index-0x20000000);
+    switch (index%4) {
+      case 0: return(int32_t(ADDR_DATA[Index_actual])&0x000000FF);
+      case 1: return(int32_t(((ADDR_DATA[Index_actual-1]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual]&0x000000FF)));
+      case 2: return(int32_t(((ADDR_DATA[Index_actual-2]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual-1]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual]&0x000000FF)));
+      case 3: return(int32_t(((ADDR_DATA[Index_actual-3]<<24)&0xFFFFFFFF)|((ADDR_DATA[Index_actual-2]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual-1]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual]&0x000000FF)));
+    }
+  }
+  else std::exit(-11);
+
+  /*if((index>=0x20000000) && (index<0x24000000))
   {
     uint32_t Index_actual = (index-0x20000000);
     int rem = index%4;
@@ -269,16 +215,34 @@ int32_t memory::load_word_right_from_memory(int index)
   else
   {
     std::exit(-11);
-  }
+  }*/
 }
 
 int32_t memory::load_word_left_from_memory(int index)
 {
+  //CHECKING FOR GETCHAR
+  if(index==0x30000000)
+  {
+    int data_in = std::getchar();
+    if(std::cin.eof()) return 0xFFFFFFFF;
+    if(!std::cin.good()) std::exit(-21);
+    return (data_in);//how to return char from the function
+  }
 
   if((index>=0x20000000) && (index<0x24000000))
   {
     uint32_t Index_actual = (index-0x20000000);
-    int rem = index%4;
+    switch (index%4) {
+      case 0: return (((ADDR_DATA[Index_actual]<<24)&0xFF000000)|((ADDR_DATA[Index_actual+1]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual+2]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual+3]&0x000000FF));
+      case 1: return (int32_t(((ADDR_DATA[Index_actual]<<24)&0xFF000000)|((ADDR_DATA[Index_actual+1]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual+2]<<8)&0x0000FF00))&0xFFFFFF00);
+      case 2: return (int32_t(((ADDR_DATA[Index_actual]<<24)&0xFF000000)|((ADDR_DATA[Index_actual+1]<<16)&0x00FF0000))&0xFFFF0000);
+      case 3: return(int32_t(ADDR_DATA[Index_actual]<<24)&0xFF000000);
+      }
+  }
+  else std::exit(-11);
+
+
+    /*int rem = index%4;
     if(rem==0)
     {
       return (((ADDR_DATA[Index_actual]<<24)&0xFF000000)|((ADDR_DATA[Index_actual+1]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual+2]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual+3]&0x000000FF));
@@ -299,7 +263,7 @@ int32_t memory::load_word_left_from_memory(int index)
   else
   {
     std::exit(-11);
-  }
+  }*/
 }
 
 void memory::store_to_memory(int index, int32_t value)
@@ -343,12 +307,8 @@ void memory::store_byte_to_memory(int index, int8_t value)
       {
         std::putchar(0);
       }
-<<<<<<< HEAD
       return;
   }
-=======
-    }
->>>>>>> 1de5266c809bb06ce44f0ed3509b8d7d897061d8
 
   //RUNNNING NORMAL INSTRUCTION
   if ((index>=0x20000000) && (index<0x24000000))
@@ -365,31 +325,15 @@ void memory::store_byte_to_memory(int index, int8_t value)
 void memory::store_halfword_to_memory(int index, int16_t value)
 {
   //CHECKING FOR PUTCHAR
-  if((index>=0x30000004)&&(index<0x30000008))//putc
-  {
-      if((index==0x30000004) || (index==0x30000006))
-      {
-        char data_out= int8_t(value&0xFFFF);
-        if(!std::cout.good())
-        {
-          std::exit(-21);
-        }
-        if(index==0x3000006)
-        {
-          std::putchar(data_out);//how to return char from the function
-        }
-        else
-        {
-            std::putchar(0);
-        }
-        return;
-      }
-      else
-      {
-        std::exit(-11);
-      }
-  }
 
+  if((index==0x30000004) || (index==0x30000006))
+  {
+    char data_out= int8_t(value&0xFF);
+    if(!std::cout.good()) std::exit(-21);
+    if(index==0x30000006)   std::putchar(data_out);
+    else std::putchar(0);
+    return;
+  }
 
   //RUNNNING NORMAL INSTRUCTION
   if ((index>=0x20000000) && (index<0x24000000) && (index%2==0))
@@ -398,10 +342,7 @@ void memory::store_halfword_to_memory(int index, int16_t value)
     ADDR_DATA[Index_actual] = int8_t((value&0xFF00)>>8);
     ADDR_DATA[Index_actual+1] = int8_t((value&0xFF));
   }
-  else
-  {
-    std::exit(-11); // memory exception
-  }
+  else std::exit(-11); // memory exception
 }
 
 uint32_t memory::readInstruction(uint32_t PC)
