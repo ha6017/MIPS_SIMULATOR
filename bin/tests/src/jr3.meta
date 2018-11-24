@@ -2,7 +2,7 @@
 #jr
 #245
 #Carla
-#out of range
+#unalligned memory
 
 addi $1, $0, 15
 bltzal $1, 4
