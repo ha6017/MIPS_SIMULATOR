@@ -347,7 +347,7 @@ void memory::store_halfword_to_memory(int index, int16_t value)
 
 uint32_t memory::readInstruction(uint32_t PC)
 {
-  if((PC != 0x0) && ((PC < 0x11000000) && (PC >= 0x10000000)))
+  if((PC != 0x0) && (PC%4==0) && ((PC < 0x11000000) && (PC >= 0x10000000)))
   {
     uint32_t indexPC=(PC-0x10000000)/4;
     return ADDR_INSTR[indexPC];
