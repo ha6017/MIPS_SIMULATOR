@@ -6,9 +6,14 @@ add4, add, Success, Carla, most -ve overflow
 add5, add, Success, Carla, most +ve and 0
 add6, add, Success, Carla, most -ve and 0
 add7, add, Success, Carla, one -ve and +ve
+addi1, addi, Success, ca2217, no problem +ve
+addi2, addi, Success, ca2217, no problem -ve
+addi3, addi, Success, ca2217, overflow positive
+addi4, addi, Success, ca2217, overflow negative
+addi5, addi, Fail, ca2217, large immediate
 addu1, addu, Success, Carla, no problem +ve
-addu2, add, Success, Carla, most +ve
-addu3, add, Fail, Carla, most +ve
+addu2, addu, Success, Carla, most +ve
+addu3, addu, Success, Carla, no overflow (even most -ve)
 addu, addu, Success, Carla, no problem
 beq1, beq, Success, Carla, should branch rt = rs
 beq2, beq, Success, Carla, should not branch rt != rs

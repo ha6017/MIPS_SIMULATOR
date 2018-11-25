@@ -1,0 +1,10 @@
+#addi4
+#addi
+#235
+#ca2217
+#large immediate
+
+addi $2, $2, 0x87654
+
+jr $0
+
