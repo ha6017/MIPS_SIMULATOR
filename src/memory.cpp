@@ -206,9 +206,9 @@ int32_t memory::load_word_right_from_memory(int index)
     uint32_t Index_actual = (index-0x20000000);
     switch (Index_actual%4) {
       case 0: return(int32_t(ADDR_DATA[Index_actual])&0x000000FF); break;
-      case 1: return(int32_t(((ADDR_DATA[Index_actual]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual+1]&0x000000FF))); break;
-      case 2: return(int32_t(((ADDR_DATA[Index_actual]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual+1]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual+2]&0x000000FF))); break;
-      case 3: return(int32_t(((ADDR_DATA[Index_actual]<<24)&0xFFFFFFFF)|((ADDR_DATA[Index_actual+1]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual+2]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual+3]&0x000000FF))); break;
+      case 1: return(int32_t(((ADDR_DATA[Index_actual-1]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual]&0x000000FF))); break;
+      case 2: return(int32_t(((ADDR_DATA[Index_actual-2]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual-1]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual]&0x000000FF))); break;
+      case 3: return(int32_t(((ADDR_DATA[Index_actual-3]<<24)&0xFF000000)|((ADDR_DATA[Index_actual-2]<<16)&0x00FF0000)|((ADDR_DATA[Index_actual-1]<<8)&0x0000FF00)|(ADDR_DATA[Index_actual]&0x000000FF))); break;
     }
   }
   else std::exit(-11);
