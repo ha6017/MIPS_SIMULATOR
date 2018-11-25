@@ -1,6 +1,14 @@
 Test ID, Instruction name, Expected Output, Author, Additional Information
 add1, add, Success, Carla, no problem +ve
 add2, add, Success, Carla, no problem -ve
+add3, addu, Success, Carla, most +ve -2
+add4, add, Success, Carla, most -ve overflow
+add5, add, Success, Carla, most +ve and 0
+add6, add, Success, Carla, most -ve and 0
+add7, add, Success, Carla, one -ve and +ve
+addu1, addu, Success, Carla, no problem +ve
+addu2, add, Success, Carla, most +ve
+addu3, add, Fail, Carla, most +ve
 addu, addu, Success, Carla, no problem
 beq1, beq, Success, Carla, should branch rt = rs
 beq2, beq, Success, Carla, should not branch rt != rs
@@ -65,3 +73,4 @@ jalr4, jalr, Success, Carla, Different format of JALR with rd specified
 jr1, jr, Success, Carla, correct PC
 jr2, jr, Success, Carla, out of range
 jr3, jr, Success, Carla, unalligned memory
+sb1, sb, Fail, Carla, LSB 0 no problems

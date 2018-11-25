@@ -1,0 +1,13 @@
+#addu2
+#addu
+#254
+#Carla
+#most +ve
+
+addiu $1, $0, 0xFFFF
+addiu $6, $0, 0x7FFF
+sll $3, $1, 16
+or $5, $3, $6
+addu $2, $5, $5
+jr $0
+

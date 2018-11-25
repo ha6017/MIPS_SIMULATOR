@@ -1,0 +1,12 @@
+#add5
+#add
+#255
+#Carla
+#most +ve and 0
+
+addi $1, $0, 0xFFFF
+addi $6, $0, 0x7FFF
+sll $3, $1, 16
+or $5, $3, $6 
+add $2, $5, $0
+jr $0
