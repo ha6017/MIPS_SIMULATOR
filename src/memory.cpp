@@ -193,7 +193,7 @@ uint32_t memory::load_unsigned_half_word_from_memory(int index)
 int32_t memory::load_word_right_from_memory(int index)
 {
   //CHECKING FOR GETCHAR
-  if(index==0x30000000)
+  if(index==0x30000003)
   {
     int data_in = std::getchar();
     if(std::cin.eof()) return 0xFFFFFFFF;
