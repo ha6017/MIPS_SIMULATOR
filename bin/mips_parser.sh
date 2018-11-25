@@ -4,9 +4,9 @@ cd bin/tests/bin
 rm *.bin
 cd ../../..
 
-cd bin/mips-parser/bin
+cd bin/mips-parser
 make parser
-cd ../../..
+cd ../..
 
 FILES="bin/tests/src/*.meta"
 
