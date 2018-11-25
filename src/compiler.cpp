@@ -433,10 +433,10 @@ void compiler::LWL()
     //regs.write(rt, mem.readInstruction(check_address));
     int32_t instr_word = mem.readInstruction(check_address);
     switch (check_address%4) {
-      case 0: regs.write(rt,instr_word);
-      case 1: regs.write(rt, (regs.read(rt)&0x000000FF)|(instr_word&0xFFFFFF00));
-      case 2: regs.write(rt, (regs.read(rt)&0x0000FFFF)|(instr_word&0xFFFF0000));
-      case 3: regs.write(rt, (regs.read(rt)&0x00FFFFFF)|(instr_word&0xFF000000));
+      case 0: regs.write(rt,instr_word); break;
+      case 1: regs.write(rt, (regs.read(rt)&0x000000FF)|(instr_word&0xFFFFFF00)); break;
+      case 2: regs.write(rt, (regs.read(rt)&0x0000FFFF)|(instr_word&0xFFFF0000)); break;
+      case 3: regs.write(rt, (regs.read(rt)&0x00FFFFFF)|(instr_word&0xFF000000)); break;
     }
   }
   else
@@ -444,10 +444,10 @@ void compiler::LWL()
     //regs.write(rt, mem.load_from_memory(check_address));
     int32_t lwl_word = mem.load_word_left_from_memory(check_address);
     switch (check_address%4) {
-      case 0: regs.write(rt,lwl_word);
-      case 1: regs.write(rt, (regs.read(rt)&0x000000FF)|lwl_word);
-      case 2: regs.write(rt, (regs.read(rt)&0x0000FFFF)|lwl_word);
-      case 3: regs.write(rt, (regs.read(rt)&0x00FFFFFF)|lwl_word);
+      case 0: regs.write(rt,lwl_word); break;
+      case 1: regs.write(rt, (regs.read(rt)&0x000000FF)|lwl_word); break;
+      case 2: regs.write(rt, (regs.read(rt)&0x0000FFFF)|lwl_word); break;
+      case 3: regs.write(rt, (regs.read(rt)&0x00FFFFFF)|lwl_word); break;
     }
   }
 
@@ -480,21 +480,21 @@ void compiler::LWR()
     //regs.write(rt, mem.readInstruction(check_address));
     int32_t instr_word = mem.readInstruction(check_address);
     switch (check_address%4) {
-      case 3: regs.write(rt,instr_word);
-      case 0: regs.write(rt, (regs.read(rt)&0xFFFFFF00)|(instr_word&0x000000FF));
-      case 1: regs.write(rt, (regs.read(rt)&0xFFFF0000)|(instr_word&0x0000FFFF));
-      case 2: regs.write(rt, (regs.read(rt)&0xFF000000)|(instr_word&0x00FFFFFF));
+      case 3: regs.write(rt,instr_word); break;
+      case 0: regs.write(rt, (regs.read(rt)&0xFFFFFF00)|(instr_word&0x000000FF)); break;
+      case 1: regs.write(rt, (regs.read(rt)&0xFFFF0000)|(instr_word&0x0000FFFF)); break;
+      case 2: regs.write(rt, (regs.read(rt)&0xFF000000)|(instr_word&0x00FFFFFF)); break;
     }
   }
   else
   {
     //regs.write(rt, mem.load_from_memory(check_address));
-    int32_t lwr_word = mem.load_word_left_from_memory(check_address);
+    int32_t lwr_word = mem.load_word_right_from_memory(check_address);
     switch (check_address%4) {
-      case 3: regs.write(rt,lwr_word);
-      case 0: regs.write(rt, (regs.read(rt)&0xFFFFFF00)|lwr_word);
-      case 1: regs.write(rt, (regs.read(rt)&0xFFFF0000)|lwr_word);
-      case 2: regs.write(rt, (regs.read(rt)&0xFF000000)|lwr_word);
+      case 3: regs.write(rt,lwr_word); break;
+      case 0: regs.write(rt, (regs.read(rt)&0xFFFFFF00)|lwr_word); break;
+      case 1: regs.write(rt, (regs.read(rt)&0xFFFF0000)|lwr_word); break;
+      case 2: regs.write(rt, (regs.read(rt)&0xFF000000)|lwr_word); break;
     }
   }
 
