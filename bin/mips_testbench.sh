@@ -3,7 +3,7 @@
 rootDirectory="$(dirname "$(readlink -n "$0")")";
 testPath="bin/tests";
 srcPath="bin/tests/src";
-binPath="bin/tests/bin";
+binPath="bin/bin"; ##removed /tests/ in the middle of bin
 simPath=$1
 cd "$testPath"
 rm output.csv
