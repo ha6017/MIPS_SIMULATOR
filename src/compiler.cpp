@@ -434,9 +434,9 @@ void compiler::LWL()
     int32_t instr_word = mem.readInstruction(check_address);
     switch (check_address%4) {
       case 0: regs.write(rt,instr_word); break;
-      case 1: regs.write(rt, (regs.read(rt)&0x000000FF)|(instr_word&0xFFFFFF00)); break;
-      case 2: regs.write(rt, (regs.read(rt)&0x0000FFFF)|(instr_word&0xFFFF0000)); break;
-      case 3: regs.write(rt, (regs.read(rt)&0x00FFFFFF)|(instr_word&0xFF000000)); break;
+      case 1: regs.write(rt, (regs.read(rt)&0x000000FF)|((instr_word&0x00FFFFFF)<<8)); break;
+      case 2: regs.write(rt, (regs.read(rt)&0x0000FFFF)|((instr_word&0x0000FFFF)<<16)); break;
+      case 3: regs.write(rt, (regs.read(rt)&0x00FFFFFF)|((instr_word&0x000000FF)<<24)); break;
     }
   }
   else
@@ -478,12 +478,14 @@ void compiler::LWR()
   if((check_address < 0x11000000) && (check_address >= 0x10000000))
   {
     //regs.write(rt, mem.readInstruction(check_address));
-    int32_t instr_word = mem.readInstruction(check_address);
-    switch (check_address%4) {
+    int offset = check_address%4;
+    int32_t instr_word = mem.readInstruction(check_address-offset);
+    //int32_t next_instr_word = mem.readInstruction(check_address+4);
+    switch (offset) {
       case 3: regs.write(rt,instr_word); break;
-      case 0: regs.write(rt, (regs.read(rt)&0xFFFFFF00)|(instr_word&0x000000FF)); break;
-      case 1: regs.write(rt, (regs.read(rt)&0xFFFF0000)|(instr_word&0x0000FFFF)); break;
-      case 2: regs.write(rt, (regs.read(rt)&0xFF000000)|(instr_word&0x00FFFFFF)); break;
+      case 0: regs.write(rt, (regs.read(rt)&0xFFFFFF00)|((instr_word&0xFF000000)>>24)); break;
+      case 1: regs.write(rt, (regs.read(rt)&0xFFFF0000)|((instr_word&0xFFFF0000)>>16)); break;
+      case 2: regs.write(rt, (regs.read(rt)&0xFF000000)|((instr_word&0xFFFFFF00)>>8)); break;
     }
   }
   else
