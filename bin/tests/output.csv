@@ -1,11 +1,14 @@
 Test ID, Instruction name, Expected Output, Author, Additional Information
 add1, add, Success, Carla, no problem +ve
 add2, add, Success, Carla, no problem -ve
-add3, add, Success, Carla, most +ve -2
-add4, add, Fail, Carla, most -ve overflow
+add3, addu, Success, Carla, most +ve -2
+add4, add, Success, Carla, most -ve overflow
 add5, add, Success, Carla, most +ve and 0
-add6, add, Fail, Carla, most -ve and 0
+add6, add, Success, Carla, most -ve and 0
 add7, add, Success, Carla, one -ve and +ve
+addu1, addu, Success, Carla, no problem +ve
+addu2, add, Success, Carla, most +ve
+addu3, add, Fail, Carla, most +ve
 addu, addu, Success, Carla, no problem
 beq1, beq, Success, Carla, should branch rt = rs
 beq2, beq, Success, Carla, should not branch rt != rs

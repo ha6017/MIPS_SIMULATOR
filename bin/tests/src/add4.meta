@@ -4,7 +4,7 @@
 #Carla
 #most -ve overflow
 
-addi $1, $0, 0x800000000
-addi $3, $0, 0x800000000
+lui $1, 0x8000
+lui $3, 0x8000
 add $2, $1, $3
 jr $0
