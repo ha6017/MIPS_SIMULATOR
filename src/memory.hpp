@@ -26,6 +26,8 @@ public:
   uint32_t load_unsigned_half_word_from_memory(int index);
   int32_t load_word_right_from_memory(int index);
   int32_t load_word_left_from_memory(int index);
+  int8_t load_byte_from_instruction(int index);
+  int16_t load_half_word_from_instruction(int index);
 
 
   void store_to_memory(int index, int32_t value);

@@ -334,7 +334,14 @@ void compiler::LB()
   //std::cout<<std::hex<<"address ="<<(regs.read(rs)+signExtImmediate)<<std::endl;
   if((check_address < 0x11000000) && (check_address >= 0x10000000))
   {
-    regs.write(rt, mem.readInstruction(check_address));
+    int8_t instr_byte = mem.load_byte_from_instruction(check_address);
+    int value = (0x000000FF & instr_byte);
+    int  mask = 0x00000080;
+    if(mask & instr_byte)
+    {
+      value += 0xFFFFFF00;
+    }
+    regs.write(rt, value);
   }
   else
   {
@@ -352,7 +359,8 @@ void compiler::LBU()
   //std::cout<<std::hex<<"address ="<<(regs.read(rs)+signExtImmediate)<<std::endl;
   if((check_address < 0x11000000) && (check_address >= 0x10000000))
   {
-    regs.write(rt,mem.readInstruction(check_address));
+    int8_t instr_byte = mem.load_byte_from_instruction(check_address);
+    regs.write(rt,(uint32_t(instr_byte)&0x000000FF));
   }
   else
   {
@@ -367,9 +375,10 @@ void compiler::LH()
 
   uint32_t check_address = (regs.read(rs)+signExtImmediate);
   //std::cout<<std::hex<<"address ="<<(regs.read(rs)+signExtImmediate)<<std::endl;
-  if((check_address < 0x11000000) && (check_address >= 0x10000000))
+  if((check_address < 0x11000000) && (check_address >= 0x10000000) && (check_address%2==0))
   {
-    regs.write(rt, mem.readInstruction(check_address));
+    int16_t instr_half_word = mem.load_half_word_from_instruction(check_address);
+    regs.write(rt, (int32_t)instr_half_word);
   }
   else
   {
@@ -384,7 +393,8 @@ void compiler::LHU()
   //std::cout<<std::hex<<"address ="<<(regs.read(rs)+signExtImmediate)<<std::endl;
   if((check_address < 0x11000000) && (check_address >= 0x10000000))
   {
-    regs.write(rt, mem.readInstruction(check_address));
+    int16_t instr_half_word = mem.load_half_word_from_instruction(check_address);
+    regs.write(rt, int32_t(instr_half_word)&0x0000FFFF);
   }
   else
   {
