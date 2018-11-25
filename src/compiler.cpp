@@ -450,25 +450,6 @@ void compiler::LWL()
       case 3: regs.write(rt, (regs.read(rt)&0x00FFFFFF)|lwl_word); break;
     }
   }
-
-  /*int32_t lwl_word = mem.load_word_left_from_memory(regs.read(rs)+signExtImmediate);
-  if((regs.read(rs)+signExtImmediate)%4==0)
-  {
-    regs.write(rt,lwl_word);
-  }
-  else if((regs.read(rs)+signExtImmediate)%4==1)
-  {
-     regs.write(rt, (regs.read(rt)&0x000000FF)|lwl_word);
-  }
-  else if((regs.read(rs)+signExtImmediate)%4==2)
-  {
-     regs.write(rt, (regs.read(rt)&0x0000FFFF)|lwl_word);
-  }
-  else if((regs.read(rs)+signExtImmediate)%4==3)
-  {
-    regs.write(rt, (regs.read(rt)&0x00FFFFFF)|lwl_word);
-  }*/
-
 }
 
 void compiler::LWR()
@@ -499,27 +480,6 @@ void compiler::LWR()
       case 2: regs.write(rt, (regs.read(rt)&0xFF000000)|lwr_word); break;
     }
   }
-
-
-
-  /*int32_t lwr_word = mem.load_word_right_from_memory(regs.read(rs)+signExtImmediate);
-  if((regs.read(rs)+signExtImmediate)%4==0)
-  {
-      regs.write(rt,lwr_word);
-  }
-  else if((regs.read(rs)+signExtImmediate)%4==1)
-  {
-      regs.write(rt, (regs.read(rt)&0xFFFFFF00)|lwr_word);
-  }
-  else if((regs.read(rs)+signExtImmediate)%4==2)
-  {
-      regs.write(rt, (regs.read(rt)&0xFFFF0000)|lwr_word);
-  }
-  else if((regs.read(rs)+signExtImmediate)%4==3)
-  {
-      regs.write(rt, (regs.read(rt)&0xFF000000)|lwr_word);
-  }*/
-
 }
 
 void compiler::ORI()
