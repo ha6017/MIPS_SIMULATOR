@@ -45,7 +45,7 @@ memory::memory(std::string name_bin)
   {
     ar_i=i*4;
     ADDR_INSTR[i] = ((bin_array[ar_i]<<24)&0xFF000000)|((bin_array[ar_i+1]<<16)&0x00FF0000)|((bin_array[ar_i+2]<<8)&0x0000FF00)|((bin_array[ar_i+3])&0x000000FF);
-    //std::cout << std::hex<< ADDR_INSTR[i] << std::endl;
+    std::cout << std::hex<< ADDR_INSTR[i] << std::endl;
   }
 
   /*for(int i = 0; i < ADDR_INSTR.size(); i ++)
@@ -108,7 +108,7 @@ int32_t memory::load_byte_from_memory(int index)
     {
       value += 0xFFFFFF00;
     }
-    //std::cout<<std::hex<<value<<std::endl;
+    std::cout<<std::hex<<"value ="<<value<<std::endl;
 
     return value;
   }
@@ -278,13 +278,13 @@ void memory::store_to_memory(int index, int32_t value)
   {
     uint32_t Index_actual = (index-0x20000000);
     ADDR_DATA[Index_actual] = int8_t((value&0xFF000000)>>24);
-    //std::cout<<"ADDR_DATA["<<Index_actual<<"]="<< static_cast<int16_t>(ADDR_DATA[Index_actual]) <<std::endl;
+    std::cout<<"ADDR_DATA["<<Index_actual<<"]="<< static_cast<int16_t>(ADDR_DATA[Index_actual]) <<std::endl;
     ADDR_DATA[Index_actual+1] = int8_t((value&0xFF0000)>>16);
-    //std::cout<<"ADDR_DATA["<<Index_actual+1<<"]="<<ADDR_DATA[Index_actual+1]<<std::endl;
+    std::cout<<"ADDR_DATA["<<Index_actual+1<<"]="<<static_cast<int16_t>(ADDR_DATA[Index_actual+1])<<std::endl;
     ADDR_DATA[Index_actual+2] = int8_t((value&0xFF00)>>8);
-    //std::cout<<"ADDR_DATA["<<Index_actual+2<<"]="<< static_cast<int16_t>(ADDR_DATA[Index_actual+2]) <<std::endl;
+    std::cout<<"ADDR_DATA["<<Index_actual+2<<"]="<< static_cast<int16_t>(ADDR_DATA[Index_actual+2]) <<std::endl;
     ADDR_DATA[Index_actual+3] = int8_t(value&0xFF);
-    //std::cout<<"ADDR_DATA["<<Index_actual+3<<"]="<< static_cast<int16_t>(ADDR_DATA[Index_actual+3]) <<std::endl;
+    std::cout<<"ADDR_DATA["<<Index_actual+3<<"]="<< static_cast<int16_t>(ADDR_DATA[Index_actual+3]) <<std::endl;
   }
   else  std::exit(-11); // memory exception
 }

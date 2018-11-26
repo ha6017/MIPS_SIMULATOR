@@ -64,6 +64,7 @@ void compiler::run(){
   if(regs.PC==0)
   {
     uint8_t exitCode = (regs.read(2)&0x000000FF);
+    std::cout<<"exitcode is = "<< static_cast<int16_t>(exitCode) <<std::endl;
     std::exit(exitCode);
   }
   else
@@ -203,7 +204,7 @@ void compiler::ADDI()
     std::exit(-10);
   }
   regs.write(rt, op1s+signExtImmediate);
-  //std::cout<<std::hex<<"regs.read("<< rt <<")="<<regs.read(rt)<<std::endl;
+  std::cout<<std::hex<<"regs.read("<< rt <<")="<<regs.read(rt)<<std::endl;
   //std::cout<<std::hex<<"PC at addi= "<<regs.PC<<std::endl;
 }
 
@@ -405,7 +406,7 @@ void compiler::LHU()
 void compiler::LUI()
 {
   regs.write(rt,((uint32_t(immediate)<<16)&0xFFFF0000));
-  //std::cout<<std::hex<<"regs.read(rt) = "<<regs.read(rt)<<std::endl;
+  std::cout<<std::hex<<"regs.read(rt) = "<<regs.read(rt)<<std::endl;
 }
 
 void compiler::LW()
