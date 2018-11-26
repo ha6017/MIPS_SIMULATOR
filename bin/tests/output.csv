@@ -88,6 +88,7 @@ jalr4, jalr, Success, ca2217, Different format of JALR with rd specified
 jr1, jr, Success, ca2217, correct PC
 jr2, jr, Success, ca2217, out of range
 jr3, jr, Success, ca2217, unalligned memory
+lb1, lb, Success, ha6017, load byte 2 from word
 or1, or, Success, ca2217, or all 1s
 or2, or, Success, ca2217, or all 0s
 or3, or, Success, ca2217, changing register contents
@@ -95,3 +96,10 @@ ori1, ori, Success, ca2217, or all 1s
 ori2, ori, Success, ca2217, or all 0s
 ori3, ori, Success, ca2217, changing register contents
 ori4, ori, Success, ca2217, checking correct range
+xor1, xor, Success, ca2217, xor all 1s
+xor2, xor, Success, ca2217, xor all 0s
+xor3, xor, Success, ca2217, changing register contents
+xori1, xori, Success, ca2217, or all 1s
+xori2, xori, Success, ca2217, or all 0s
+xori3, xori, Success, ca2217, changing register contents
+xori4, xori, Success, ca2217, checking correct range
