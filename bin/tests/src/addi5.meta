@@ -1,10 +1,11 @@
-#addi4
+#addi5
 #addi
-#235
+#255
 #ca2217
 #large immediate
 
-addi $2, $2, 0x87654
+addi $2, $2, 0x7F0F0
+srl $2, $2, 24
 
 jr $0
 
