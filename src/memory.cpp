@@ -33,7 +33,7 @@ memory::memory(std::string name_bin)
   //std::cout<< sizeof(bin_array) << std::endl;
   //std::cout << "the entire file content is in memory\n";
   file_name.close();
-  int num_instructions = sizeof(bin_array)/4;
+  num_instructions = sizeof(bin_array)/4;
   for(int i = 0; i < size; i++){
     //std::cout << bin_array[i] << std::endl;
   }

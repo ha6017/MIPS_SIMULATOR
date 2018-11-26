@@ -13,6 +13,7 @@ private:
   //uint8_t ADDR_DATA[0x4000000];
   std::vector<uint32_t> ADDR_INSTR;
   std::vector<uint8_t> ADDR_DATA;
+  int num_instructions;
 
 public:
   memory(std::string binaryfile);
