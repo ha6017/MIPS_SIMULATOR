@@ -64,7 +64,7 @@ void compiler::run(){
   if(regs.PC==0)
   {
     uint8_t exitCode = (regs.read(2)&0x000000FF);
-    std::cout<<"exitcode is = "<< static_cast<int16_t>(exitCode) <<std::endl;
+    //std::cout<<"exitcode is = "<< static_cast<int16_t>(exitCode) <<std::endl;
     std::exit(exitCode);
   }
   else
@@ -204,7 +204,7 @@ void compiler::ADDI()
     std::exit(-10);
   }
   regs.write(rt, op1s+signExtImmediate);
-  std::cout<<std::hex<<"regs.read("<< rt <<")="<<regs.read(rt)<<std::endl;
+  //std::cout<<std::hex<<"regs.read("<< rt <<")="<<regs.read(rt)<<std::endl;
   //std::cout<<std::hex<<"PC at addi= "<<regs.PC<<std::endl;
 }
 
@@ -406,7 +406,7 @@ void compiler::LHU()
 void compiler::LUI()
 {
   regs.write(rt,((uint32_t(immediate)<<16)&0xFFFF0000));
-  std::cout<<std::hex<<"regs.read(rt) = "<<regs.read(rt)<<std::endl;
+  //std::cout<<std::hex<<"regs.read(rt) = "<<regs.read(rt)<<std::endl;
 }
 
 void compiler::LW()
@@ -428,12 +428,13 @@ void compiler::LW()
 void compiler::LWL()
 {
   uint32_t check_address = (regs.read(rs)+signExtImmediate);
+  int offset = check_address%4;
   //std::cout<<std::hex<<"address ="<<(regs.read(rs)+signExtImmediate)<<std::endl;
   if((check_address < 0x11000000) && (check_address >= 0x10000000))
   {
     //regs.write(rt, mem.readInstruction(check_address));
-    int32_t instr_word = mem.readInstruction(check_address);
-    switch (check_address%4) {
+    int32_t instr_word = mem.readInstruction(check_address-offset);
+    switch (offset) {
       case 0: regs.write(rt,instr_word); break;
       case 1: regs.write(rt, (regs.read(rt)&0x000000FF)|((instr_word&0x00FFFFFF)<<8)); break;
       case 2: regs.write(rt, (regs.read(rt)&0x0000FFFF)|((instr_word&0x0000FFFF)<<16)); break;
@@ -444,7 +445,7 @@ void compiler::LWL()
   {
     //regs.write(rt, mem.load_from_memory(check_address));
     int32_t lwl_word = mem.load_word_left_from_memory(check_address);
-    switch (check_address%4) {
+    switch (offset) {
       case 0: regs.write(rt,lwl_word); break;
       case 1: regs.write(rt, (regs.read(rt)&0x000000FF)|lwl_word); break;
       case 2: regs.write(rt, (regs.read(rt)&0x0000FFFF)|lwl_word); break;
