@@ -96,6 +96,17 @@ ori1, ori, Success, ca2217, or all 1s
 ori2, ori, Success, ca2217, or all 0s
 ori3, ori, Success, ca2217, changing register contents
 ori4, ori, Success, ca2217, checking correct range
+slt1, slt, Success, ca2217,  0 < +ve
+slt2, slt, Success, ca2217,  0 < -ve
+slt3, slt, Success, ca2217,  -ve < +ve
+slt4, slt, Success, ca2217,  -ve < 0
+slt5, slt, Success, ca2217,  +ve < 0
+slt6, slt, Success, ca2217,  0 < 0
+slt7, slt, Success, ca2217,  num < num
+sltu1, sltu, Success, ca2217,  0 < +ve
+sltu2, slt, Success, ca2217,  +ve < 0
+sltu3, sltu, Success, ca2217,  0 < 0
+sltu4, sltu, Success, ca2217,  num1 < num2
 xor1, xor, Success, ca2217, xor all 1s
 xor2, xor, Success, ca2217, xor all 0s
 xor3, xor, Success, ca2217, changing register contents
