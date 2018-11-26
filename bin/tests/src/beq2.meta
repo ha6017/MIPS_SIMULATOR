@@ -1,7 +1,7 @@
 #beq2
 #beq
 #13
-#Carla
+#ca2217
 #should not branch rt != rs
 
 addi $1, $2, 1

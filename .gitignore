@@ -7,4 +7,3 @@ register_map.o
 compiler.o
 
 bin/mips_simulator
-bin/mips_testbench
