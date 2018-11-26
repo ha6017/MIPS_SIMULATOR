@@ -1,16 +1,19 @@
 #!/bin/bash
 
-rootDirectory="$(dirname "$(readlink -n "$0")")";
-testPath="bin/tests";
-srcPath="bin/tests/src";
-binPath="bin/tests/bin"; 
+#rootDirectory="$(dirname "$(readlink -n "$0")")";
+testPath="tests/output";
+metaPath="tests/meta";
+binPath="tests/bin";
 simPath=$1
 cd "$testPath"
 rm output.csv
 $cat > output.csv
 cd ../..
-files="./$srcPath/*.meta"
-outputFile="./$testPath/output.csv"
+files="./$metaPath/*.meta"
+cd "$testPath"
+mkdir -p output
+cd ../..
+outputFile="./$testPath/output/output.csv"
 text="Test ID, Instruction name, Expected Output, Author, Additional Information"
 echo "$text" >> "$outputFile";
 
@@ -42,7 +45,7 @@ for testFile in ${files}; do
   output=$?
 
   if [ $output -eq $expectedOutput ]; then
-    success="Success";
+    success="Pass";
   else
     success="Fail";
     echo "$output"

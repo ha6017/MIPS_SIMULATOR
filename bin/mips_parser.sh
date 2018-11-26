@@ -1,15 +1,15 @@
 #!/bin/bash
 
-cd bin/tests/bin
+cd tests/bin
 rm *.bin
-cd ../../..
+cd ../..
 
-FILES="bin/tests/src/*.meta"
+FILES="tests/meta/*.meta"
 
 
 for F in $FILES; do
   echo $F
-  "bin/parser" $F "bin/tests/bin/#"
+  "bin/parser_mac" $F "tests/bin/#"
 done
 
 echo -e "Finished.\n"
