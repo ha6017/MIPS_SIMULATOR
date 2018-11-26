@@ -9,7 +9,7 @@ FILES="bin/tests/src/*.meta"
 
 for F in $FILES; do
   echo $F
-  "bin/parser" $F "bin/tests/bin/#"
+  "bin/parser_mac" $F "bin/tests/bin/#"
 done
 
 echo -e "Finished.\n"
