@@ -1,0 +1,5 @@
+addiu $1, $0, 0xFFFF
+srl $1, $1, 1
+addiu $6, $0, 0x7FFF
+sll $3, $6, 16
+or $5, $3, $1

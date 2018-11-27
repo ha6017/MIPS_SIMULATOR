@@ -1,0 +1,13 @@
+#multu2
+#multu
+#63
+#ca2217
+#HI multu two positive
+
+lui $1, 0x7FFF
+addiu $3, $0, 0x7FFF
+multu $1, $3
+mfhi $4
+srl $2, $4, 16
+jr $0
+

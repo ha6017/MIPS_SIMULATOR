@@ -1,0 +1,14 @@
+#mult7
+#mult
+#0
+#ca2217
+#numx0
+
+lui $2, 0x8000
+mult $2, $0
+mfhi $3
+mflo $2
+add $2, $2, $3
+
+jr $0
+

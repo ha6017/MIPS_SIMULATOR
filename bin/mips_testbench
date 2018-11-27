@@ -4,16 +4,19 @@
 testPath="tests/output";
 metaPath="tests/meta";
 binPath="tests/bin";
+inputPath="tests/input";
 simPath=$1
-cd "$testPath"
-rm output.csv
+cd tests
+rm -R output
+mkdir -p output
+cd output
 $cat > output.csv
+cd ..
+cd input
+$cat > empty.txt
 cd ../..
 files="./$metaPath/*.meta"
-cd "$testPath"
-mkdir -p output
-cd ../..
-outputFile="./$testPath/output/output.csv"
+outputFile="./$testPath/output.csv"
 text="Test ID, Instruction name, Expected Output, Author, Additional Information"
 echo "$text" >> "$outputFile";
 
@@ -41,7 +44,13 @@ for testFile in ${files}; do
   binFile="${testName}.bin";
 
   #simulator_run "$binFile";
-  ${simPath} ${binPath}/$binFile
+  if [ "$instID" = "lb11" ]; then
+    input=empty.txt
+  else
+    input=char.txt
+  fi
+
+  ${simPath} ${binPath}/$binFile < ${inputPath}/$input
   output=$?
 
   if [ $output -eq $expectedOutput ]; then

@@ -1,0 +1,17 @@
+#mult6
+#mult
+#3
+#ca2217
+#most +ve x most -ve
+
+addi $1, $0, 0xFFFF
+srl $1, $1, 1
+addi $6, $0, 0x7FFF
+sll $3, $6, 16
+or $5, $3, $1
+lui $4, 0x8000
+mult $4, $5
+mfhi $2
+srl $2, $2, 28
+jr $0
+
