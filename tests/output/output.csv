@@ -6,11 +6,13 @@ add4, add, Pass, ca2217, most -ve overflow
 add5, add, Pass, ca2217, most +ve and 0
 add6, add, Pass, ca2217, most -ve and 0
 add7, add, Pass, ca2217, one -ve and +ve
+add8, add, Pass, ca2217, changing $0
 addi1, addi, Pass, ca2217, no problem +ve
 addi2, addi, Pass, ca2217, no problem -ve
 addi3, addi, Pass, ca2217, overflow positive
 addi4, addi, Pass, ca2217, overflow negative
 addi5, addi, Pass, ca2217, large immediate
+addi6, addi, Pass, ca2217, check sign extension
 addiu1, addiu, Pass, ca2217, no problem +ve
 addiu2, addiu, Pass, ca2217, no overflow with highest
 addiu3, addiu, Pass, ca2217, large immediate
@@ -127,11 +129,13 @@ mult1, mult, Pass, ca2217, LO register mult 2 positive
 mult2, mult, Pass, ca2217, HI mult two positive
 mult3, mult, Pass, ca2217, neg x neg
 mult4, mult, Pass, ca2217, neg x pos
-mult5, mult, Fail, ca2217, (-1) x most neg
-mult6, mult, Fail, ca2217, most +ve x most -ve
-mult7, mult, Pass, ca2217, numx0
+mult5, mult, Pass, ca2217, (-1) x most neg
+mult6, mult, Fail, ca2217, most +ve x most -ve hi we here
+mult7, mult, Pass, ca2217, num x 0
 multu1, multu, Pass, ca2217, LO register must 2 positive
-multu2, multu, Fail, ca2217, HI multu two positive
+multu2, multu, Pass, ca2217, HI multu two positive
+multu3, multu, Pass, ca2217, most +ve x most +ve
+multu4, multu, Pass, ca2217, num x 0
 or1, or, Pass, ca2217, or all 1s
 or2, or, Pass, ca2217, or all 0s
 or3, or, Pass, ca2217, changing register contents
@@ -139,6 +143,17 @@ ori1, ori, Pass, ca2217, or all 1s
 ori2, ori, Pass, ca2217, or all 0s
 ori3, ori, Pass, ca2217, changing register contents
 ori4, ori, Pass, ca2217, checking correct range
+sll1, sll, Pass, ca2217, byte shift
+sll2, sll, Pass, ca2217, odd shift
+sll3, sll, Pass, ca2217, zeros added
+sll4, sll, Pass, ca2217, increasing value
+sll5, sll, Pass, ca2217, shift by zero
+sllv1, sllv, Pass, ca2217, byte shift
+sllv2, sllv, Pass, ca2217, odd shift
+sllv3, sllv, Pass, ca2217, zeros added
+sllv4, sllv, Pass, ca2217, increasing value
+sllv5, sllv, Pass, ca2217, shift by zero
+sllv6, sllv, Pass, ca2217, byte shift
 slt1, slt, Pass, ca2217,  0 < +ve
 slt2, slt, Pass, ca2217,  0 < -ve
 slt3, slt, Pass, ca2217,  -ve < +ve
@@ -146,10 +161,45 @@ slt4, slt, Pass, ca2217,  -ve < 0
 slt5, slt, Pass, ca2217,  +ve < 0
 slt6, slt, Pass, ca2217,  0 < 0
 slt7, slt, Pass, ca2217,  num < num
+slti1, slti, Pass, ca2217,  0 < +ve
+slti2, slti, Pass, ca2217,  0 < -ve
+slti3, slti, Pass, ca2217,  -ve < +ve
+slti4, slti, Pass, ca2217,  -ve < 0
+slti5, slti, Pass, ca2217,  +ve < 0
+slti6, slti, Pass, ca2217,  0 < 0
+slti7, slti, Pass, ca2217,  num < num
+sltiu1, sltiu, Pass, ca2217,  0 < +ve
+sltiu2, sltiu, Pass, ca2217,  +ve < 0
+sltiu3, sltiu, Pass, ca2217,  0 < 0
+sltiu4, sltiu, Pass, ca2217,  num1 < num2
 sltu1, sltu, Pass, ca2217,  0 < +ve
-sltu2, slt, Pass, ca2217,  +ve < 0
+sltu2, sltu, Pass, ca2217,  +ve < 0
 sltu3, sltu, Pass, ca2217,  0 < 0
 sltu4, sltu, Pass, ca2217,  num1 < num2
+sra1, sra, Pass, ca2217, byte shift
+sra2, sra, Pass, ca2217, odd shift
+sra3, sra, Pass, ca2217, ones added
+sra4, sra, Pass, ca2217, increasing value (-ve)
+sra5, sra, Pass, ca2217, decreasing value (+ve)
+sra6, sra, Pass, ca2217, shift by zero
+srav1, srav, Pass, ca2217, byte shift
+srav2, srav, Pass, ca2217, odd shift
+srav3, srav, Pass, ca2217, ones added
+srav4, srav, Pass, ca2217, increasing value (-ve)
+srav5, srav, Pass, ca2217, decreasing value (+ve)
+srav6, srav, Pass, ca2217, shift by zero
+srav7, srav, Pass, ca2217, shift by neg
+srl1, srl, Pass, ca2217, byte shift
+srl2, srl, Pass, ca2217, odd shift
+srl3, srl, Pass, ca2217, zeros added
+srl4, srl, Pass, ca2217, decreasing value
+srl5, srl, Pass, ca2217, shift by zero
+srlv1, srlv, Pass, ca2217, byte shift
+srlv2, srlv, Pass, ca2217, odd shift
+srlv3, srlv, Pass, ca2217, zeros added
+srlv4, srlv, Pass, ca2217, decreasing value
+srlv5, srlv, Pass, ca2217, shift by zero
+srlv6, srlv, Pass, ca2217, shift by neg
 xor1, xor, Pass, ca2217, xor all 1s
 xor2, xor, Pass, ca2217, xor all 0s
 xor3, xor, Pass, ca2217, changing register contents
