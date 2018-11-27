@@ -1,13 +1,4 @@
 Test ID, Instruction name, Expected Output, Author, Additional Information
-<<<<<<< HEAD
-add1, add, Success, Carla, no problem +ve
-add2, add, Success, Carla, no problem -ve
-add3, addu, Success, Carla, most +ve -2
-add4, add, Success, Carla, most -ve overflow
-add5, add, Success, Carla, most +ve and 0
-add6, add, Success, Carla, most -ve and 0
-add7, add, Success, Carla, one -ve and +ve
-=======
 add1, add, Success, ca2217, no problem +ve
 add2, add, Success, ca2217, no problem -ve
 add3, addu, Success, ca2217, most +ve -2
@@ -15,84 +6,10 @@ add4, add, Success, ca2217, most -ve overflow
 add5, add, Success, ca2217, most +ve and 0
 add6, add, Success, ca2217, most -ve and 0
 add7, add, Success, ca2217, one -ve and +ve
->>>>>>> a1cfaa277f0a860fb5e9316947e1d8645b03a1ab
 addi1, addi, Success, ca2217, no problem +ve
 addi2, addi, Success, ca2217, no problem -ve
 addi3, addi, Success, ca2217, overflow positive
 addi4, addi, Success, ca2217, overflow negative
-<<<<<<< HEAD
-addi5, addi, Fail, ca2217, large immediate
-addu, addu, Success, Carla, no problem
-addu1, addu, Success, Carla, no problem +ve
-addu2, addu, Success, Carla, most +ve
-addu3, addu, Success, Carla, no overflow (even most -ve)
-beq1, beq, Success, Carla, should branch rt = rs
-beq2, beq, Success, Carla, should not branch rt != rs
-beq3, beq, Success, Carla, should branch rt = rs (negative)
-beq4, beq, Success, Carla, out of range PC
-beq5, beq, Success, Carla, correct negative branch PC
-beq6, beq, Success, Carla, don’t branch second
-bgez1, bgez, Success, Carla, should branch positive rt
-bgez2, bgez, Success, Carla, shouldn’t branch negative rt
-bgez3, bgez, Success, Carla, should branch rt zero
-bgez4, bgez, Success, Carla, out of range PC
-bgez5, bgez, Success, Carla, out of range PC
-bgez6, bgez, Success, Carla, correct negative offset
-bgezal1, bgezal, Success, Carla, should branch positive rt
-bgezal2, bgezal, Success, Carla, shouldn’t branch negative rt
-bgezal3, bgezal, Success, Carla, should branch rt zero
-bgezal4, bgezal, Success, Carla, out of range PC
-bgezal5, bgezal, Success, Carla, take both branches +ve and -ve
-bgezal6, bgezal, Success, Carla, don’t take second branch
-bgezal7, bgezal, Success, Carla, linker
-bgtz1, bgtz, Success, Carla, should branch +ve rt
-bgtz2, bgtz, Success, Carla, shouldn’t branch -ve rt
-bgtz3, bgtz, Success, Carla, should not branch rt zero
-bgtz4, bgtz, Success, Carla, out of range PC
-bgtz5, bgtz, Success, Carla, take both branches
-bgtz6, bgtz, Success, Carla, don’t take second branch
-blez1, blez, Success, Carla, should branch -ve rt
-blez2, blez, Success, Carla, shouldn’t branch +ve rt
-blez3, blez, Success, Carla, should branch rt zero
-blez4, blez, Success, Carla, out of range PC
-blez5, blez, Success, Carla, out of range PC
-blez6, blez, Success, Carla, correct negative offset
-bltz1, bltz, Success, Carla, should branch negative rt
-bltz2, bltz, Success, Carla, shouldn’t branch positive rt
-bltz3, bltz, Success, Carla, should not branch rt zero
-bltz4, bltz, Success, Carla, out of range PC
-bltz5, bltz, Success, Carla, take both branches
-bltz6, bltz, Success, Carla, don’t take second branch
-bltzal1, bltzal, Success, Carla, should branch -ve rt
-bltzal2, bltzal, Success, Carla, shouldn’t branch +ve rt
-bltzal3, bltzal, Success, Carla, should not branch rt zero
-bltzal4, bltzal, Success, Carla, out of range PC
-bltzal5, bltzal, Success, Carla, take both branches +ve and -ve
-bltzal6, bltzal, Success, Carla, don’t take second branch
-bltzal7, bltzal, Success, Carla, linker
-bne1, bne, Success, Carla, should branch rt != rs
-bne2, bne, Success, Carla, should not branch rt = rs
-bne3, bne, Success, Carla, should branch rt != rs (negative)
-bne4, bne, Success, Carla, out of range PC
-bne5, bne, Success, Carla, correct negative branch PC
-bne6, bne, Success, Carla, don’t branch second
-j1, j, Success, Carla, Jump back and forth saving link
-j2, j, Success, Carla, Jump to unalligned memory
-j3, j, Success, Carla, Illegal jump to out of bounds memory
-jal1, jal, Success, Carla, Jump back and forth saving link
-jal2, jal, Success, Carla, Jump from saved link
-jal3, jal, Success, Carla, Illegal jump to unalligned memory
-jalr1, jalr, Success, Carla, Jump and save link
-jalr2, jalr, Success, Carla, Jump from saved link
-jalr3, jalr, Success, Carla, Illegal jump to unalligned memory
-jalr4, jalr, Success, Carla, Different format of JALR with rd specified
-jr1, jr, Success, Carla, correct PC
-jr2, jr, Success, Carla, out of range
-jr3, jr, Success, Carla, unalligned memory
-lb1, lb, Success, ha6017, load byte 2 from word
-lb2, lb, Fail, ha6017, load byte 0 from word
-sb1, sb, Fail, Carla, LSB 0 no problems
-=======
 addi5, addi, Success, ca2217, large immediate
 addiu1, addiu, Success, ca2217, no problem +ve
 addiu2, addiu, Success, ca2217, no overflow with highest
@@ -197,4 +114,3 @@ xori1, xori, Success, ca2217, or all 1s
 xori2, xori, Success, ca2217, or all 0s
 xori3, xori, Success, ca2217, changing register contents
 xori4, xori, Success, ca2217, checking correct range
->>>>>>> a1cfaa277f0a860fb5e9316947e1d8645b03a1ab
