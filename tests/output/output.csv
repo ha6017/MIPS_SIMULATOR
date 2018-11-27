@@ -103,11 +103,11 @@ jalr4, jalr, Pass, ca2217, Different format of JALR with rd specified
 jr1, jr, Pass, ca2217, correct PC
 jr2, jr, Pass, ca2217, out of range
 jr3, jr, Pass, ca2217, unalligned memory
-lb1, lb, Pass, ha6017, load byte 2 from word
 lb10, lb, Pass, ha6017, getc in range at 003
 lb11, lb, Pass, ha6017, getc null eof
 lb12, lb, Pass, ha6017, instr no-ops
 lb13, lb, Pass, ha6017, instr addr
+lb1, lb, Pass, ha6017, load byte 2 from word
 lb2, lb, Pass, ha6017, load byte 0 from word
 lb3, lb, Pass, ha6017, load byte 1 from word
 lb4, lb, Pass, ha6017, load byte 3 from word
@@ -130,7 +130,7 @@ mult2, mult, Pass, ca2217, HI mult two positive
 mult3, mult, Pass, ca2217, neg x neg
 mult4, mult, Pass, ca2217, neg x pos
 mult5, mult, Pass, ca2217, (-1) x most neg
-mult6, mult, Fail, ca2217, most +ve x most -ve hi we here
+mult6, mult, Pass, ca2217, most +ve x most -ve hi we here
 mult7, mult, Pass, ca2217, num x 0
 multu1, multu, Pass, ca2217, LO register must 2 positive
 multu2, multu, Pass, ca2217, HI multu two positive
