@@ -1,14 +1,20 @@
-//#include "compiler.hpp"
+#include "compiler.hpp"
 #include <string>
-#include<sstream>
+#include <sstream>
+#include<iostream>
 
-int main(int argc, char const *argv[])
-{
-  std::string name_bin = "check2.bin";
-  if (argc==2) name_bin = argv[1];
+int main(int argc, char* argv[]){
+  //std::cout << "Compiled1" << std::endl;
 
-  compiler comp(name_bin);// on making an object of class compiler. we first call the constructor of class compiler.
+  std::string name_bin;
+  if (argc>1) name_bin = argv[1];
+  else std::exit(-21);
+
+  compiler comp(name_bin);
+  //std::cout<<"checkpoint1\n";
   comp.run();
+  //std::cout << "Compiled" << std::endl;
+
 
   return 0;
 }

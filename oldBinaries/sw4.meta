@@ -1,0 +1,8 @@
+#test_3
+#sw
+#-11
+#Carla
+#offset ls 2 bits not 0
+
+sw $2, 0x20000000, 0x00000011
+lr 0
