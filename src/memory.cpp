@@ -25,12 +25,17 @@ memory::memory(std::string name_bin)
   //std::cout<<"file is open\n";
   file_name.seekg(0, std::ios::end);
   int size = file_name.tellg(); //tells the size of file
+  if(size>0x1000000)
+  {
+    std::exit(-11);
+  }
 
   char bin_array [size];
   file_name.seekg(0, std::ios::beg); //put the cursor back to 0
   file_name.read (bin_array, size); //read the file
   file_name.close();
   num_instructions = sizeof(bin_array)/4;
+  if(num_instructions==0) std::exit(-21);
   int ar_i=0;
   for (int i=0;i<num_instructions;i++)
   {
