@@ -506,9 +506,6 @@ void compiler::SUB()
 }
 
 void compiler::SUBU() {regs.write(rd, op1 - op2);}
-<<<<<<< HEAD
-=======
 
->>>>>>> 0129f2fbdcc9e3d5136939c6ea874724fb319c01
 
 void compiler::XOR() {regs.write(rd, op1^op2);}
