@@ -1,8 +1,8 @@
 #sh4
 #sh
-#161
+#245
 #ha6017
-#getc
+#getc offset
 
 lui $1, 0x3000
 ori $1, $1, 0x0003
