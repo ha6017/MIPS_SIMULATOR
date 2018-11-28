@@ -1,8 +1,0 @@
-#test_3
-#sw
-#-11
-#Carla
-#not naturally aligned
-
-sw $2, 0x20000001, 0x00000010
-lr 0
