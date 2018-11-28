@@ -75,6 +75,7 @@ bne3, bne, Pass, ca2217, should branch rt != rs (negative)
 bne4, bne, Pass, ca2217, out of range PC
 bne5, bne, Pass, ca2217, correct negative branch PC
 bne6, bne, Pass, ca2217, don’t branch second
+del_later, dont care, Fail, ha6017, lets see
 div1, div, Pass, ca2217, +ve / +ve no R
 div2, div, Pass, ca2217, +ve / +ve with R
 div3, div, Pass, ca2217, -ve / -ve no R
@@ -89,9 +90,10 @@ divu3, divu, Pass, ca2217,  -ve / -ve no R
 divu4, divu, Pass, ca2217,  0 / +ve
 divu5, divu, Pass, ca2217,  +ve / 0
 divu6, divu, Pass, ca2217,  1 / +ve
+function, function, Fail, ca2217, factorial 10
 internal1, internal, Pass, ca2217, changing $0
 internal2, internal, Pass, ca2217, exiting after multiple nops
-internal3, internal, Pass, ca2217, no instructions
+internal3, internal, Fail, ca2217, no instructions
 j1, j, Pass, ca2217, Jump back and forth saving link
 j2, j, Pass, ca2217, Jump to unalligned memory
 j3, j, Pass, ca2217, Illegal jump to out of bounds memory
@@ -105,11 +107,11 @@ jalr4, jalr, Pass, ca2217, Different format of JALR with rd specified
 jr1, jr, Pass, ca2217, correct PC
 jr2, jr, Pass, ca2217, out of range
 jr3, jr, Pass, ca2217, unalligned memory
-lb1, lb, Pass, ha6017, load byte 2 from word
 lb10, lb, Pass, ha6017, getc in range at 003
 lb11, lb, Pass, ha6017, getc null eof
 lb12, lb, Pass, ha6017, instr no-ops
 lb13, lb, Pass, ha6017, instr addr
+lb1, lb, Pass, ha6017, load byte 2 from word
 lb2, lb, Pass, ha6017, load byte 0 from word
 lb3, lb, Pass, ha6017, load byte 1 from word
 lb4, lb, Pass, ha6017, load byte 3 from word
@@ -118,11 +120,11 @@ lb6, lb, Pass, ha6017, invalid memory access lower limit
 lb7, lb, Pass, ha6017, invalid memory access upper limit
 lb8, lb, Pass, ha6017, putc out of range
 lb9, lb, Pass, ha6017, getc in range but not at 003
-lbu1, lbu, Pass, ha6017, load unisgned byte 0 from word
 lbu10, lbu, Pass, ha6017, getc in range at 003
 lbu11, lbu, Pass, ha6017, getc null eof
 lbu12, lbu, Pass, ha6017, instr no-ops
 lbu13, lbu, Pass, ha6017, instr addr
+lbu1, lbu, Pass, ha6017, load unisgned byte 0 from word
 lbu2, lbu, Pass, ha6017, load byte 1 from word
 lbu3, lbu, Pass, ha6017, load byte 2 from word
 lbu4, lbu, Pass, ha6017, load unsigned byte 3 from word
@@ -131,43 +133,43 @@ lbu6, lbu, Pass, ha6017, invalid memory access lower limit
 lbu7, lbu, Pass, ha6017, invalid memory access upper limit
 lbu8, lbu, Pass, ha6017, putc out of range
 lbu9, lbu, Pass, ha6017, getc in range but not at 003
-lh1, lh, Pass, ha6017, top half of word loaded check last 8 bits
 lh10, lh, Pass, ha6017, instr mem no-ops
 lh11, lh, Pass, ha6017, getc bottom half alighned
 lh12, lh, Pass, ha6017, getc offset
 lh13, lh, Pass, ha6017, getc null eof
-lh2, lh, Fail, ha6017, top half of word loaded check top 8 bits
+lh1, lh, Pass, ha6017, top half of word loaded check last 8 bits
+lh2, lh, Pass, ha6017, top half of word loaded check top 8 bits
 lh3, lh, Pass, ha6017, bottom half of word loaded check top 8 bits
-lh4, lh, Fail, ha6017, bottom half of word loaded check bottom 8 bits
+lh4, lh, Pass, ha6017, bottom half of word loaded check bottom 8 bits
 lh5, lh, Pass, ha6017, unalighned offset
 lh6, lh, Pass, ha6017, unalighned offset2
 lh7, lh, Pass, ha6017, sign extension
 lh8, lh, Pass, ha6017, check range of function
-lh9, lh, Fail, ha6017, instr mem
-lhu1, lhu, Pass, ha6017, top half of word loaded check last 8 bits
+lh9, lh, Pass, ha6017, instr mem
 lhu10, lhu, Pass, ha6017, instr mem no-ops
 lhu11, lhu, Pass, ha6017, getc bottom half alighned
 lhu12, lhu, Pass, ha6017, getc offset
 lhu13, lhu, Pass, ha6017, getc null eof
-lhu2, lhu, Fail, ha6017, top half of word loaded check top 8 bits
+lhu1, lhu, Pass, ha6017, top half of word loaded check last 8 bits
+lhu2, lhu, Pass, ha6017, top half of word loaded check top 8 bits
 lhu3, lhu, Pass, ha6017, bottom half of word loaded check top 8 bits
-lhu4, lhu, Fail, ha6017, bottom half of word loaded check bottom 8 bits
+lhu4, lhu, Pass, ha6017, bottom half of word loaded check bottom 8 bits
 lhu5, lhu, Pass, ha6017, unalighned offset
 lhu6, lhu, Pass, ha6017, unalighned offset2
 lhu7, lhu, Pass, ha6017, zero extension
 lhu8, lhu, Pass, ha6017, check top range of function
-lhu9, lhu, Fail, ha6017, instr mem
+lhu9, lhu, Pass, ha6017, instr mem
 lui1, lui, Pass, ca2217, negative immediate
 lui2, lui, Pass, ca2217, positive immediate
 lui3, lui, Pass, ca2217, too immediate
-lw1, lw, Pass, ha6017, normal word load
 lw10, lw, Pass, ha6017, below instr bound
 lw11, lw, Pass, ha6017, high mem bound
-lw12, lw, Fail, ha6017, high instr bound
+lw12, lw, Pass, ha6017, high instr bound
 lw13, lw, Pass, ha6017, low instr bound
 lw14, lw, Pass, ha6017, low mem bound
 lw15, lw, Pass, ha6017, above mem bound
 lw16, lw, Pass, ha6017, below mem bound
+lw1, lw, Pass, ha6017, normal word load
 lw2, lw, Pass, ha6017, unallighned load word
 lw3, lw, Pass, ha6017, uninitialsied word
 lw4, lw, Pass, ha6017, high out of range
@@ -205,9 +207,9 @@ ori1, ori, Pass, ca2217, or all 1s
 ori2, ori, Pass, ca2217, or all 0s
 ori3, ori, Pass, ca2217, changing register contents
 ori4, ori, Pass, ca2217, checking correct range
-sb1, sb, Pass, ha6017, store byte at LSB
 sb10, sb, Pass, ha6017, mem top bound
 sb11, sb, Pass, ha6017, mem above bound
+sb1, sb, Pass, ha6017, store byte at LSB
 sb2, sb, Pass, ha6017, store byte at LSB
 sb3, sb, Pass, ha6017, above mem range
 sb4, sb, Pass, ha6017, putc at 07
@@ -216,9 +218,9 @@ sb6, sb, Pass, ha6017, getc at 003
 sb7, sb, Pass, ha6017, getc at 000
 sb8, sb, Pass, ha6017, instr access
 sb9, sb, Pass, ha6017, null address
-sh1, sh, Pass, ha6017, normal store word
 sh10, sh, Pass, ha6017, data top boundary
-sh2, sh, Fail, ha6017, above mem bound
+sh1, sh, Pass, ha6017, normal store word
+sh2, sh, Pass, ha6017, above mem bound
 sh3, sh, Pass, ha6017, putc at 004
 sh4, sh, Pass, ha6017, getc offset
 sh5, sh, Pass, ha6017, putc at 006
@@ -283,9 +285,9 @@ srlv3, srlv, Pass, ca2217, zeros added
 srlv4, srlv, Pass, ca2217, decreasing value
 srlv5, srlv, Pass, ca2217, shift by zero
 srlv6, srlv, Pass, ca2217, shift by neg
-sub1, sub, Pass, ca2217, pos - pos = pos
 sub10, sub, Pass, ca2217, 0 - most neg = pos
 sub11, sub, Pass, ca2217, 0 - neg = pos
+sub1, sub, Pass, ca2217, pos - pos = pos
 sub2, sub, Pass, ca2217, neg - neg = neg
 sub3, sub, Pass, ca2217, pos - pos = neg
 sub4, sub, Pass, ca2217, neg - neg = pos
@@ -294,8 +296,8 @@ sub6, sub, Pass, ca2217, pos - neg = neg OVERFLOW
 sub7, sub, Pass, ca2217, neg - pos = neg
 sub8, sub, Pass, ca2217, neg - pos = pos OVERFLOW
 sub9, sub, Pass, ca2217, 0 - most pos = neg
-subu1, subu, Pass, ca2217, pos - pos = pos
 subu10, subu, Pass, ca2217, 0 - neg = pos
+subu1, subu, Pass, ca2217, pos - pos = pos
 subu2, subu, Pass, ca2217, neg - neg = neg
 subu3, subu, Pass, ca2217, pos - pos = neg
 subu4, subu, Pass, ca2217, neg - neg = pos
@@ -304,17 +306,17 @@ subu6, subu, Pass, ca2217, pos - neg = neg OVERFLOW
 subu7, subu, Pass, ca2217, neg - pos = neg
 subu8, subu, Pass, ca2217, neg - pos = pos
 subu9, subu, Pass, ca2217, 0 - most pos = neg
-sw1, sw, Pass, ha6017, normal store with byte 1
 sw10, sw, Pass, ha6017, Address Null
 sw11, sw, Pass, ha6017, mem low bound
 sw12, sw, Pass, ha6017, mem below bound
 sw13, sw, Pass, ha6017, mem up bound
 sw14, sw, Pass, ha6017, mem above bound
+sw1, sw, Pass, ha6017, normal store with byte 1
 sw2, sw, Pass, ha6017, normal store with byte 2
 sw3, sw, Pass, ha6017, normal store with byte 3
 sw4, sw, Pass, ha6017, misaligned
 sw5, sw, Pass, ha6017, above data limit
-sw6, sw, Fail, ha6017, putc at 004
+sw6, sw, Pass, ha6017, putc at 004
 sw7, sw, Pass, ha6017, putc offset
 sw8, sw, Pass, ha6017, getc
 sw9, sw, Pass, ha6017, instr access

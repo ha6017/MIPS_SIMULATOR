@@ -1,0 +1,28 @@
+#function1
+#function
+#120
+#ca2217
+#factorial 10
+
+addi $3, $0, 1
+addi $2, $0, 1
+addi $1, $0, 5
+
+bgezal $1, 8
+nop
+
+jr $0
+nop
+
+beq $1, $0, -16
+nop
+
+mflo $2
+nop
+nop
+multu $2, $1
+sub $1, $1, $3
+jal $31
+
+jr $0
+
