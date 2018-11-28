@@ -157,6 +157,9 @@ lhu6, lhu, Pass, ha6017, unalighned offset2
 lhu7, lhu, Pass, ha6017, zero extension
 lhu8, lhu, Pass, ha6017, check top range of function
 lhu9, lhu, Fail, ha6017, instr mem
+lui1, lui, Pass, ca2217, negative immediate
+lui2, lui, Pass, ca2217, positive immediate
+lui3, lui, Pass, ca2217, too immediate
 lw1, lw, Pass, ha6017, normal word load
 lw10, lw, Pass, ha6017, below instr bound
 lw11, lw, Pass, ha6017, high mem bound
@@ -203,6 +206,26 @@ ori2, ori, Pass, ca2217, or all 0s
 ori3, ori, Pass, ca2217, changing register contents
 ori4, ori, Pass, ca2217, checking correct range
 sb1, sb, Pass, ha6017, store byte at LSB
+sb10, sb, Pass, ha6017, mem top bound
+sb11, sb, Pass, ha6017, mem above bound
+sb2, sb, Pass, ha6017, store byte at LSB
+sb3, sb, Pass, ha6017, above mem range
+sb4, sb, Pass, ha6017, putc at 07
+sb5, sb, Pass, ha6017, putc at starting
+sb6, sb, Pass, ha6017, getc at 003
+sb7, sb, Pass, ha6017, getc at 000
+sb8, sb, Pass, ha6017, instr access
+sb9, sb, Pass, ha6017, null address
+sh1, sh, Pass, ha6017, normal store word
+sh10, sh, Pass, ha6017, data top boundary
+sh2, sh, Fail, ha6017, above mem bound
+sh3, sh, Pass, ha6017, putc at 004
+sh4, sh, Pass, ha6017, getc offset
+sh5, sh, Pass, ha6017, putc at 006
+sh6, sh, Pass, ha6017, instr access
+sh7, sh, Pass, ha6017, address null
+sh8, sh, Pass, ha6017, unalighned
+sh9, sh, Pass, ha6017, data boundary
 sll1, sll, Pass, ca2217, byte shift
 sll2, sll, Pass, ca2217, odd shift
 sll3, sll, Pass, ca2217, zeros added
@@ -281,6 +304,20 @@ subu6, subu, Pass, ca2217, pos - neg = neg OVERFLOW
 subu7, subu, Pass, ca2217, neg - pos = neg
 subu8, subu, Pass, ca2217, neg - pos = pos
 subu9, subu, Pass, ca2217, 0 - most pos = neg
+sw1, sw, Pass, ha6017, normal store with byte 1
+sw10, sw, Pass, ha6017, Address Null
+sw11, sw, Pass, ha6017, mem low bound
+sw12, sw, Pass, ha6017, mem below bound
+sw13, sw, Pass, ha6017, mem up bound
+sw14, sw, Pass, ha6017, mem above bound
+sw2, sw, Pass, ha6017, normal store with byte 2
+sw3, sw, Pass, ha6017, normal store with byte 3
+sw4, sw, Pass, ha6017, misaligned
+sw5, sw, Pass, ha6017, above data limit
+sw6, sw, Fail, ha6017, putc at 004
+sw7, sw, Pass, ha6017, putc offset
+sw8, sw, Pass, ha6017, getc
+sw9, sw, Pass, ha6017, instr access
 xor1, xor, Pass, ca2217, xor all 1s
 xor2, xor, Pass, ca2217, xor all 0s
 xor3, xor, Pass, ca2217, changing register contents
