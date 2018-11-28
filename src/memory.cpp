@@ -346,20 +346,30 @@ int8_t memory::load_byte_from_instruction(int index)
 {
   int offset = index % 4;
   uint32_t Index_actual = (index - offset - 0x10000000)/4;
-  switch (offset) {
-    case 0: return((ADDR_INSTR[Index_actual]&0xFF000000)>>24); break;
-    case 1: return((ADDR_INSTR[Index_actual]&0x00FF0000)>>16); break;
-    case 2: return((ADDR_INSTR[Index_actual]&0x0000FF00)>>8); break;
-    case 3: return(ADDR_INSTR[Index_actual]&0x000000FF); break;
+  if(Index_actual<ADDR_INSTR.size())
+  {
+    switch (offset) {
+      case 0: return((ADDR_INSTR[Index_actual]&0xFF000000)>>24); break;
+      case 1: return((ADDR_INSTR[Index_actual]&0x00FF0000)>>16); break;
+      case 2: return((ADDR_INSTR[Index_actual]&0x0000FF00)>>8); break;
+      case 3: return(ADDR_INSTR[Index_actual]&0x000000FF); break;
+    }
   }
+  else return 0;
+
 }
 
 int16_t memory::load_half_word_from_instruction(int index)
 {
   int offset = index % 4;
   uint32_t Index_actual = (index - offset - 0x10000000)/4;
-  switch (offset) {
-    case 0: return((ADDR_INSTR[Index_actual]&0xFFFF0000)>>16); break;
-    case 2: return(ADDR_INSTR[Index_actual]&0x0000FFFF); break;
+  if(Index_actual<ADDR_INSTR.size())
+  {
+    switch (offset) {
+      case 0: return((ADDR_INSTR[Index_actual]&0xFFFF0000)>>16); break;
+      case 2: return(ADDR_INSTR[Index_actual]&0x0000FFFF); break;
+    }
   }
+  else return 0;
+
 }
