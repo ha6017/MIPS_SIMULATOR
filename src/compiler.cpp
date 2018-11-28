@@ -33,7 +33,7 @@ void compiler::run()
   if(regs.PC==0)
   {
     uint8_t exitCode = (regs.read(2)&0x000000FF);
-    //std::cout<<"exitcode is = "<< static_cast<int16_t>(exitCode) <<std::endl;
+    std::cerr<<"exitcode is = "<< static_cast<int16_t>(exitCode) <<std::endl;
     std::exit(exitCode);
   }
   else std::exit(-11);
@@ -401,7 +401,7 @@ void compiler::SH()
   mem.store_halfword_to_memory((op1s+signExtImmediate), val16);
 }
 
-void compiler::SW() {mem.store_to_memory((op1s+signExtImmediate),regs.read(rt));}
+void compiler::SW() {mem.store_to_memory((op1s+signExtImmediate),op2s);}
 
 void compiler::XORI() {regs.write(rt,(op1^(int32_t(immediate)&0xFFFF)));}
 
@@ -506,5 +506,9 @@ void compiler::SUB()
 }
 
 void compiler::SUBU() {regs.write(rd, op1 - op2);}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0129f2fbdcc9e3d5136939c6ea874724fb319c01
 
 void compiler::XOR() {regs.write(rd, op1^op2);}
