@@ -7,6 +7,7 @@
 compiler::compiler(std::string binaryfile) : mem(binaryfile), regs()
 {
 
+
 }
 
 void compiler::loop_avoider()
