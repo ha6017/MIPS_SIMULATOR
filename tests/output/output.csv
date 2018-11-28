@@ -92,7 +92,6 @@ divu6, divu, Pass, ca2217,  1 / +ve
 function, function, Pass, ca2217, factorial 5
 internal1, internal, Pass, ca2217, changing $0
 internal2, internal, Pass, ca2217, exiting after multiple nops
-internal3, internal, Fail, ca2217, no instructions
 j1, j, Pass, ca2217, Jump back and forth saving link
 j2, j, Pass, ca2217, Jump to unalligned memory
 jal1, jal, Pass, ca2217, Jump back and forth saving link
@@ -176,6 +175,31 @@ lw6, lw, Pass, ha6017, putc
 lw7, lw, Pass, ha6017, instr mem access
 lw8, lw, Pass, ha6017, instr nops
 lw9, lw, Pass, ha6017, null address
+lwl10, lwl, Pass, ha6017, getc offset 1
+lwl11, lwl, Pass, ha6017, putc
+lwl12, lwl, Pass, ha6017, getc eof
+lwl1, lwl, Pass, ha6017, alighned word
+lwl2, lwl, Pass, ha6017, unalighned offset 1
+lwl3, lwl, Pass, ha6017, unalighned offset 2
+lwl4, lwl, Pass, ha6017, unalighned offset 3
+lwl5, lwl, Pass, ha6017, Instr alighnned
+lwl6, lwl, Pass, ha6017, Instr unalighnned 1
+lwl7, lwl, Pass, ha6017, Instr unalighnned 2
+lwl8, lwl, Pass, ha6017, Instr unalighnned 3
+lwl9, lwl, Pass, ha6017, getc at right index
+lwr10, lwr, Pass, ha6017, getc at right index 03
+lwr11, lwr, Pass, ha6017, getc at index 02
+lwr12, lwr, Pass, ha6017, putc
+lwr13, lwr, Pass, ha6017, getc eof
+lwr1, lwr, Pass, ha6017, alighned word at 03
+lwr2, lwr, Pass, ha6017, unalighned word at 02
+lwr3, lwr, Pass, ha6017, unalighned word at 03 byte shifted by 8
+lwr4, lwr, Pass, ha6017, unalighned word at 01
+lwr5, lwr, Pass, ha6017, unalighned word at 00
+lwr6, lwr, Pass, ha6017, instr alighned word at 03
+lwr7, lwr, Pass, ha6017, instr unalighned word at 02
+lwr8, lwr, Pass, ha6017, instr unalighned word at 01
+lwr9, lwr, Pass, ha6017, instr unalighned word at 00
 mfhi1, mfhi, Pass, ca2217, neg
 mfhi2, mfhi, Pass, ca2217, pos
 mfhi3, mfhi, Pass, ca2217, overwrite
