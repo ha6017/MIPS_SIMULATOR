@@ -7,11 +7,11 @@ memory::memory(std::string name_bin)
 {
   ADDR_DATA.resize(0x4000000);
 
-  ADDR_INSTR.resize(0x1000000);
+  //ADDR_INSTR.resize(0x1000000);
 
   std::fill(ADDR_DATA.begin(), ADDR_DATA.end() , 0);
   //std::cout<< "data zeroed\n";
-  std::fill(ADDR_INSTR.begin(), ADDR_INSTR.end() , 0);
+  //std::fill(ADDR_INSTR.begin(), ADDR_INSTR.end() , 0);
   //std::cout<< "Insts zeroed\n";
 
   std::ifstream file_name(name_bin.c_str(), std::ifstream::binary);
@@ -19,40 +19,37 @@ memory::memory(std::string name_bin)
 
   if(!file_name.is_open())
   {
-    //std::cout<<"file can't be open\n";
     std::exit(-21);
   }
 
   //std::cout<<"file is open\n";
   file_name.seekg(0, std::ios::end);
   int size = file_name.tellg(); //tells the size of file
+
   char bin_array [size];
   file_name.seekg(0, std::ios::beg); //put the cursor back to 0
   file_name.read (bin_array, size); //read the file
-  //std::cout<<"file is stored in array\n";
-  //std::cout<< sizeof(bin_array) << std::endl;
-  //std::cout << "the entire file content is in memory\n";
   file_name.close();
   num_instructions = sizeof(bin_array)/4;
-  for(int i = 0; i < size; i++){
-    //std::cout << bin_array[i] << std::endl;
-  }
   int ar_i=0;
   for (int i=0;i<num_instructions;i++)
   {
     ar_i=i*4;
-    ADDR_INSTR[i] = ((bin_array[ar_i]<<24)&0xFF000000)|((bin_array[ar_i+1]<<16)&0x00FF0000)|((bin_array[ar_i+2]<<8)&0x0000FF00)|((bin_array[ar_i+3])&0x000000FF);
+    //ADDR_INSTR[i] = ((bin_array[ar_i]<<24)&0xFF000000)|((bin_array[ar_i+1]<<16)&0x00FF0000)|((bin_array[ar_i+2]<<8)&0x0000FF00)|((bin_array[ar_i+3])&0x000000FF);
     //std::cout << std::hex<< ADDR_INSTR[i] << std::endl;
+    ADDR_INSTR.push_back(((bin_array[ar_i]<<24)&0xFF000000)|((bin_array[ar_i+1]<<16)&0x00FF0000)|((bin_array[ar_i+2]<<8)&0x0000FF00)|((bin_array[ar_i+3])&0x000000FF));
   }
+}
 
-  /*for(int i = 0; i < ADDR_INSTR.size(); i ++)
+uint32_t memory::readInstruction(uint32_t PC)
+{
+  if((PC%4==0) && ((PC < 0x11000000) && (PC >= 0x10000000)))
   {
-    //if(ADDR_INSTR[i]!=0)
-    //{
-      std::cout << ADDR_INSTR[i] << " ";
-    }
-  }*/
-
+    uint32_t indexPC=(PC-0x10000000)/4;
+    if(indexPC<ADDR_INSTR.size()) return ADDR_INSTR[indexPC];
+    else return 0;
+  }
+  else std::exit(-11);
 }
 
 int32_t memory::load_from_memory(int index)
@@ -148,7 +145,7 @@ int32_t memory::load_half_word_from_memory(int index)
     char data_in = std::getchar();
     if(std::cin.eof() || feof(stdin))   return 0xFFFFFFFF;
     if(!std::cin.good()) std::exit(-21);
-    if(index==0x30000002) return (int32_t)data_in;
+    if(index==0x30000002) return (int32_t)(data_in) & 0xFF;
     return 0;
   }
 
@@ -309,7 +306,6 @@ void memory::store_byte_to_memory(int index, int8_t value)
 void memory::store_halfword_to_memory(int index, int16_t value)
 {
   //CHECKING FOR PUTCHAR
-
   if((index==0x30000004) || (index==0x30000006))
   {
     char data_out= int8_t(value&0xFF);
@@ -327,19 +323,6 @@ void memory::store_halfword_to_memory(int index, int16_t value)
     ADDR_DATA[Index_actual+1] = int8_t((value&0xFF));
   }
   else std::exit(-11); // memory exception
-}
-
-uint32_t memory::readInstruction(uint32_t PC)
-{
-  if((PC != 0x0) && (PC%4==0) && ((PC < 0x11000000) && (PC >= 0x10000000)))
-  {
-    uint32_t indexPC=(PC-0x10000000)/4;
-    return ADDR_INSTR[indexPC];
-  }
-  else
-  {
-    std::exit(-11);
-  }
 }
 
 int8_t memory::load_byte_from_instruction(int index)
@@ -361,7 +344,5 @@ int16_t memory::load_half_word_from_instruction(int index)
   switch (offset) {
     case 0: return((ADDR_INSTR[Index_actual]&0xFFFF0000)>>16); break;
     case 2: return(ADDR_INSTR[Index_actual]&0x0000FFFF); break;
-    //case 2: return((ADDR_INSTR[Index_actual]&0x0000FF00)>>8);
-    //case 3: return((ADDR_INSTR[Index_actual]&0x000000FF));
   }
 }
