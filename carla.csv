@@ -1,4 +1,3 @@
-Test ID, Instruction name, Expected Output, Author, Additional Information
 add1, add, Pass, ca2217, no problem +ve
 add2, add, Pass, ca2217, no problem -ve
 add3, add, Pass, ca2217, most +ve give -2
@@ -75,6 +74,8 @@ bne3, bne, Pass, ca2217, should branch rt != rs (negative)
 bne4, bne, Pass, ca2217, out of range PC
 bne5, bne, Pass, ca2217, correct negative branch PC
 bne6, bne, Pass, ca2217, donâ€™t branch second
+245
+del_later, dont care, Fail, ha6017, lets see
 div1, div, Pass, ca2217, +ve / +ve no R
 div2, div, Pass, ca2217, +ve / +ve with R
 div3, div, Pass, ca2217, -ve / -ve no R
@@ -89,14 +90,18 @@ divu3, divu, Pass, ca2217,  -ve / -ve no R
 divu4, divu, Pass, ca2217,  0 / +ve
 divu5, divu, Pass, ca2217,  +ve / 0
 divu6, divu, Pass, ca2217,  1 / +ve
-function, function, Pass, ca2217, factorial 5
+245
+function, function, Fail, ca2217, factorial 10
 internal1, internal, Pass, ca2217, changing $0
 internal2, internal, Pass, ca2217, exiting after multiple nops
+245
 internal3, internal, Fail, ca2217, no instructions
 j1, j, Pass, ca2217, Jump back and forth saving link
 j2, j, Pass, ca2217, Jump to unalligned memory
+j3, j, Pass, ca2217, Illegal jump to out of bounds memory
 jal1, jal, Pass, ca2217, Jump back and forth saving link
-jal2, jal, Pass, ca2217, Jump from saved link
+2
+jal2, jal, Fail, ca2217, Jump from saved link
 jal3, jal, Pass, ca2217, Illegal jump to unalligned memory
 jalr1, jalr, Pass, ca2217, Jump and save link
 jalr2, jalr, Pass, ca2217, Jump from saved link
@@ -210,8 +215,8 @@ sb11, sb, Pass, ha6017, mem above bound
 sb1, sb, Pass, ha6017, store byte at LSB
 sb2, sb, Pass, ha6017, store byte at LSB
 sb3, sb, Pass, ha6017, above mem range
-sb4, sb, Pass, ha6017, putc at 07
-sb5, sb, Pass, ha6017, putc at starting
+ sb4, sb, Pass, ha6017, putc at 07
+ sb5, sb, Pass, ha6017, putc at starting
 sb6, sb, Pass, ha6017, getc at 003
 sb7, sb, Pass, ha6017, getc at 000
 sb8, sb, Pass, ha6017, instr access
@@ -219,9 +224,9 @@ sb9, sb, Pass, ha6017, null address
 sh10, sh, Pass, ha6017, data top boundary
 sh1, sh, Pass, ha6017, normal store word
 sh2, sh, Pass, ha6017, above mem bound
-sh3, sh, Pass, ha6017, putc at 004
+ sh3, sh, Pass, ha6017, putc at 004
 sh4, sh, Pass, ha6017, getc offset
-sh5, sh, Pass, ha6017, putc at 006
+ sh5, sh, Pass, ha6017, putc at 006
 sh6, sh, Pass, ha6017, instr access
 sh7, sh, Pass, ha6017, address null
 sh8, sh, Pass, ha6017, unalighned
@@ -314,7 +319,7 @@ sw2, sw, Pass, ha6017, normal store with byte 2
 sw3, sw, Pass, ha6017, normal store with byte 3
 sw4, sw, Pass, ha6017, misaligned
 sw5, sw, Pass, ha6017, above data limit
-sw6, sw, Pass, ha6017, putc at 004
+ñsw6, sw, Pass, ha6017, putc at 004
 sw7, sw, Pass, ha6017, putc offset
 sw8, sw, Pass, ha6017, getc
 sw9, sw, Pass, ha6017, instr access

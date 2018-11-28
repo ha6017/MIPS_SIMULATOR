@@ -4,6 +4,6 @@
 #ca2217
 #Illegal jump to unalligned memory
 
-jal 0x10000011
+jal 0x011
 nop
 jr $0
