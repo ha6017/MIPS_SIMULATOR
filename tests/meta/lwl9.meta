@@ -1,0 +1,10 @@
+#lwl9
+#lwl
+#97
+#ha6017
+#getc at right index
+
+lui $1, 0x3000
+addi $3, $3, 0xA294
+lwl $2, 0($1)
+jr $0

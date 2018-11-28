@@ -35,7 +35,6 @@ memory::memory(std::string name_bin)
   file_name.read (bin_array, size); //read the file
   file_name.close();
   num_instructions = sizeof(bin_array)/4;
-  if(num_instructions==0) std::exit(-21);
   int ar_i=0;
   for (int i=0;i<num_instructions;i++)
   {
@@ -227,13 +226,26 @@ int32_t memory::load_word_right_from_memory(int index)
 int32_t memory::load_word_left_from_memory(int index)
 {
   //CHECKING FOR GETCHAR
-  if(index==0x30000000)
+  if(index>=0x30000000 && index<0x30000004)
+  {
+    int data_in = std::getchar();
+    if(std::cin.eof() || feof(stdin)) return 0xFFFFFFFF;
+    if(!std::cin.good()) std::exit(-21);
+    if(index==0x30000000)
+    {
+      return (data_in);//how to return char from the function
+    }
+    else return 0;
+  }
+
+
+  /*if(index==0x30000000)
   {
     int data_in = std::getchar();
     if(std::cin.eof() || feof(stdin)) return 0xFFFFFFFF;
     if(!std::cin.good()) std::exit(-21);
     return (data_in);//how to return char from the function
-  }
+  }*/
 
   if((index>=0x20000000) && (index<0x24000000))
   {

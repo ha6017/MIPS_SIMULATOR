@@ -1,0 +1,10 @@
+#lwl10
+#lwl
+#0
+#ha6017
+#getc offset 1
+
+lui $1, 0x3000
+addi $3, $3, 0xA294
+lwl $2, 1($1)
+jr $0

@@ -1,8 +1,0 @@
-#j3
-#j
-#245
-#ca2217
-#Illegal jump to out of bounds memory
-
-j 0x11000004
-jr $0

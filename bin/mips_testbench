@@ -44,7 +44,7 @@ for testFile in ${files}; do
   binFile="${testName}.bin";
 
   #simulator_run "$binFile";
-  if [[ "$instID" = "lb11" || "$instID" = "lbu11" || "$instID" = "lh13" || "$instID" = "lhu13" ]]; then
+  if [[ "$instID" = "lwl12" || "$instID" = "lwr13" || "$instID" = "lb11" || "$instID" = "lbu11" || "$instID" = "lh13" || "$instID" = "lhu13" ]]; then
     input=empty.txt
   else
     input=char.txt
