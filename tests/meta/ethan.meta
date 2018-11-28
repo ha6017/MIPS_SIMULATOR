@@ -4,6 +4,7 @@
 #ha6017
 #below mem bound
 
-lui $1, 0x0400
-lw $2, 2($0)
+lui $4, 0x10FF
+ori $4, $4, 0xFFFF
+lb $2, 0($4)
 jr $0
