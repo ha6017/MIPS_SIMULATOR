@@ -1,9 +1,0 @@
-#lwr13
-#lwr
-#255
-#ha6017
-#getc eof
-
-lui $1, 0x3000
-lwr $2, 3($1)
-jr $0

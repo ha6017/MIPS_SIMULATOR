@@ -1,10 +1,10 @@
-#lwl9
+#lwl11
 #lwl
-#97
+#245
 #ha6017
-#getc at right index
+#putc
 
 lui $1, 0x3000
 addi $3, $3, 0xA294
-lwl $2, 0($1)
+lwl $2, 4($1)
 jr $0
