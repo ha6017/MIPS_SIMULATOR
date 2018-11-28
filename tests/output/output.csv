@@ -118,6 +118,10 @@ lb6, lb, Pass, ha6017, invalid memory access lower limit
 lb7, lb, Pass, ha6017, invalid memory access upper limit
 lb8, lb, Pass, ha6017, putc out of range
 lb9, lb, Pass, ha6017, getc in range but not at 003
+lbu10, lbu, Pass, ha6017, getc in range at 003
+lbu11, lbu, Pass, ha6017, getc null eof
+lbu12, lbu, Pass, ha6017, instr no-ops
+lbu13, lbu, Pass, ha6017, instr addr
 lbu1, lbu, Pass, ha6017, load unisgned byte 0 from word
 lbu2, lbu, Pass, ha6017, load byte 1 from word
 lbu3, lbu, Pass, ha6017, load byte 2 from word
@@ -127,6 +131,48 @@ lbu6, lbu, Pass, ha6017, invalid memory access lower limit
 lbu7, lbu, Pass, ha6017, invalid memory access upper limit
 lbu8, lbu, Pass, ha6017, putc out of range
 lbu9, lbu, Pass, ha6017, getc in range but not at 003
+lh10, lh, Pass, ha6017, instr mem no-ops
+lh11, lh, Pass, ha6017, getc bottom half alighned
+lh12, lh, Pass, ha6017, getc offset
+lh13, lh, Pass, ha6017, getc null eof
+lh1, lh, Pass, ha6017, top half of word loaded check last 8 bits
+lh2, lh, Fail, ha6017, top half of word loaded check top 8 bits
+lh3, lh, Pass, ha6017, bottom half of word loaded check top 8 bits
+lh4, lh, Fail, ha6017, bottom half of word loaded check bottom 8 bits
+lh5, lh, Pass, ha6017, unalighned offset
+lh6, lh, Pass, ha6017, unalighned offset2
+lh7, lh, Pass, ha6017, sign extension
+lh8, lh, Pass, ha6017, check range of function
+lh9, lh, Fail, ha6017, instr mem
+lhu10, lhu, Pass, ha6017, instr mem no-ops
+lhu11, lhu, Pass, ha6017, getc bottom half alighned
+lhu12, lhu, Pass, ha6017, getc offset
+lhu13, lhu, Pass, ha6017, getc null eof
+lhu1, lhu, Pass, ha6017, top half of word loaded check last 8 bits
+lhu2, lhu, Fail, ha6017, top half of word loaded check top 8 bits
+lhu3, lhu, Pass, ha6017, bottom half of word loaded check top 8 bits
+lhu4, lhu, Fail, ha6017, bottom half of word loaded check bottom 8 bits
+lhu5, lhu, Pass, ha6017, unalighned offset
+lhu6, lhu, Pass, ha6017, unalighned offset2
+lhu7, lhu, Pass, ha6017, zero extension
+lhu8, lhu, Pass, ha6017, check top range of function
+lhu9, lhu, Fail, ha6017, instr mem
+lw10, lw, Pass, ha6017, below instr bound
+lw11, lw, Pass, ha6017, high mem bound
+lw12, lw, Fail, ha6017, high instr bound
+lw13, lw, Pass, ha6017, low instr bound
+lw14, lw, Pass, ha6017, low mem bound
+lw15, lw, Pass, ha6017, above mem bound
+lw16, lw, Pass, ha6017, below mem bound
+lw1, lw, Pass, ha6017, normal word load
+lw2, lw, Pass, ha6017, unallighned load word
+lw3, lw, Pass, ha6017, uninitialsied word
+lw4, lw, Pass, ha6017, high out of range
+lw5, lw, Pass, ha6017, getc
+lw6, lw, Pass, ha6017, putc
+lw7, lw, Pass, ha6017, instr mem access
+lw8, lw, Pass, ha6017, instr nops
+lw9, lw, Pass, ha6017, null address
 mfhi1, mfhi, Pass, ca2217, neg
 mfhi2, mfhi, Pass, ca2217, pos
 mfhi3, mfhi, Pass, ca2217, overwrite
@@ -142,11 +188,7 @@ mult2, mult, Pass, ca2217, HI mult two positive
 mult3, mult, Pass, ca2217, neg x neg
 mult4, mult, Pass, ca2217, neg x pos
 mult5, mult, Pass, ca2217, (-1) x most neg
-<<<<<<< HEAD
 mult6, mult, Pass, ca2217, most +ve x most -ve
-=======
-mult6, mult, Pass, ca2217, most +ve x most -ve hi we here
->>>>>>> ef90a0902dfea99f8ca053b3c2963d90606bcbe0
 mult7, mult, Pass, ca2217, num x 0
 multu1, multu, Pass, ca2217, LO register must 2 positive
 multu2, multu, Pass, ca2217, HI multu two positive
@@ -160,6 +202,7 @@ ori1, ori, Pass, ca2217, or all 1s
 ori2, ori, Pass, ca2217, or all 0s
 ori3, ori, Pass, ca2217, changing register contents
 ori4, ori, Pass, ca2217, checking correct range
+sb1, sb, Pass, ha6017, store byte at LSB
 sll1, sll, Pass, ca2217, byte shift
 sll2, sll, Pass, ca2217, odd shift
 sll3, sll, Pass, ca2217, zeros added
@@ -217,9 +260,9 @@ srlv3, srlv, Pass, ca2217, zeros added
 srlv4, srlv, Pass, ca2217, decreasing value
 srlv5, srlv, Pass, ca2217, shift by zero
 srlv6, srlv, Pass, ca2217, shift by neg
-sub1, sub, Pass, ca2217, pos - pos = pos
 sub10, sub, Pass, ca2217, 0 - most neg = pos
 sub11, sub, Pass, ca2217, 0 - neg = pos
+sub1, sub, Pass, ca2217, pos - pos = pos
 sub2, sub, Pass, ca2217, neg - neg = neg
 sub3, sub, Pass, ca2217, pos - pos = neg
 sub4, sub, Pass, ca2217, neg - neg = pos
@@ -228,8 +271,8 @@ sub6, sub, Pass, ca2217, pos - neg = neg OVERFLOW
 sub7, sub, Pass, ca2217, neg - pos = neg
 sub8, sub, Pass, ca2217, neg - pos = pos OVERFLOW
 sub9, sub, Pass, ca2217, 0 - most pos = neg
-subu1, subu, Pass, ca2217, pos - pos = pos
 subu10, subu, Pass, ca2217, 0 - neg = pos
+subu1, subu, Pass, ca2217, pos - pos = pos
 subu2, subu, Pass, ca2217, neg - neg = neg
 subu3, subu, Pass, ca2217, pos - pos = neg
 subu4, subu, Pass, ca2217, neg - neg = pos

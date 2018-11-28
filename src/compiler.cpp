@@ -505,14 +505,7 @@ void compiler::SUB()
   regs.write(rd, (op1s - op2s));
 }
 
-<<<<<<< HEAD
-void compiler::SUBU()
-{
-  std::cout << std::hex << "op1: "<<op1 << " op2: " << op2 << std::endl;
-  regs.write(rd, op1 - op2);
-}
-=======
 void compiler::SUBU() {regs.write(rd, op1 - op2);}
->>>>>>> ef90a0902dfea99f8ca053b3c2963d90606bcbe0
+
 
 void compiler::XOR() {regs.write(rd, op1^op2);}
