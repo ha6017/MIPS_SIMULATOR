@@ -1,8 +1,0 @@
-#test_2
-#sw
-#-11
-#Carla
-#out of range
-
-sw $2, 0x10000000, 0x00000010
-lr 0
