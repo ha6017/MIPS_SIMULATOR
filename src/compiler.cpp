@@ -704,6 +704,7 @@ void compiler::SUB()
 
 void compiler::SUBU()
 {
+  std::cout << std::hex << "op1: "<<op1 << " op2: " << op2 << std::endl;
   regs.write(rd, op1 - op2);
 }
 

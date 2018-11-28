@@ -6,7 +6,6 @@ add4, add, Pass, ca2217, most -ve overflow
 add5, add, Pass, ca2217, most +ve and 0
 add6, add, Pass, ca2217, most -ve and 0
 add7, add, Pass, ca2217, one -ve and +ve
-add8, add, Pass, ca2217, changing $0
 addi1, addi, Pass, ca2217, no problem +ve
 addi2, addi, Pass, ca2217, no problem -ve
 addi3, addi, Pass, ca2217, overflow positive
@@ -90,6 +89,9 @@ divu3, divu, Pass, ca2217,  -ve / -ve no R
 divu4, divu, Pass, ca2217,  0 / +ve
 divu5, divu, Pass, ca2217,  +ve / 0
 divu6, divu, Pass, ca2217,  1 / +ve
+internal1, internal, Pass, ca2217, changing $0
+internal2, internal, Pass, ca2217, exiting after multiple nops
+internal3, internal, Pass, ca2217, no instructions
 j1, j, Pass, ca2217, Jump back and forth saving link
 j2, j, Pass, ca2217, Jump to unalligned memory
 j3, j, Pass, ca2217, Illegal jump to out of bounds memory
@@ -125,17 +127,28 @@ lbu6, lbu, Pass, ha6017, invalid memory access lower limit
 lbu7, lbu, Pass, ha6017, invalid memory access upper limit
 lbu8, lbu, Pass, ha6017, putc out of range
 lbu9, lbu, Pass, ha6017, getc in range but not at 003
+mfhi1, mfhi, Pass, ca2217, neg
+mfhi2, mfhi, Pass, ca2217, pos
+mfhi3, mfhi, Pass, ca2217, overwrite
+mflo1, mflo, Pass, ca2217, neg
+mflo2, mflo, Pass, ca2217, pos
+mflo3, mflo, Pass, ca2217, overwrite
+mthi1, mthi, Pass, ca2217, pos
+mthi2, mthi, Pass, ca2217, neg
+mtlo1, mtlo, Pass, ca2217, pos
+mtlo2, mtlo, Pass, ca2217, neg
 mult1, mult, Pass, ca2217, LO register mult 2 positive
 mult2, mult, Pass, ca2217, HI mult two positive
 mult3, mult, Pass, ca2217, neg x neg
 mult4, mult, Pass, ca2217, neg x pos
 mult5, mult, Pass, ca2217, (-1) x most neg
-mult6, mult, Fail, ca2217, most +ve x most -ve hi we here
+mult6, mult, Pass, ca2217, most +ve x most -ve
 mult7, mult, Pass, ca2217, num x 0
 multu1, multu, Pass, ca2217, LO register must 2 positive
 multu2, multu, Pass, ca2217, HI multu two positive
 multu3, multu, Pass, ca2217, most +ve x most +ve
 multu4, multu, Pass, ca2217, num x 0
+multu5, multu, Pass, ca2217, most +ve x most -ve hi we here
 or1, or, Pass, ca2217, or all 1s
 or2, or, Pass, ca2217, or all 0s
 or3, or, Pass, ca2217, changing register contents
@@ -200,6 +213,27 @@ srlv3, srlv, Pass, ca2217, zeros added
 srlv4, srlv, Pass, ca2217, decreasing value
 srlv5, srlv, Pass, ca2217, shift by zero
 srlv6, srlv, Pass, ca2217, shift by neg
+sub1, sub, Pass, ca2217, pos - pos = pos
+sub10, sub, Pass, ca2217, 0 - most neg = pos
+sub11, sub, Pass, ca2217, 0 - neg = pos
+sub2, sub, Pass, ca2217, neg - neg = neg
+sub3, sub, Pass, ca2217, pos - pos = neg
+sub4, sub, Pass, ca2217, neg - neg = pos
+sub5, sub, Pass, ca2217, pos - neg = pos
+sub6, sub, Pass, ca2217, pos - neg = neg OVERFLOW
+sub7, sub, Pass, ca2217, neg - pos = neg
+sub8, sub, Pass, ca2217, neg - pos = pos OVERFLOW
+sub9, sub, Pass, ca2217, 0 - most pos = neg
+subu1, subu, Pass, ca2217, pos - pos = pos
+subu10, subu, Pass, ca2217, 0 - neg = pos
+subu2, subu, Pass, ca2217, neg - neg = neg
+subu3, subu, Pass, ca2217, pos - pos = neg
+subu4, subu, Pass, ca2217, neg - neg = pos
+subu5, subu, Pass, ca2217, pos - neg = pos
+subu6, subu, Pass, ca2217, pos - neg = neg OVERFLOW
+subu7, subu, Pass, ca2217, neg - pos = neg
+subu8, subu, Pass, ca2217, neg - pos = pos
+subu9, subu, Pass, ca2217, 0 - most pos = neg
 xor1, xor, Pass, ca2217, xor all 1s
 xor2, xor, Pass, ca2217, xor all 0s
 xor3, xor, Pass, ca2217, changing register contents
