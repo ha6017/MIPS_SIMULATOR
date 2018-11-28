@@ -137,10 +137,7 @@ lh10, lh, Pass, ha6017, instr mem no-ops
 lh11, lh, Pass, ha6017, getc bottom half alighned
 lh12, lh, Pass, ha6017, getc offset
 lh13, lh, Pass, ha6017, getc null eof
-<<<<<<< HEAD
-=======
 lh1, lh, Pass, ha6017, top half of word loaded check last 8 bits
->>>>>>> e542e49b7794d3e18ed5c1a0b0b0ffee6ea7576f
 lh2, lh, Pass, ha6017, top half of word loaded check top 8 bits
 lh3, lh, Pass, ha6017, bottom half of word loaded check top 8 bits
 lh4, lh, Pass, ha6017, bottom half of word loaded check bottom 8 bits
@@ -149,18 +146,11 @@ lh6, lh, Pass, ha6017, unalighned offset2
 lh7, lh, Pass, ha6017, sign extension
 lh8, lh, Pass, ha6017, check range of function
 lh9, lh, Pass, ha6017, instr mem
-<<<<<<< HEAD
-lhu1, lhu, Pass, ha6017, top half of word loaded check last 8 bits
-=======
->>>>>>> e542e49b7794d3e18ed5c1a0b0b0ffee6ea7576f
 lhu10, lhu, Pass, ha6017, instr mem no-ops
 lhu11, lhu, Pass, ha6017, getc bottom half alighned
 lhu12, lhu, Pass, ha6017, getc offset
 lhu13, lhu, Pass, ha6017, getc null eof
-<<<<<<< HEAD
-=======
 lhu1, lhu, Pass, ha6017, top half of word loaded check last 8 bits
->>>>>>> e542e49b7794d3e18ed5c1a0b0b0ffee6ea7576f
 lhu2, lhu, Pass, ha6017, top half of word loaded check top 8 bits
 lhu3, lhu, Pass, ha6017, bottom half of word loaded check top 8 bits
 lhu4, lhu, Pass, ha6017, bottom half of word loaded check bottom 8 bits
@@ -229,10 +219,7 @@ sb7, sb, Pass, ha6017, getc at 000
 sb8, sb, Pass, ha6017, instr access
 sb9, sb, Pass, ha6017, null address
 sh10, sh, Pass, ha6017, data top boundary
-<<<<<<< HEAD
-=======
 sh1, sh, Pass, ha6017, normal store word
->>>>>>> e542e49b7794d3e18ed5c1a0b0b0ffee6ea7576f
 sh2, sh, Pass, ha6017, above mem bound
 sh3, sh, Pass, ha6017, putc at 004
 sh4, sh, Pass, ha6017, getc offset

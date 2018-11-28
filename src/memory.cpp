@@ -35,7 +35,6 @@ memory::memory(std::string name_bin)
   file_name.read (bin_array, size); //read the file
   file_name.close();
   num_instructions = sizeof(bin_array)/4;
-  if(num_instructions==0) std::exit(-21);
   int ar_i=0;
   for (int i=0;i<num_instructions;i++)
   {

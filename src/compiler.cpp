@@ -443,10 +443,7 @@ void compiler::JR()
 
 void compiler::MFHI() {regs.write(rd,regs.hi);}
 
-void compiler::MFLO()
-{
-  regs.write(rd,regs.lo);
-}
+void compiler::MFLO() {regs.write(rd,regs.lo);}
 
 void compiler::MTHI() {regs.hi = op1s;}
 
