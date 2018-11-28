@@ -1,15 +1,15 @@
-#mult6
-#mult
+#multu5
+#multu
 #0
 #ca2217
-#most +ve x most -ve
+#most +ve x most -ve hi we here
 
 lui $1, 0x7FFF
 ori $1, $1, 0xFFFF
 
 lui $4, 0x8000
 
-mult $1, $4
+multu $1, $4
 nop
 nop
 mfhi $8
@@ -21,7 +21,8 @@ jr $0
 
 nop
 
-lui $10, 0xC000
+lui $10, 0x3FFF
+ori $10, $10, 0xFFFF
 
 subu $2, $8, $10
 jr $0
