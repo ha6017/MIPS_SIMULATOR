@@ -1,0 +1,8 @@
+make[1]: Entering directory '/media/sf_shared/cw/summative/working/Sparta'
+g++ -std=c++11 -c src/compiler.cpp
+g++ -std=c++11 -c src/memory.cpp
+g++ -std=c++11 -c src/register_map.cpp
+g++ -std=c++11 -c src/main.cpp
+mkdir -p bin
+g++ -W -Wall -std=c++11 compiler.o memory.o register_map.o main.o -o bin/mips_simulator
+make[1]: Leaving directory '/media/sf_shared/cw/summative/working/Sparta'

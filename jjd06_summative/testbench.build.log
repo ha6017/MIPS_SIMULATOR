@@ -1,0 +1,2069 @@
+make[1]: Entering directory '/media/sf_shared/cw/summative/working/Sparta'
+bin/mips_parser.sh
+tests/meta/add1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/add1.bin
+
+tests/meta/add2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/add2.bin
+
+tests/meta/add3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/add3.bin
+
+tests/meta/add4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/add4.bin
+
+tests/meta/add5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/add5.bin
+
+tests/meta/add6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/add6.bin
+
+tests/meta/add7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/add7.bin
+
+tests/meta/addi1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/addi1.bin
+
+tests/meta/addi2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/addi2.bin
+
+tests/meta/addi3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/addi3.bin
+
+tests/meta/addi4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/addi4.bin
+
+tests/meta/addi5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/addi5.bin
+
+tests/meta/addi6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/addi6.bin
+
+tests/meta/addiu1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/addiu1.bin
+
+tests/meta/addiu2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/addiu2.bin
+
+tests/meta/addiu3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/addiu3.bin
+
+tests/meta/addu1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/addu1.bin
+
+tests/meta/addu2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/addu2.bin
+
+tests/meta/addu3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/addu3.bin
+
+tests/meta/and1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/and1.bin
+
+tests/meta/and2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/and2.bin
+
+tests/meta/and3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/and3.bin
+
+tests/meta/and4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/and4.bin
+
+tests/meta/andi1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/andi1.bin
+
+tests/meta/andi2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/andi2.bin
+
+tests/meta/andi3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/andi3.bin
+
+tests/meta/beq1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/beq1.bin
+
+tests/meta/beq2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/beq2.bin
+
+tests/meta/beq3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/beq3.bin
+
+tests/meta/beq4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/beq4.bin
+
+tests/meta/beq5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/beq5.bin
+
+tests/meta/beq6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/beq6.bin
+
+tests/meta/bgez1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgez1.bin
+
+tests/meta/bgez2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgez2.bin
+
+tests/meta/bgez3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgez3.bin
+
+tests/meta/bgez4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgez4.bin
+
+tests/meta/bgez5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgez5.bin
+
+tests/meta/bgez6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgez6.bin
+
+tests/meta/bgezal1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgezal1.bin
+
+tests/meta/bgezal2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgezal2.bin
+
+tests/meta/bgezal3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgezal3.bin
+
+tests/meta/bgezal4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgezal4.bin
+
+tests/meta/bgezal5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgezal5.bin
+
+tests/meta/bgezal6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgezal6.bin
+
+tests/meta/bgezal7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgezal7.bin
+
+tests/meta/bgtz1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgtz1.bin
+
+tests/meta/bgtz2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgtz2.bin
+
+tests/meta/bgtz3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgtz3.bin
+
+tests/meta/bgtz4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgtz4.bin
+
+tests/meta/bgtz5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgtz5.bin
+
+tests/meta/bgtz6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bgtz6.bin
+
+tests/meta/blez1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/blez1.bin
+
+tests/meta/blez2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/blez2.bin
+
+tests/meta/blez3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/blez3.bin
+
+tests/meta/blez4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/blez4.bin
+
+tests/meta/blez5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/blez5.bin
+
+tests/meta/blez6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/blez6.bin
+
+tests/meta/bltz1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bltz1.bin
+
+tests/meta/bltz2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bltz2.bin
+
+tests/meta/bltz3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bltz3.bin
+
+tests/meta/bltz4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bltz4.bin
+
+tests/meta/bltz5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bltz5.bin
+
+tests/meta/bltz6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bltz6.bin
+
+tests/meta/bltzal1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bltzal1.bin
+
+tests/meta/bltzal2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bltzal2.bin
+
+tests/meta/bltzal3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bltzal3.bin
+
+tests/meta/bltzal4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bltzal4.bin
+
+tests/meta/bltzal5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bltzal5.bin
+
+tests/meta/bltzal6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bltzal6.bin
+
+tests/meta/bltzal7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bltzal7.bin
+
+tests/meta/bne1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bne1.bin
+
+tests/meta/bne2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bne2.bin
+
+tests/meta/bne3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bne3.bin
+
+tests/meta/bne4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bne4.bin
+
+tests/meta/bne5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bne5.bin
+
+tests/meta/bne6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/bne6.bin
+
+tests/meta/div1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/div1.bin
+
+tests/meta/div2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/div2.bin
+
+tests/meta/div3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/div3.bin
+
+tests/meta/div4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/div4.bin
+
+tests/meta/div5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/div5.bin
+
+tests/meta/div6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/div6.bin
+
+tests/meta/div7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/div7.bin
+
+tests/meta/div8.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/div8.bin
+
+tests/meta/divu1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/divu1.bin
+
+tests/meta/divu2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/divu2.bin
+
+tests/meta/divu3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/divu3.bin
+
+tests/meta/divu4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/divu4.bin
+
+tests/meta/divu5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/divu5.bin
+
+tests/meta/divu6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/divu6.bin
+
+tests/meta/function.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/function.bin
+
+tests/meta/internal1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/internal1.bin
+
+tests/meta/internal2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/internal2.bin
+
+tests/meta/j1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/j1.bin
+
+tests/meta/j2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/j2.bin
+
+tests/meta/jal1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/jal1.bin
+
+tests/meta/jal2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/jal2.bin
+
+tests/meta/jal3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/jal3.bin
+
+tests/meta/jalr1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/jalr1.bin
+
+tests/meta/jalr2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/jalr2.bin
+
+tests/meta/jalr3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/jalr3.bin
+
+tests/meta/jalr4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/jalr4.bin
+
+tests/meta/jr1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/jr1.bin
+
+tests/meta/jr2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/jr2.bin
+
+tests/meta/jr3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/jr3.bin
+
+tests/meta/lb10.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lb10.bin
+
+tests/meta/lb11.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lb11.bin
+
+tests/meta/lb12.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lb12.bin
+
+tests/meta/lb13.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lb13.bin
+
+tests/meta/lb1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lb1.bin
+
+tests/meta/lb2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lb2.bin
+
+tests/meta/lb3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lb3.bin
+
+tests/meta/lb4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lb4.bin
+
+tests/meta/lb5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lb5.bin
+
+tests/meta/lb6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lb6.bin
+
+tests/meta/lb7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lb7.bin
+
+tests/meta/lb8.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lb8.bin
+
+tests/meta/lb9.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lb9.bin
+
+tests/meta/lbu10.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lbu10.bin
+
+tests/meta/lbu11.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lbu11.bin
+
+tests/meta/lbu12.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lbu12.bin
+
+tests/meta/lbu13.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lbu13.bin
+
+tests/meta/lbu1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lbu1.bin
+
+tests/meta/lbu2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lbu2.bin
+
+tests/meta/lbu3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lbu3.bin
+
+tests/meta/lbu4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lbu4.bin
+
+tests/meta/lbu5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lbu5.bin
+
+tests/meta/lbu6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lbu6.bin
+
+tests/meta/lbu7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lbu7.bin
+
+tests/meta/lbu8.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lbu8.bin
+
+tests/meta/lbu9.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lbu9.bin
+
+tests/meta/lh10.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lh10.bin
+
+tests/meta/lh11.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lh11.bin
+
+tests/meta/lh12.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lh12.bin
+
+tests/meta/lh13.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lh13.bin
+
+tests/meta/lh1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lh1.bin
+
+tests/meta/lh2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lh2.bin
+
+tests/meta/lh3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lh3.bin
+
+tests/meta/lh4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lh4.bin
+
+tests/meta/lh5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lh5.bin
+
+tests/meta/lh6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lh6.bin
+
+tests/meta/lh7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lh7.bin
+
+tests/meta/lh8.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lh8.bin
+
+tests/meta/lh9.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lh9.bin
+
+tests/meta/lhu10.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lhu10.bin
+
+tests/meta/lhu11.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lhu11.bin
+
+tests/meta/lhu12.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lhu12.bin
+
+tests/meta/lhu13.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lhu13.bin
+
+tests/meta/lhu1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lhu1.bin
+
+tests/meta/lhu2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lhu2.bin
+
+tests/meta/lhu3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lhu3.bin
+
+tests/meta/lhu4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lhu4.bin
+
+tests/meta/lhu5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lhu5.bin
+
+tests/meta/lhu6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lhu6.bin
+
+tests/meta/lhu7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lhu7.bin
+
+tests/meta/lhu8.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lhu8.bin
+
+tests/meta/lhu9.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lhu9.bin
+
+tests/meta/lui1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lui1.bin
+
+tests/meta/lui2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lui2.bin
+
+tests/meta/lui3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lui3.bin
+
+tests/meta/lw10.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw10.bin
+
+tests/meta/lw11.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw11.bin
+
+tests/meta/lw12.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw12.bin
+
+tests/meta/lw13.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw13.bin
+
+tests/meta/lw14.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw14.bin
+
+tests/meta/lw15.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw15.bin
+
+tests/meta/lw16.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw16.bin
+
+tests/meta/lw1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw1.bin
+
+tests/meta/lw2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw2.bin
+
+tests/meta/lw3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw3.bin
+
+tests/meta/lw4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw4.bin
+
+tests/meta/lw5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw5.bin
+
+tests/meta/lw6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw6.bin
+
+tests/meta/lw7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw7.bin
+
+tests/meta/lw8.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw8.bin
+
+tests/meta/lw9.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lw9.bin
+
+tests/meta/lwl1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwl1.bin
+
+tests/meta/lwl2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwl2.bin
+
+tests/meta/lwl3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwl3.bin
+
+tests/meta/lwl4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwl4.bin
+
+tests/meta/lwl5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwl5.bin
+
+tests/meta/lwl6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwl6.bin
+
+tests/meta/lwl7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwl7.bin
+
+tests/meta/lwl8.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwl8.bin
+
+tests/meta/lwl9.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwl9.bin
+
+tests/meta/lwr10.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwr10.bin
+
+tests/meta/lwr1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwr1.bin
+
+tests/meta/lwr2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwr2.bin
+
+tests/meta/lwr3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwr3.bin
+
+tests/meta/lwr4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwr4.bin
+
+tests/meta/lwr5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwr5.bin
+
+tests/meta/lwr6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwr6.bin
+
+tests/meta/lwr7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwr7.bin
+
+tests/meta/lwr8.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwr8.bin
+
+tests/meta/lwr9.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/lwr9.bin
+
+tests/meta/mfhi1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mfhi1.bin
+
+tests/meta/mfhi2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mfhi2.bin
+
+tests/meta/mfhi3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mfhi3.bin
+
+tests/meta/mflo1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mflo1.bin
+
+tests/meta/mflo2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mflo2.bin
+
+tests/meta/mflo3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mflo3.bin
+
+tests/meta/mthi1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mthi1.bin
+
+tests/meta/mthi2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mthi2.bin
+
+tests/meta/mtlo1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mtlo1.bin
+
+tests/meta/mtlo2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mtlo2.bin
+
+tests/meta/mult1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mult1.bin
+
+tests/meta/mult2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mult2.bin
+
+tests/meta/mult3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mult3.bin
+
+tests/meta/mult4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mult4.bin
+
+tests/meta/mult5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mult5.bin
+
+tests/meta/mult6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mult6.bin
+
+tests/meta/mult7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/mult7.bin
+
+tests/meta/multu1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/multu1.bin
+
+tests/meta/multu2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/multu2.bin
+
+tests/meta/multu3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/multu3.bin
+
+tests/meta/multu4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/multu4.bin
+
+tests/meta/multu5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/multu5.bin
+
+tests/meta/or1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/or1.bin
+
+tests/meta/or2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/or2.bin
+
+tests/meta/or3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/or3.bin
+
+tests/meta/ori1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/ori1.bin
+
+tests/meta/ori2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/ori2.bin
+
+tests/meta/ori3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/ori3.bin
+
+tests/meta/ori4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/ori4.bin
+
+tests/meta/sb10.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sb10.bin
+
+tests/meta/sb11.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sb11.bin
+
+tests/meta/sb1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sb1.bin
+
+tests/meta/sb2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sb2.bin
+
+tests/meta/sb3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sb3.bin
+
+tests/meta/sb4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sb4.bin
+
+tests/meta/sb5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sb5.bin
+
+tests/meta/sb6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sb6.bin
+
+tests/meta/sb7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sb7.bin
+
+tests/meta/sb8.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sb8.bin
+
+tests/meta/sb9.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sb9.bin
+
+tests/meta/sh10.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sh10.bin
+
+tests/meta/sh1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sh1.bin
+
+tests/meta/sh2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sh2.bin
+
+tests/meta/sh3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sh3.bin
+
+tests/meta/sh4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sh4.bin
+
+tests/meta/sh5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sh5.bin
+
+tests/meta/sh6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sh6.bin
+
+tests/meta/sh7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sh7.bin
+
+tests/meta/sh8.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sh8.bin
+
+tests/meta/sh9.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sh9.bin
+
+tests/meta/sll1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sll1.bin
+
+tests/meta/sll2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sll2.bin
+
+tests/meta/sll3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sll3.bin
+
+tests/meta/sll4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sll4.bin
+
+tests/meta/sll5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sll5.bin
+
+tests/meta/sllv1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sllv1.bin
+
+tests/meta/sllv2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sllv2.bin
+
+tests/meta/sllv3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sllv3.bin
+
+tests/meta/sllv4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sllv4.bin
+
+tests/meta/sllv5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sllv5.bin
+
+tests/meta/sllv6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sllv6.bin
+
+tests/meta/slt1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slt1.bin
+
+tests/meta/slt2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slt2.bin
+
+tests/meta/slt3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slt3.bin
+
+tests/meta/slt4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slt4.bin
+
+tests/meta/slt5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slt5.bin
+
+tests/meta/slt6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slt6.bin
+
+tests/meta/slt7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slt7.bin
+
+tests/meta/slti1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slti1.bin
+
+tests/meta/slti2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slti2.bin
+
+tests/meta/slti3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slti3.bin
+
+tests/meta/slti4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slti4.bin
+
+tests/meta/slti5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slti5.bin
+
+tests/meta/slti6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slti6.bin
+
+tests/meta/slti7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/slti7.bin
+
+tests/meta/sltiu1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sltiu1.bin
+
+tests/meta/sltiu2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sltiu2.bin
+
+tests/meta/sltiu3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sltiu3.bin
+
+tests/meta/sltiu4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sltiu4.bin
+
+tests/meta/sltu1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sltu1.bin
+
+tests/meta/sltu2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sltu2.bin
+
+tests/meta/sltu3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sltu3.bin
+
+tests/meta/sltu4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sltu4.bin
+
+tests/meta/sra1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sra1.bin
+
+tests/meta/sra2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sra2.bin
+
+tests/meta/sra3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sra3.bin
+
+tests/meta/sra4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sra4.bin
+
+tests/meta/sra5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sra5.bin
+
+tests/meta/sra6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sra6.bin
+
+tests/meta/srav1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srav1.bin
+
+tests/meta/srav2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srav2.bin
+
+tests/meta/srav3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srav3.bin
+
+tests/meta/srav4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srav4.bin
+
+tests/meta/srav5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srav5.bin
+
+tests/meta/srav6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srav6.bin
+
+tests/meta/srav7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srav7.bin
+
+tests/meta/srl1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srl1.bin
+
+tests/meta/srl2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srl2.bin
+
+tests/meta/srl3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srl3.bin
+
+tests/meta/srl4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srl4.bin
+
+tests/meta/srl5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srl5.bin
+
+tests/meta/srlv1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srlv1.bin
+
+tests/meta/srlv2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srlv2.bin
+
+tests/meta/srlv3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srlv3.bin
+
+tests/meta/srlv4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srlv4.bin
+
+tests/meta/srlv5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srlv5.bin
+
+tests/meta/srlv6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/srlv6.bin
+
+tests/meta/sub10.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sub10.bin
+
+tests/meta/sub11.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sub11.bin
+
+tests/meta/sub1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sub1.bin
+
+tests/meta/sub2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sub2.bin
+
+tests/meta/sub3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sub3.bin
+
+tests/meta/sub4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sub4.bin
+
+tests/meta/sub5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sub5.bin
+
+tests/meta/sub6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sub6.bin
+
+tests/meta/sub7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sub7.bin
+
+tests/meta/sub8.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sub8.bin
+
+tests/meta/sub9.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sub9.bin
+
+tests/meta/subu10.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/subu10.bin
+
+tests/meta/subu1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/subu1.bin
+
+tests/meta/subu2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/subu2.bin
+
+tests/meta/subu3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/subu3.bin
+
+tests/meta/subu4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/subu4.bin
+
+tests/meta/subu5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/subu5.bin
+
+tests/meta/subu6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/subu6.bin
+
+tests/meta/subu7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/subu7.bin
+
+tests/meta/subu8.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/subu8.bin
+
+tests/meta/subu9.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/subu9.bin
+
+tests/meta/sw10.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw10.bin
+
+tests/meta/sw11.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw11.bin
+
+tests/meta/sw12.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw12.bin
+
+tests/meta/sw13.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw13.bin
+
+tests/meta/sw14.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw14.bin
+
+tests/meta/sw1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw1.bin
+
+tests/meta/sw2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw2.bin
+
+tests/meta/sw3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw3.bin
+
+tests/meta/sw4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw4.bin
+
+tests/meta/sw5.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw5.bin
+
+tests/meta/sw6.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw6.bin
+
+tests/meta/sw7.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw7.bin
+
+tests/meta/sw8.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw8.bin
+
+tests/meta/sw9.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/sw9.bin
+
+tests/meta/xor1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/xor1.bin
+
+tests/meta/xor2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/xor2.bin
+
+tests/meta/xor3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/xor3.bin
+
+tests/meta/xori1.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/xori1.bin
+
+tests/meta/xori2.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/xori2.bin
+
+tests/meta/xori3.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/xori3.bin
+
+tests/meta/xori4.meta
+
+
+Commands passed successfully.
+Output file generated: tests/bin/xori4.bin
+
+Finished.
+
+make[1]: Leaving directory '/media/sf_shared/cw/summative/working/Sparta'

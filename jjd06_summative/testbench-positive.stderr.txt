@@ -1,0 +1,75 @@
+Exception :   overflow: s=2147418112, t=2147418112
+Exception :   overflow: s=-2147483648, t=-2147483648
+Exception : Overflow.
+Exception : Overflow.
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to access range [INSTR_ADDR+INSTR_LEN,DATA_ADDR).
+Exception : Attempt to access range [INSTR_ADDR+INSTR_LEN,DATA_ADDR).
+Exception : Attempt to execute instruction at mis-aligned address 0x1000001b.
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to execute instruction at mis-aligned address 0x1000001b.
+sub-word access to GETC.
+sub-word access to GETC.
+Exception : Attempt to access range [INSTR_ADDR+INSTR_LEN,DATA_ADDR).
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+sub-word access to PUTC.
+sub-word access to GETC.
+sub-word access to GETC.
+sub-word access to GETC.
+Exception : Attempt to access range [INSTR_ADDR+INSTR_LEN,DATA_ADDR).
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+sub-word access to PUTC.
+sub-word access to GETC.
+sub-word access to GETC.
+Exception : Address is not aligned.
+sub-word access to GETC.
+Exception : Address is not aligned.
+Exception : Address is not aligned.
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+sub-word access to GETC.
+Exception : Address is not aligned.
+sub-word access to GETC.
+Exception : Address is not aligned.
+Exception : Address is not aligned.
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+Exception : Address is not aligned.
+Exception : Address is not aligned.
+Exception : Address is not aligned.
+Exception : Address is not aligned.
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+Exception : Address is not aligned.
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+sub-word access to PUTC.
+sub-word access to PUTC.
+sub-word access to GETC.
+sub-word access to GETC.
+Exception : Attempt to write to instruction memory.
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+sub-word access to PUTC.
+Exception : Address is not aligned.
+sub-word access to PUTC.
+Exception : Attempt to write to instruction memory.
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Address is not aligned.
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+Exception :     overflow, s=0, t=-2147483648
+Exception :     overflow, s=-2147483648, t=1
+Exception :     overflow, s=-2147483648, t=1
+Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to access range [INSTR_ADDR+INSTR_LEN,DATA_ADDR).
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+Exception : Address is not aligned.
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+Exception : Address is not aligned.
+Exception : Address is not aligned.
