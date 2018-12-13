@@ -127,15 +127,14 @@ Exception : Attempt to access range [INSTR_ADDR+INSTR_LEN,DATA_ADDR).
 Disable instruction ' lb' for test 'lb6'
 Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
 Disable instruction ' lb' for test 'lb7'
-sub-word access to PUTC.
-Disable instruction '' for test ''
-sub-word access to GETC.
+Exception : Attempt to read from GETC
 Disable instruction ' lb' for test 'lb8'
 sub-word access to GETC.
 Disable instruction '' for test '48
 '
 sub-word access to GETC.
 Disable instruction ' lb' for test 'lb9'
+sub-word access to GETC.
 Disable instruction '' for test '12
 '
 Disable instruction ' lbu' for test 'lbu10'
@@ -144,105 +143,103 @@ Disable instruction ' lbu' for test 'lbu12'
 Disable instruction ' lbu' for test 'lbu13'
 Disable instruction ' lbu' for test 'lbu1'
 Disable instruction ' lbu' for test 'lbu2'
-Exception : Attempt to access range [INSTR_ADDR+INSTR_LEN,DATA_ADDR).
 Disable instruction ' lbu' for test 'lbu3'
-Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+Exception : Attempt to access range [INSTR_ADDR+INSTR_LEN,DATA_ADDR).
 Disable instruction ' lbu' for test 'lbu4'
-sub-word access to PUTC.
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
 Disable instruction ' lbu' for test 'lbu5'
-sub-word access to GETC.
+Exception : Attempt to read from GETC
 Disable instruction ' lbu' for test 'lbu6'
-Disable instruction ' lbu' for test 'lbu7'
 sub-word access to GETC.
-Disable instruction '' for test ''
-Exception : Address is not aligned.
+Disable instruction ' lbu' for test 'lbu7'
 Disable instruction ' lbu' for test 'lbu8'
 sub-word access to GETC.
 Disable instruction '' for test '48
 '
+Exception : Address is not aligned.
 Disable instruction ' lbu' for test 'lbu9'
+sub-word access to GETC.
 Disable instruction ' lh' for test 'lh10'
 Disable instruction '' for test '232
 '
 Disable instruction ' lh' for test 'lh11'
-Exception : Address is not aligned.
 Disable instruction ' lh' for test 'lh12'
-Exception : Address is not aligned.
 Disable instruction '' for test '1
 '
+Exception : Address is not aligned.
 Disable instruction ' lh' for test 'lh13'
-Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+Exception : Address is not aligned.
 Disable instruction ' lh' for test 'lh1'
 Disable instruction ' lh' for test 'lh2'
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
 Disable instruction ' lh' for test 'lh3'
-sub-word access to GETC.
 Disable instruction ' lh' for test 'lh4'
-Exception : Address is not aligned.
 Disable instruction ' lh' for test 'lh5'
 sub-word access to GETC.
 Disable instruction ' lh' for test 'lh6'
+Exception : Address is not aligned.
 Disable instruction ' lh' for test 'lh7'
+sub-word access to GETC.
 Disable instruction ' lh' for test 'lh8'
 Disable instruction ' lh' for test 'lh9'
 Disable instruction ' lhu' for test 'lhu10'
-Exception : Address is not aligned.
 Disable instruction '' for test '232
 '
-Exception : Address is not aligned.
 Disable instruction ' lhu' for test 'lhu11'
+Exception : Address is not aligned.
 Disable instruction ' lhu' for test 'lhu12'
-Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+Exception : Address is not aligned.
 Disable instruction '' for test '1
 '
 Disable instruction ' lhu' for test 'lhu13'
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
 Disable instruction ' lhu' for test 'lhu1'
 Disable instruction ' lhu' for test 'lhu2'
 Disable instruction ' lhu' for test 'lhu3'
-Exception : Address is not aligned.
 Disable instruction ' lhu' for test 'lhu4'
 Disable instruction ' lhu' for test 'lhu5'
+Exception : Address is not aligned.
 Disable instruction ' lhu' for test 'lhu6'
 Disable instruction ' lhu' for test 'lhu7'
 Disable instruction ' lhu' for test 'lhu8'
-Exception : Address is not aligned.
 Disable instruction ' lhu' for test 'lhu9'
-Exception : Address is not aligned.
 Disable instruction ' lui' for test 'lui1'
-Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Address is not aligned.
 Disable instruction ' lui' for test 'lui2'
-Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Address is not aligned.
 Disable instruction ' lui' for test 'lui3'
 Exception : Attempt to access range [0,INSTR_ADDR).
 Disable instruction ' lw' for test 'lw10'
-Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+Exception : Address is not aligned.
 Disable instruction ' lw' for test 'lw11'
 Disable instruction ' lw' for test 'lw12'
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
 Disable instruction ' lw' for test 'lw13'
 Disable instruction ' lw' for test 'lw14'
+Exception : Attempt to read from GETC
 Disable instruction ' lw' for test 'lw15'
-Exception : Address is not aligned.
 Disable instruction ' lw' for test 'lw16'
 Disable instruction ' lw' for test 'lw1'
+Exception : Address is not aligned.
 Disable instruction ' lw' for test 'lw2'
 Disable instruction ' lw' for test 'lw3'
 Disable instruction ' lw' for test 'lw4'
 Disable instruction ' lw' for test 'lw5'
-Disable instruction '' for test ''
 Disable instruction ' lw' for test 'lw6'
 Disable instruction ' lw' for test 'lw7'
 Disable instruction ' lw' for test 'lw8'
 Disable instruction ' lw' for test 'lw9'
 Disable instruction ' lwl' for test 'lwl1'
+Exception : Attempt to read from GETC
 Disable instruction ' lwl' for test 'lwl2'
+Exception : Attempt to read from GETC
 Disable instruction ' lwl' for test 'lwl3'
 Disable instruction ' lwl' for test 'lwl4'
 Disable instruction ' lwl' for test 'lwl5'
 Disable instruction ' lwl' for test 'lwl6'
 Disable instruction ' lwl' for test 'lwl7'
 Disable instruction ' lwl' for test 'lwl8'
-Disable instruction '' for test ''
 Disable instruction ' lwl' for test 'lwl9'
-Disable instruction '' for test ''
 Disable instruction ' lwr' for test 'lwr10'
 Disable instruction ' lwr' for test 'lwr1'
 Disable instruction ' lwr' for test 'lwr2'
@@ -271,48 +268,39 @@ Disable instruction ' mult' for test 'mult5'
 Disable instruction ' mult' for test 'mult6'
 Disable instruction ' mult' for test 'mult7'
 Disable instruction ' multu' for test 'multu1'
-Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
 Disable instruction ' multu' for test 'multu2'
 Disable instruction ' multu' for test 'multu3'
 Disable instruction ' multu' for test 'multu4'
-Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
 Disable instruction ' multu' for test 'multu5'
-sub-word access to PUTC.
 Disable instruction ' or' for test 'or1'
-sub-word access to PUTC.
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
 Disable instruction ' or' for test 'or2'
-sub-word access to GETC.
 Disable instruction ' or' for test 'or3'
-sub-word access to GETC.
 Disable instruction ' ori' for test 'ori1'
-Exception : Attempt to write to instruction memory.
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
 Disable instruction ' ori' for test 'ori2'
-Exception : Attempt to access range [0,INSTR_ADDR).
+Exception : Attempt to write to GETC
 Disable instruction ' ori' for test 'ori3'
+Exception : Attempt to write to GETC
 Disable instruction ' ori' for test 'ori4'
+Exception : Attempt to write to GETC
 Disable instruction ' sb' for test 'sb10'
-Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
 Disable instruction ' sb' for test 'sb11'
-sub-word access to PUTC.
 Disable instruction ' sb' for test 'sb1'
-Exception : Address is not aligned.
 Disable instruction ' sb' for test 'sb2'
-sub-word access to PUTC.
 Disable instruction ' sb' for test 'sb3'
-Exception : Attempt to write to instruction memory.
 Disable instruction '' for test ''
-Exception : Attempt to access range [0,INSTR_ADDR).
-Disable instruction '' for test ''
-Exception : Address is not aligned.
-Disable instruction '' for test '0
-'
 Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+Disable instruction '' for test ''
+sub-word access to PUTC.
 Disable instruction ' sb' for test 'sb6'
-Disable instruction '' for test '0
-'
+Exception : Address is not aligned.
 Disable instruction ' sb' for test 'sb7'
+sub-word access to PUTC.
 Disable instruction ' sb' for test 'sb8'
+Exception : Attempt to write to instruction memory.
 Disable instruction ' sb' for test 'sb9'
+Exception : Attempt to access range [0,INSTR_ADDR).
 Disable instruction ' sh' for test 'sh10'
 Disable instruction ' sh' for test 'sh1'
 Disable instruction ' sh' for test 'sh2'
@@ -366,7 +354,6 @@ Disable instruction ' srav' for test 'srav1'
 Disable instruction ' srav' for test 'srav2'
 Disable instruction ' srav' for test 'srav3'
 Disable instruction ' srav' for test 'srav4'
-Exception :     overflow, s=0, t=-2147483648
 Disable instruction ' srav' for test 'srav5'
 Disable instruction ' srav' for test 'srav6'
 Disable instruction ' srav' for test 'srav7'
@@ -374,46 +361,51 @@ Disable instruction ' srl' for test 'srl1'
 Disable instruction ' srl' for test 'srl2'
 Disable instruction ' srl' for test 'srl3'
 Disable instruction ' srl' for test 'srl4'
-Exception :     overflow, s=-2147483648, t=1
+Exception :     overflow, s=0, t=-2147483648
 Disable instruction ' srl' for test 'srl5'
 Disable instruction ' srlv' for test 'srlv1'
-Exception :     overflow, s=-2147483648, t=1
 Disable instruction ' srlv' for test 'srlv2'
 Disable instruction ' srlv' for test 'srlv3'
 Disable instruction ' srlv' for test 'srlv4'
 Disable instruction ' srlv' for test 'srlv5'
 Disable instruction ' srlv' for test 'srlv6'
+Exception :     overflow, s=-2147483648, t=1
 Disable instruction ' sub' for test 'sub10'
 Disable instruction ' sub' for test 'sub11'
+Exception :     overflow, s=-2147483648, t=1
 Disable instruction ' sub' for test 'sub1'
 Disable instruction ' sub' for test 'sub2'
 Disable instruction ' sub' for test 'sub3'
 Disable instruction ' sub' for test 'sub4'
 Disable instruction ' sub' for test 'sub5'
-Exception : Attempt to access range [0,INSTR_ADDR).
 Disable instruction ' sub' for test 'sub6'
 Disable instruction ' sub' for test 'sub7'
-Exception : Attempt to access range [INSTR_ADDR+INSTR_LEN,DATA_ADDR).
 Disable instruction ' sub' for test 'sub8'
 Disable instruction ' sub' for test 'sub9'
-Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
 Disable instruction ' subu' for test 'subu10'
 Disable instruction ' subu' for test 'subu1'
 Disable instruction ' subu' for test 'subu2'
+Exception : Attempt to access range [0,INSTR_ADDR).
 Disable instruction ' subu' for test 'subu3'
-Exception : Address is not aligned.
 Disable instruction ' subu' for test 'subu4'
-Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
+Exception : Attempt to access range [INSTR_ADDR+INSTR_LEN,DATA_ADDR).
 Disable instruction ' subu' for test 'subu5'
 Disable instruction ' subu' for test 'subu6'
-Exception : Address is not aligned.
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
 Disable instruction ' subu' for test 'subu7'
 Disable instruction ' subu' for test 'subu8'
-Exception : Address is not aligned.
 Disable instruction ' subu' for test 'subu9'
 Disable instruction ' sw' for test 'sw10'
 Disable instruction ' sw' for test 'sw11'
+Exception : Attempt to access range [DATA_ADDR+DATA_LEN,GETC_ADDR).
 Disable instruction ' sw' for test 'sw12'
 Disable instruction ' sw' for test 'sw13'
 Disable instruction ' sw' for test 'sw14'
 Disable instruction ' sw' for test 'sw1'
+Disable instruction ' sw' for test 'sw2'
+Disable instruction ' sw' for test 'sw3'
+Disable instruction ' sw' for test 'sw4'
+Disable instruction ' sw' for test 'sw5'
+Disable instruction ' sw' for test 'ñsw6'
+Disable instruction ' sw' for test 'sw7'
+Disable instruction ' sw' for test 'sw8'
